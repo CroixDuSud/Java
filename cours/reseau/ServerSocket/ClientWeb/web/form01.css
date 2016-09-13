@@ -1,0 +1,33 @@
+/* -------------------------------------------------------------------------- */
+/* Cette CSS sert a visualiser le label et mettre une mage au dessus des      */
+/* champs <input>                                                             */
+/* -------------------------------------------------------------------------- */
+
+body
+{
+   background : #77FFFF;
+   color : blue;
+   font-family : 'calibri';
+}
+
+input
+{
+   font-family : inherit;
+   margin-top : 1em;
+}
+
+label
+{
+   margin-left : 1em;
+}
+
+fieldset
+{
+   margin : 2em;
+   padding : 1em;
+}
+
+.envoi
+{
+   margin : 2em;
+}

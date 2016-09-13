@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+
+<!DOCTYPE RACINE [
+<!ELEMENT RACINE (COLONNE*, LIGNE*)>
+   <!ELEMENT COLONNE (NomColonne, TailleColonne, ClasseColonne)>
+      <!ELEMENT NomColonne (#PCDATA)>
+      <!ELEMENT TailleColonne (#PCDATA)>
+      <!ELEMENT ClasseColonne (#PCDATA)>
+   <!ELEMENT LIGNE (NUMERO, NOM, ADRESSE, CODE_POSTAL, VILLE, CODE_SECTEUR)>
+      <!ELEMENT NUMERO (#PCDATA)>
+      <!ELEMENT NOM (#PCDATA)>
+      <!ELEMENT ADRESSE (#PCDATA)>
+      <!ELEMENT CODE_POSTAL (#PCDATA)>
+      <!ELEMENT VILLE (#PCDATA)>
+      <!ELEMENT CODE_SECTEUR (#PCDATA)>
+]>
+
+<RACINE>
+   <COLONNE>
+      <NomColonne>NUMERO</NomColonne>
+      <TailleColonne>11</TailleColonne>
+      <ClasseColonne>java.lang.Integer</ClasseColonne>
+   </COLONNE>
+   <COLONNE>
+      <NomColonne>NOM</NomColonne>
+      <TailleColonne>20</TailleColonne>
+      <ClasseColonne>java.lang.String</ClasseColonne>
+   </COLONNE>
+   <COLONNE>
+      <NomColonne>ADRESSE</NomColonne>
+      <TailleColonne>50</TailleColonne>
+      <ClasseColonne>java.lang.String</ClasseColonne>
+   </COLONNE>
+   <COLONNE>
+      <NomColonne>CODE_POSTAL</NomColonne>
+      <TailleColonne>5</TailleColonne>
+      <ClasseColonne>java.lang.String</ClasseColonne>
+   </COLONNE>
+   <COLONNE>
+      <NomColonne>VILLE</NomColonne>
+      <TailleColonne>20</TailleColonne>
+      <ClasseColonne>java.lang.String</ClasseColonne>
+   </COLONNE>
+   <COLONNE>
+      <NomColonne>CODE_SECTEUR</NomColonne>
+      <TailleColonne>11</TailleColonne>
+      <ClasseColonne>java.lang.Integer</ClasseColonne>
+   </COLONNE>
+   <LIGNE>
+      <NUMERO>100</NUMERO>
+      <NOM>FUMIER</NOM>
+      <ADRESSE>Rue Barbe</ADRESSE>
+      <CODE_POSTAL>94000</CODE_POSTAL>
+      <VILLE>CRETEIL</VILLE>
+      <CODE_SECTEUR>1</CODE_SECTEUR>
+   </LIGNE>
+   <LIGNE>
+      <NUMERO>101</NUMERO>
+      <NOM>CREVURE</NOM>
+      <ADRESSE>Avenue du Merdier</ADRESSE>
+      <CODE_POSTAL>94100</CODE_POSTAL>
+      <VILLE>SAINT MAUR</VILLE>
+      <CODE_SECTEUR>2</CODE_SECTEUR>
+   </LIGNE>
+   <LIGNE>
+      <NUMERO>102</NUMERO>
+      <NOM>PUTASSE</NOM>
+      <ADRESSE> </ADRESSE>
+      <CODE_POSTAL> </CODE_POSTAL>
+      <VILLE> </VILLE>
+      <CODE_SECTEUR> </CODE_SECTEUR>
+   </LIGNE>
+</RACINE>

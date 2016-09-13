@@ -1,0 +1,4 @@
+<!ELEMENT font (nom, taille)>
+   <!ELEMENT nom    (#PCDATA)>
+   <!ELEMENT taille (#PCDATA)>
+   <!ATTLIST taille unite CDATA 'pt'>

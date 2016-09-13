@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="fr">
+   <head>
+      <title>Formulaires : exemple 01</title>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+      <link rel="stylesheet" type="text/css" href="form01.css" />
+   </head>
+
+
+   <body>
+
+<!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+<!-- Formulaire.                                                             -->
+<!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+      <form action="http://localhost:8189" method="post">
+         <fieldset>
+            <legend>Vos identifiants</legend>
+            <label for="nom">Nom : </label>
+            <input type="text" name="monNom" id="nom" />
+            <label for="motPasse">Mot de passe : </label>
+            <input type="password" name="monMotPasse" id="motPasse" />
+         </fieldset>
+
+         <div class="envoi">
+            <input type="submit" />
+         </div>
+      </form>
+   </body>
+</html>
