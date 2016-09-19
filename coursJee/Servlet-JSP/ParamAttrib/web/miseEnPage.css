@@ -1,0 +1,43 @@
+body
+{
+   background : #0077FF;
+   color : white;
+   font-family : calibri;
+}
+legend
+{
+    font-size : 1.5em;
+}
+
+fieldset
+{
+   background : #2299FF;
+   margin : 2em;
+   padding : 1em;
+}
+
+div
+{
+   margin : 0.5em;
+}
+
+.divTexte
+{
+   width : 16em;
+   float : left;
+}
+
+.divTexteCompl
+{
+   width : 30em;
+}
+
+#envoyer
+{
+   text-align : center;
+}
+
+p
+{
+   margin : 0px;
+}

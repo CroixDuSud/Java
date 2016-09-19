@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
+    <context-param>
+        <param-name>paramContext1</param-name>
+        <param-value>ABRUTI</param-value>
+    </context-param>
+    <context-param>
+        <param-name>paramContext2</param-name>
+        <param-value>BADERNE</param-value>
+    </context-param>
+    <servlet>
+        <servlet-name>AfficheParamAttrib</servlet-name>
+        <servlet-class>AfficheParamAttrib</servlet-class>
+        <init-param>
+            <param-name>paramConfig1</param-name>
+            <param-value>FUMIER</param-value>
+        </init-param>
+        <init-param>
+            <param-name>paramConfig2</param-name>
+            <param-value>3000</param-value>
+        </init-param>
+        <init-param>
+            <param-name>paramConfig3</param-name>
+            <param-value>INFECT</param-value>
+        </init-param>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>AfficheParamAttrib</servlet-name>
+        <url-pattern>/AfficheParamAttrib</url-pattern>
+    </servlet-mapping>
+    <session-config>
+        <session-timeout>
+            30
+        </session-timeout>
+    </session-config>
+</web-app>
