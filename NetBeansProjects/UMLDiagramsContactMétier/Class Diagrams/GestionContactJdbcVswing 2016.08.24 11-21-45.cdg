@@ -1,0 +1,444 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<ClassDiagram name="GestionContactJdbcVswing">
+  <ClassDiagramComponents>
+    <Class name="Controleur" package="" visibility="public" xPosition="20.0" yPosition="20.0">
+      <Fields>
+        <Field name="maFenetre" type="Fenetre" visibility="private" isStatic="true"/>
+        <Field name="contactDAO" type="ContactDAO" visibility="private" isStatic="true"/>
+        <Field name="versementDAO" type="VersementDAO" visibility="private" isStatic="true"/>
+        <Field name="secteurDAO" type="SecteurDAO" visibility="private" isStatic="true"/>
+        <Field name="base" type="BaseDeDonnees" visibility="private" isStatic="true"/>
+      </Fields>
+      <Constructors/>
+      <Methods>
+        <Method name="main" returnType="void" visibility="public" isStatic="true">
+          <Argument type="String" name="args"/>
+        </Method>
+        <Method name="creeListeContacts" returnType="void" visibility="public" isStatic="true"/>
+        <Method name="creeListeVersements" returnType="void" visibility="public" isStatic="true"/>
+        <Method name="creeListeSecteurs" returnType="void" visibility="public" isStatic="true"/>
+        <Method name="majContacts" returnType="void" visibility="public" isStatic="true">
+          <Argument type="Vector&lt;Contact&gt;" name="contactsModifies"/>
+          <Argument type="Vector&lt;Contact&gt;" name="contactsInseres"/>
+          <Argument type="Vector&lt;Contact&gt;" name="contactsSupprimes"/>
+        </Method>
+        <Method name="arreter" returnType="void" visibility="public" isStatic="true"/>
+      </Methods>
+    </Class>
+    <Class name="ContactDAO" package="daoJdbcMapping" visibility="public" xPosition="320.0" yPosition="20.0">
+      <Fields>
+        <Field name="base" type="BaseDeDonnees" visibility="private"/>
+        <Field name="jeuResultat" type="JeuResultat" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="BaseDeDonnees" name="base"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="lire" returnType="void" visibility="public">
+          <Argument type="Contact" name="contact"/>
+        </Method>
+        <Method name="creer" returnType="int" visibility="public">
+          <Argument type="Contact" name="contact"/>
+        </Method>
+        <Method name="modifier" returnType="int" visibility="public">
+          <Argument type="Contact" name="contact"/>
+        </Method>
+        <Method name="detruire" returnType="int" visibility="public">
+          <Argument type="Contact" name="contact"/>
+        </Method>
+        <Method name="lireContact" returnType="Contact" visibility="public">
+          <Argument type="Versement" name="versement"/>
+        </Method>
+        <Method name="lireListe" returnType="Vector&lt;Contact&gt;" visibility="public">
+          <Argument type="Secteur" name="secteur"/>
+        </Method>
+        <Method name="lireListe" returnType="Vector&lt;Contact&gt;" visibility="public"/>
+        <Method name="getListeColonnes" returnType="Vector&lt;Colonne&gt;" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="SecteurDAO" package="daoJdbcMapping" visibility="public" xPosition="620.0" yPosition="20.0">
+      <Fields>
+        <Field name="base" type="BaseDeDonnees" visibility="private"/>
+        <Field name="jeuResultat" type="JeuResultat" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="BaseDeDonnees" name="base"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="lire" returnType="void" visibility="public">
+          <Argument type="Secteur" name="secteur"/>
+        </Method>
+        <Method name="creer" returnType="int" visibility="public">
+          <Argument type="Secteur" name="secteur"/>
+        </Method>
+        <Method name="modifier" returnType="int" visibility="public">
+          <Argument type="Secteur" name="secteur"/>
+        </Method>
+        <Method name="detruire" returnType="int" visibility="public">
+          <Argument type="Secteur" name="secteur"/>
+        </Method>
+        <Method name="lireSecteur" returnType="Secteur" visibility="public">
+          <Argument type="Contact" name="contact"/>
+        </Method>
+        <Method name="lireListe" returnType="Vector&lt;Secteur&gt;" visibility="public"/>
+        <Method name="getListeColonnes" returnType="Vector&lt;Colonne&gt;" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="VersementDAO" package="daoJdbcMapping" visibility="public" xPosition="920.0" yPosition="20.0">
+      <Fields>
+        <Field name="base" type="BaseDeDonnees" visibility="private"/>
+        <Field name="jeuResultat" type="JeuResultat" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="BaseDeDonnees" name="base"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="lire" returnType="void" visibility="public">
+          <Argument type="Versement" name="versement"/>
+        </Method>
+        <Method name="creer" returnType="int" visibility="public">
+          <Argument type="Versement" name="versement"/>
+        </Method>
+        <Method name="modifier" returnType="int" visibility="public">
+          <Argument type="Versement" name="versement"/>
+        </Method>
+        <Method name="detruire" returnType="int" visibility="public">
+          <Argument type="Versement" name="versement"/>
+        </Method>
+        <Method name="lireListe" returnType="Vector&lt;Versement&gt;" visibility="public">
+          <Argument type="Contact" name="contact"/>
+        </Method>
+        <Method name="lireListe" returnType="Vector&lt;Versement&gt;" visibility="public"/>
+        <Method name="getListeColonnes" returnType="Vector&lt;Colonne&gt;" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="Fenetre" package="" visibility="public" xPosition="1220.0" yPosition="20.0">
+      <Fields>
+        <Field name="barreMenu" type="JMenuBar" visibility="private"/>
+        <Field name="menuTables" type="JMenu" visibility="private"/>
+        <Field name="itemContact" type="JMenuItem" visibility="private"/>
+        <Field name="itemVersement" type="JMenuItem" visibility="private"/>
+        <Field name="itemSecteur" type="JMenuItem" visibility="private"/>
+        <Field name="panneauFond" type="JPanel" visibility="private"/>
+        <Field name="panneauFenetres" type="JDesktopPaneMG" visibility="private"/>
+        <Field name="defilePanneauFenetres" type="JScrollPaneMG" visibility="private"/>
+        <Field name="fenetreContact" type="FenetreInterneContact" visibility="private"/>
+        <Field name="fenetreVersement" type="FenetreInterneVersement" visibility="private"/>
+        <Field name="fenetreSecteur" type="FenetreInterneSecteur" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="String" name="s"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="actionPerformed" returnType="void" visibility="public">
+          <Argument type="ActionEvent" name="e"/>
+        </Method>
+        <Method name="valideItemContact" returnType="void" visibility="public"/>
+        <Method name="afficheMessage" returnType="void" visibility="public">
+          <Argument type="String" name="message"/>
+        </Method>
+        <Method name="afficheFenetreContact" returnType="void" visibility="public">
+          <Argument type="Vector&lt;Contact&gt;" name="listeContacts"/>
+          <Argument type="Vector&lt;Colonne&gt;" name="listeColonnes"/>
+          <Argument type="Vector&lt;Secteur&gt;" name="listeSecteurs"/>
+        </Method>
+        <Method name="afficheFenetreVersement" returnType="void" visibility="public">
+          <Argument type="Vector&lt;Versement&gt;" name="listeVersements"/>
+          <Argument type="Vector&lt;Colonne&gt;" name="listeColonnes"/>
+          <Argument type="Vector&lt;Contact&gt;" name="listeContacts"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="FenetreInterneContact" package="" visibility="public" xPosition="1520.0" yPosition="20.0">
+      <Fields>
+        <Field name="barreMenu" type="JMenuBar" visibility="private"/>
+        <Field name="menuEdition" type="JMenu" visibility="private"/>
+        <Field name="supprimerLignesItem" type="JMenuItem" visibility="private"/>
+        <Field name="restaurerLignesItem" type="JMenuItem" visibility="private"/>
+        <Field name="panneauFond" type="JPanel" visibility="private"/>
+        <Field name="table" type="JTable" visibility="private"/>
+        <Field name="modeleTable" type="ModeleTableContact" visibility="private"/>
+        <Field name="modeleColonne" type="ModeleColonneTable" visibility="private"/>
+        <Field name="defileur" type="JScrollPane" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="Vector&lt;Contact&gt;" name="listeContacts"/>
+          <Argument type="Vector&lt;Colonne&gt;" name="listeColonnes"/>
+          <Argument type="Vector&lt;Secteur&gt;" name="listeSecteurs"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="actionPerformed" returnType="void" visibility="public">
+          <Argument type="ActionEvent" name="e"/>
+        </Method>
+        <Method name="afficheMessage" returnType="void" visibility="public">
+          <Argument type="String" name="message"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="FenetreInterneSecteur" package="" visibility="public" xPosition="1820.0" yPosition="20.0">
+      <Fields>
+        <Field name="barreMenu" type="JMenuBar" visibility="private"/>
+        <Field name="menuEdition" type="JMenu" visibility="private"/>
+        <Field name="supprimerLignesItem" type="JMenuItem" visibility="private"/>
+        <Field name="restaurerLignesItem" type="JMenuItem" visibility="private"/>
+        <Field name="panneauFond" type="JPanel" visibility="private"/>
+        <Field name="table" type="JTable" visibility="private"/>
+        <Field name="modeleTable" type="ModeleTableContact" visibility="private"/>
+        <Field name="modeleColonne" type="ModeleColonneTable" visibility="private"/>
+        <Field name="defileur" type="JScrollPane" visibility="private"/>
+      </Fields>
+      <Constructors/>
+      <Methods>
+        <Method name="actionPerformed" returnType="void" visibility="public">
+          <Argument type="ActionEvent" name="e"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="FenetreInterneVersement" package="" visibility="public" xPosition="2120.0" yPosition="20.0">
+      <Fields>
+        <Field name="barreMenu" type="JMenuBar" visibility="private"/>
+        <Field name="menuEdition" type="JMenu" visibility="private"/>
+        <Field name="supprimerLignesItem" type="JMenuItem" visibility="private"/>
+        <Field name="restaurerLignesItem" type="JMenuItem" visibility="private"/>
+        <Field name="panneauFond" type="JPanel" visibility="private"/>
+        <Field name="table" type="JTable" visibility="private"/>
+        <Field name="modeleTable" type="ModeleTableContact" visibility="private"/>
+        <Field name="modeleColonne" type="ModeleColonneTable" visibility="private"/>
+        <Field name="defileur" type="JScrollPane" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="Vector&lt;Versement&gt;" name="listeVersements"/>
+          <Argument type="Vector&lt;Colonne&gt;" name="listeColonnes"/>
+          <Argument type="Vector&lt;Contact&gt;" name="listeContacts"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="actionPerformed" returnType="void" visibility="public">
+          <Argument type="ActionEvent" name="e"/>
+        </Method>
+        <Method name="afficheMessage" returnType="void" visibility="public">
+          <Argument type="String" name="message"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="Contact" package="metierMapping" visibility="public" xPosition="20.0" yPosition="420.0">
+      <Fields>
+        <Field name="numero" type="Integer" visibility="private"/>
+        <Field name="nom" type="String" visibility="private"/>
+        <Field name="adresse" type="String" visibility="private"/>
+        <Field name="codePostal" type="String" visibility="private"/>
+        <Field name="ville" type="String" visibility="private"/>
+        <Field name="codeSecteur" type="Integer" visibility="private"/>
+        <Field name="secteur" type="Secteur" visibility="private"/>
+        <Field name="listeVersements" type="Vector&lt;Versement&gt;" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+      </Constructors>
+      <Methods>
+        <Method name="setNumero" returnType="void" visibility="public">
+          <Argument type="Integer" name="numero"/>
+        </Method>
+        <Method name="setNom" returnType="void" visibility="public">
+          <Argument type="String" name="nom"/>
+        </Method>
+        <Method name="setAdresse" returnType="void" visibility="public">
+          <Argument type="String" name="adresse"/>
+        </Method>
+        <Method name="setCodePostal" returnType="void" visibility="public">
+          <Argument type="String" name="codePostal"/>
+        </Method>
+        <Method name="setVille" returnType="void" visibility="public">
+          <Argument type="String" name="ville"/>
+        </Method>
+        <Method name="setCodeSecteur" returnType="void" visibility="public">
+          <Argument type="Integer" name="codeSecteur"/>
+        </Method>
+        <Method name="getNumero" returnType="Integer" visibility="public"/>
+        <Method name="getNom" returnType="String" visibility="public"/>
+        <Method name="getAdresse" returnType="String" visibility="public"/>
+        <Method name="getCodePostal" returnType="String" visibility="public"/>
+        <Method name="getVille" returnType="String" visibility="public"/>
+        <Method name="getCodeSecteur" returnType="Integer" visibility="public"/>
+        <Method name="getSecteur" returnType="Secteur" visibility="public"/>
+        <Method name="getListeVersements" returnType="Vector&lt;Versement&gt;" visibility="public"/>
+        <Method name="setSecteur" returnType="void" visibility="public">
+          <Argument type="Secteur" name="secteur"/>
+        </Method>
+        <Method name="setListeVersements" returnType="void" visibility="public">
+          <Argument type="Vector&lt;Versement&gt;" name="listeVersements"/>
+        </Method>
+        <Method name="toString" returnType="String" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="Secteur" package="metierMapping" visibility="public" xPosition="320.0" yPosition="420.0">
+      <Fields>
+        <Field name="code" type="Integer" visibility="private"/>
+        <Field name="libelle" type="String" visibility="private"/>
+        <Field name="listeContacts" type="Vector&lt;Contact&gt;" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+      </Constructors>
+      <Methods>
+        <Method name="setCode" returnType="void" visibility="public">
+          <Argument type="Integer" name="code"/>
+        </Method>
+        <Method name="setLibelle" returnType="void" visibility="public">
+          <Argument type="String" name="libelle"/>
+        </Method>
+        <Method name="getCode" returnType="Integer" visibility="public"/>
+        <Method name="getLibelle" returnType="String" visibility="public"/>
+        <Method name="getListeContacts" returnType="Vector&lt;Contact&gt;" visibility="public"/>
+        <Method name="setListeContacts" returnType="void" visibility="public">
+          <Argument type="Vector&lt;Contact&gt;" name="listeContacts"/>
+        </Method>
+        <Method name="toString" returnType="String" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="Versement" package="metierMapping" visibility="public" xPosition="620.0" yPosition="420.0">
+      <Fields>
+        <Field name="numero" type="Integer" visibility="private"/>
+        <Field name="date" type="Date" visibility="private"/>
+        <Field name="montant" type="BigDecimal" visibility="private"/>
+        <Field name="numeroContact" type="Integer" visibility="private"/>
+        <Field name="contact" type="Contact" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+      </Constructors>
+      <Methods>
+        <Method name="setNumero" returnType="void" visibility="public">
+          <Argument type="Integer" name="numero"/>
+        </Method>
+        <Method name="setDate" returnType="void" visibility="public">
+          <Argument type="Date" name="date"/>
+        </Method>
+        <Method name="setMontant" returnType="void" visibility="public">
+          <Argument type="BigDecimal" name="montant"/>
+        </Method>
+        <Method name="setMontant" returnType="void" visibility="public">
+          <Argument type="double" name="montant"/>
+        </Method>
+        <Method name="setNumeroContact" returnType="void" visibility="public">
+          <Argument type="Integer" name="numeroContact"/>
+        </Method>
+        <Method name="getNumero" returnType="Integer" visibility="public"/>
+        <Method name="getDate" returnType="Date" visibility="public"/>
+        <Method name="getMontant" returnType="BigDecimal" visibility="public"/>
+        <Method name="getNumeroContact" returnType="Integer" visibility="public"/>
+        <Method name="getContact" returnType="Contact" visibility="public"/>
+        <Method name="setContact" returnType="void" visibility="public">
+          <Argument type="Contact" name="contact"/>
+        </Method>
+        <Method name="toString" returnType="String" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="ModeleTableContact" package="" visibility="public" xPosition="920.0" yPosition="420.0">
+      <Fields/>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="Vector&lt;Contact&gt;" name="listeContacts"/>
+          <Argument type="Vector&lt;Colonne&gt;" name="listeColonnes"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="getListeContacts" returnType="Vector&lt;Contact&gt;" visibility="public"/>
+        <Method name="getListeContactsSupprimes" returnType="Vector&lt;Contact&gt;" visibility="public"/>
+        <Method name="getListeContacts" returnType="Vector&lt;Contact&gt;" visibility="public">
+          <Argument type="Character" name="marqueur"/>
+        </Method>
+        <Method name="isCellEditable" returnType="boolean" visibility="public">
+          <Argument type="int" name="lig"/>
+          <Argument type="int" name="col"/>
+        </Method>
+        <Method name="getRowCount" returnType="int" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="ModeleTableSecteur" package="" visibility="public" xPosition="1220.0" yPosition="420.0">
+      <Fields/>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="Vector&lt;Secteur&gt;" name="listeSecteurs"/>
+          <Argument type="Vector&lt;Colonne&gt;" name="listeColonnes"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="getListeSecteurs" returnType="Vector&lt;Secteur&gt;" visibility="public"/>
+        <Method name="getListeSecteursSupprimes" returnType="Vector&lt;Secteur&gt;" visibility="public"/>
+        <Method name="getListeSecteurs" returnType="Vector&lt;Secteur&gt;" visibility="public">
+          <Argument type="Character" name="marqueur"/>
+        </Method>
+        <Method name="isCellEditable" returnType="boolean" visibility="public">
+          <Argument type="int" name="lig"/>
+          <Argument type="int" name="col"/>
+        </Method>
+        <Method name="getRowCount" returnType="int" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="ModeleTableVersement" package="" visibility="public" xPosition="1520.0" yPosition="420.0">
+      <Fields/>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="Vector&lt;Versement&gt;" name="listeVersements"/>
+          <Argument type="Vector&lt;Colonne&gt;" name="listeColonnes"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="getListeVersements" returnType="Vector&lt;Versement&gt;" visibility="public"/>
+        <Method name="getListeVersementsSupprimes" returnType="Vector&lt;Versement&gt;" visibility="public"/>
+        <Method name="getListeVersements" returnType="Vector&lt;Versement&gt;" visibility="public">
+          <Argument type="Character" name="marqueur"/>
+        </Method>
+        <Method name="isCellEditable" returnType="boolean" visibility="public">
+          <Argument type="int" name="lig"/>
+          <Argument type="int" name="col"/>
+        </Method>
+        <Method name="getRowCount" returnType="int" visibility="public"/>
+      </Methods>
+    </Class>
+  </ClassDiagramComponents>
+  <ClassDiagramRelations>
+    <HasRelation name="maFenetre" source="Controleur" target="Fenetre" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="daoJdbcMapping.SecteurDAO" target="metierMapping.Secteur" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="secteur" source="metierMapping.Contact" target="metierMapping.Secteur" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="contact" source="metierMapping.Versement" target="metierMapping.Contact" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="daoJdbcMapping.ContactDAO" target="metierMapping.Versement" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="listeContacts" source="metierMapping.Secteur" target="metierMapping.Contact" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="modeleTable" source="FenetreInterneContact" target="ModeleTableContact" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="metierMapping.Contact" target="metierMapping.Versement" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="metierMapping.Contact" target="metierMapping.Secteur" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="fenetreSecteur" source="Fenetre" target="FenetreInterneSecteur" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="contactDAO" source="Controleur" target="daoJdbcMapping.ContactDAO" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="Fenetre" target="metierMapping.Secteur" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="Controleur" target="metierMapping.Contact" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="daoJdbcMapping.ContactDAO" target="metierMapping.Contact" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="fenetreContact" source="Fenetre" target="FenetreInterneContact" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="modeleTable" source="FenetreInterneSecteur" target="ModeleTableContact" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="fenetreVersement" source="Fenetre" target="FenetreInterneVersement" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="daoJdbcMapping.ContactDAO" target="metierMapping.Secteur" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="secteurDAO" source="Controleur" target="daoJdbcMapping.SecteurDAO" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="metierMapping.Secteur" target="metierMapping.Contact" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="ModeleTableContact" target="metierMapping.Contact" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="ModeleTableVersement" target="metierMapping.Versement" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="metierMapping.Versement" target="metierMapping.Contact" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="versementDAO" source="Controleur" target="daoJdbcMapping.VersementDAO" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="listeVersements" source="metierMapping.Contact" target="metierMapping.Versement" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="Fenetre" target="metierMapping.Versement" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="daoJdbcMapping.VersementDAO" target="metierMapping.Versement" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="ModeleTableSecteur" target="metierMapping.Secteur" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="modeleTable" source="FenetreInterneVersement" target="ModeleTableContact" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+  </ClassDiagramRelations>
+</ClassDiagram>

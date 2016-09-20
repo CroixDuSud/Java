@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<ClassDiagram name="daoServeurJdbcMapping">
+  <ClassDiagramComponents>
+    <Class name="Contact" package="metierMapping" visibility="public" xPosition="20.0" yPosition="20.0">
+      <Fields>
+        <Field name="numero" type="Integer" visibility="private"/>
+        <Field name="nom" type="String" visibility="private"/>
+        <Field name="adresse" type="String" visibility="private"/>
+        <Field name="codePostal" type="String" visibility="private"/>
+        <Field name="ville" type="String" visibility="private"/>
+        <Field name="codeSecteur" type="Integer" visibility="private"/>
+        <Field name="secteur" type="Secteur" visibility="private"/>
+        <Field name="listeVersements" type="Vector&lt;Versement&gt;" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+      </Constructors>
+      <Methods>
+        <Method name="setNumero" returnType="void" visibility="public">
+          <Argument type="Integer" name="numero"/>
+        </Method>
+        <Method name="setNom" returnType="void" visibility="public">
+          <Argument type="String" name="nom"/>
+        </Method>
+        <Method name="setAdresse" returnType="void" visibility="public">
+          <Argument type="String" name="adresse"/>
+        </Method>
+        <Method name="setCodePostal" returnType="void" visibility="public">
+          <Argument type="String" name="codePostal"/>
+        </Method>
+        <Method name="setVille" returnType="void" visibility="public">
+          <Argument type="String" name="ville"/>
+        </Method>
+        <Method name="setCodeSecteur" returnType="void" visibility="public">
+          <Argument type="Integer" name="codeSecteur"/>
+        </Method>
+        <Method name="getNumero" returnType="Integer" visibility="public"/>
+        <Method name="getNom" returnType="String" visibility="public"/>
+        <Method name="getAdresse" returnType="String" visibility="public"/>
+        <Method name="getCodePostal" returnType="String" visibility="public"/>
+        <Method name="getVille" returnType="String" visibility="public"/>
+        <Method name="getCodeSecteur" returnType="Integer" visibility="public"/>
+        <Method name="getSecteur" returnType="Secteur" visibility="public"/>
+        <Method name="getListeVersements" returnType="Vector&lt;Versement&gt;" visibility="public"/>
+        <Method name="setSecteur" returnType="void" visibility="public">
+          <Argument type="Secteur" name="secteur"/>
+        </Method>
+        <Method name="setListeVersements" returnType="void" visibility="public">
+          <Argument type="Vector&lt;Versement&gt;" name="listeVersements"/>
+        </Method>
+        <Method name="toString" returnType="String" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="ContactDAO" package="daoServeurJdbcMapping" visibility="public" xPosition="320.0" yPosition="20.0">
+      <Fields>
+        <Field name="priseServeur" type="PriseServeurJdbc" visibility="private"/>
+        <Field name="jeuResultat" type="JeuResultat" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="PriseServeurJdbc" name="priseServeur"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="lire" returnType="void" visibility="public">
+          <Argument type="Contact" name="contact"/>
+        </Method>
+        <Method name="creer" returnType="int" visibility="public">
+          <Argument type="Contact" name="contact"/>
+        </Method>
+        <Method name="modifier" returnType="int" visibility="public">
+          <Argument type="Contact" name="contact"/>
+        </Method>
+        <Method name="detruire" returnType="int" visibility="public">
+          <Argument type="Contact" name="contact"/>
+        </Method>
+        <Method name="lireContact" returnType="Contact" visibility="public">
+          <Argument type="Versement" name="versement"/>
+        </Method>
+        <Method name="lireListe" returnType="Vector&lt;Contact&gt;" visibility="public">
+          <Argument type="Secteur" name="secteur"/>
+        </Method>
+        <Method name="lireListe" returnType="Vector&lt;Contact&gt;" visibility="public"/>
+        <Method name="getListeColonnes" returnType="Vector&lt;Colonne&gt;" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="PriseServeurJdbc" package="daoServeurJdbcMapping" visibility="public" xPosition="620.0" yPosition="20.0">
+      <Fields>
+        <Field name="nomMachine" type="String" visibility="private"/>
+        <Field name="numeroPort" type="int" visibility="private"/>
+        <Field name="formatDate" type="String" visibility="private"/>
+        <Field name="socketReseau" type="Socket" visibility="private"/>
+        <Field name="entree" type="ObjectInputStream" visibility="private"/>
+        <Field name="sortie" type="ObjectOutputStream" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="String" name="nomMachine"/>
+          <Argument type="int" name="numeroPort"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="setFormatDate" returnType="void" visibility="public">
+          <Argument type="String" name="formatDate"/>
+        </Method>
+        <Method name="getFormatDate" returnType="String" visibility="public"/>
+        <Method name="getConnection" returnType="Socket" visibility="public"/>
+        <Method name="closeConnection" returnType="void" visibility="public"/>
+        <Method name="executeQuery" returnType="JeuResultat" visibility="public">
+          <Argument type="String" name="requete"/>
+        </Method>
+        <Method name="executeUpdate" returnType="Integer" visibility="public">
+          <Argument type="String" name="requete"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="SecteurDAO" package="daoServeurJdbcMapping" visibility="public" xPosition="920.0" yPosition="20.0">
+      <Fields>
+        <Field name="priseServeur" type="PriseServeurJdbc" visibility="private"/>
+        <Field name="jeuResultat" type="JeuResultat" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="PriseServeurJdbc" name="priseServeur"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="lire" returnType="void" visibility="public">
+          <Argument type="Secteur" name="secteur"/>
+        </Method>
+        <Method name="creer" returnType="int" visibility="public">
+          <Argument type="Secteur" name="secteur"/>
+        </Method>
+        <Method name="modifier" returnType="int" visibility="public">
+          <Argument type="Secteur" name="secteur"/>
+        </Method>
+        <Method name="detruire" returnType="int" visibility="public">
+          <Argument type="Secteur" name="secteur"/>
+        </Method>
+        <Method name="lireSecteur" returnType="Secteur" visibility="public">
+          <Argument type="Contact" name="contact"/>
+        </Method>
+        <Method name="lireListe" returnType="Vector&lt;Secteur&gt;" visibility="public"/>
+        <Method name="getListeColonnes" returnType="Vector&lt;Colonne&gt;" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="VersementDAO" package="daoServeurJdbcMapping" visibility="public" xPosition="1220.0" yPosition="20.0">
+      <Fields>
+        <Field name="priseServeur" type="PriseServeurJdbc" visibility="private"/>
+        <Field name="jeuResultat" type="JeuResultat" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="PriseServeurJdbc" name="priseServeur"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="lire" returnType="void" visibility="public">
+          <Argument type="Versement" name="versement"/>
+        </Method>
+        <Method name="creer" returnType="int" visibility="public">
+          <Argument type="Versement" name="versement"/>
+        </Method>
+        <Method name="modifier" returnType="int" visibility="public">
+          <Argument type="Versement" name="versement"/>
+        </Method>
+        <Method name="detruire" returnType="int" visibility="public">
+          <Argument type="Versement" name="versement"/>
+        </Method>
+        <Method name="lireListe" returnType="Vector&lt;Versement&gt;" visibility="public">
+          <Argument type="Contact" name="contact"/>
+        </Method>
+        <Method name="lireListe" returnType="Vector&lt;Versement&gt;" visibility="public"/>
+        <Method name="getListeColonnes" returnType="Vector&lt;Colonne&gt;" visibility="public"/>
+      </Methods>
+    </Class>
+  </ClassDiagramComponents>
+  <ClassDiagramRelations>
+    <UseRelation source="daoServeurJdbcMapping.SecteurDAO" target="metierMapping.Contact" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="daoServeurJdbcMapping.ContactDAO" target="metierMapping.Contact" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="priseServeur" source="daoServeurJdbcMapping.ContactDAO" target="daoServeurJdbcMapping.PriseServeurJdbc" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="priseServeur" source="daoServeurJdbcMapping.SecteurDAO" target="daoServeurJdbcMapping.PriseServeurJdbc" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="priseServeur" source="daoServeurJdbcMapping.VersementDAO" target="daoServeurJdbcMapping.PriseServeurJdbc" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="daoServeurJdbcMapping.VersementDAO" target="metierMapping.Contact" sourceCardinality="1..1" targetCardinality="1..1"/>
+  </ClassDiagramRelations>
+</ClassDiagram>

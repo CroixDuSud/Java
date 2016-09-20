@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<ClassDiagram name="Contact">
+  <ClassDiagramComponents>
+    <Class name="Contact" package="metierMapping" visibility="public" xPosition="20.0" yPosition="20.0">
+      <Fields>
+        <Field name="numero" type="Integer" visibility="private"/>
+        <Field name="nom" type="String" visibility="private"/>
+        <Field name="adresse" type="String" visibility="private"/>
+        <Field name="codePostal" type="String" visibility="private"/>
+        <Field name="ville" type="String" visibility="private"/>
+        <Field name="codeSecteur" type="Integer" visibility="private"/>
+        <Field name="secteur" type="Secteur" visibility="private"/>
+        <Field name="listeVersements" type="Vector&lt;Versement&gt;" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+      </Constructors>
+      <Methods>
+        <Method name="setNumero" returnType="void" visibility="public">
+          <Argument type="Integer" name="numero"/>
+        </Method>
+        <Method name="setNom" returnType="void" visibility="public">
+          <Argument type="String" name="nom"/>
+        </Method>
+        <Method name="setAdresse" returnType="void" visibility="public">
+          <Argument type="String" name="adresse"/>
+        </Method>
+        <Method name="setCodePostal" returnType="void" visibility="public">
+          <Argument type="String" name="codePostal"/>
+        </Method>
+        <Method name="setVille" returnType="void" visibility="public">
+          <Argument type="String" name="ville"/>
+        </Method>
+        <Method name="setCodeSecteur" returnType="void" visibility="public">
+          <Argument type="Integer" name="codeSecteur"/>
+        </Method>
+        <Method name="getNumero" returnType="Integer" visibility="public"/>
+        <Method name="getNom" returnType="String" visibility="public"/>
+        <Method name="getAdresse" returnType="String" visibility="public"/>
+        <Method name="getCodePostal" returnType="String" visibility="public"/>
+        <Method name="getVille" returnType="String" visibility="public"/>
+        <Method name="getCodeSecteur" returnType="Integer" visibility="public"/>
+        <Method name="getSecteur" returnType="Secteur" visibility="public"/>
+        <Method name="getListeVersements" returnType="Vector&lt;Versement&gt;" visibility="public"/>
+        <Method name="setSecteur" returnType="void" visibility="public">
+          <Argument type="Secteur" name="secteur"/>
+        </Method>
+        <Method name="setListeVersements" returnType="void" visibility="public">
+          <Argument type="Vector&lt;Versement&gt;" name="listeVersements"/>
+        </Method>
+        <Method name="toString" returnType="String" visibility="public"/>
+      </Methods>
+    </Class>
+  </ClassDiagramComponents>
+  <ClassDiagramRelations/>
+</ClassDiagram>

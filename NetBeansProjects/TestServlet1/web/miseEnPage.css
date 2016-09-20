@@ -1,0 +1,33 @@
+body
+{
+   background : #DDDDDD;
+   color : blue;
+   font-family : calibri;
+}
+legend
+{ 
+    font-size : 1.5em;
+}
+
+fieldset
+{
+   background : #CCCCCC;
+   margin : 2em;
+   padding : 1em;
+}
+
+div
+{
+   margin : 0.5em;
+}
+
+.divTexte
+{
+   width : 16em;
+   float : left;
+}
+
+#envoyer
+{
+   text-align : center;
+}

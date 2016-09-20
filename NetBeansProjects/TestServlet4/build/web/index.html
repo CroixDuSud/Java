@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+
+<html>
+   <head>
+      <title>Identification</title>
+      <meta http-equiv="Content-Type"
+            content="text/html; charset=utf-8" />
+      <link rel="stylesheet"
+            type="text/css"
+            href="miseEnPage.css" />
+   </head>
+
+   <body>
+      <form action="ServletAccueil" method="post">
+         <fieldset>
+            <legend>Identification de l'utilisateur</legend>
+
+            <div class="divTexte">
+               <label for="nom">Nom : </label>
+               <input type="text"
+                      name="nomUtil"
+                      id="nom" />
+            </div>
+
+            <div class="divTexte">
+               <label for="mot">Mot de passe : </label>
+               <input type="password"
+                      name="motPasseUtil"
+                      id="mot" />
+            </div>
+         </fieldset>
+
+         <div id="envoyer">
+            <input type="submit"
+                   value="Envoyer" />
+         </div>
+      </form>
+   </body>
+</html>

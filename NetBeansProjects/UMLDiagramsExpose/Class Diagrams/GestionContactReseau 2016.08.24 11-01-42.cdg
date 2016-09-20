@@ -1,0 +1,366 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<ClassDiagram name="GestionContactReseau">
+  <ClassDiagramComponents>
+    <Class name="ContactDAO" package="daoServeurJdbcMapping" visibility="public" xPosition="330.0" yPosition="80.0">
+      <Fields>
+        <Field name="priseServeur" type="PriseServeurJdbc" visibility="private"/>
+        <Field name="jeuResultat" type="JeuResultat" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="PriseServeurJdbc" name="priseServeur"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="lire" returnType="void" visibility="public">
+          <Argument type="Contact" name="contact"/>
+        </Method>
+        <Method name="creer" returnType="int" visibility="public">
+          <Argument type="Contact" name="contact"/>
+        </Method>
+        <Method name="modifier" returnType="int" visibility="public">
+          <Argument type="Contact" name="contact"/>
+        </Method>
+        <Method name="detruire" returnType="int" visibility="public">
+          <Argument type="Contact" name="contact"/>
+        </Method>
+        <Method name="lireContact" returnType="Contact" visibility="public">
+          <Argument type="Versement" name="versement"/>
+        </Method>
+        <Method name="lireListe" returnType="Vector&lt;Contact&gt;" visibility="public">
+          <Argument type="Secteur" name="secteur"/>
+        </Method>
+        <Method name="lireListe" returnType="Vector&lt;Contact&gt;" visibility="public"/>
+        <Method name="getListeColonnes" returnType="Vector&lt;Colonne&gt;" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="PriseServeurJdbc" package="daoServeurJdbcMapping" visibility="public" xPosition="700.0" yPosition="42.0">
+      <Fields>
+        <Field name="nomMachine" type="String" visibility="private"/>
+        <Field name="numeroPort" type="int" visibility="private"/>
+        <Field name="formatDate" type="String" visibility="private"/>
+        <Field name="socketReseau" type="Socket" visibility="private"/>
+        <Field name="entree" type="ObjectInputStream" visibility="private"/>
+        <Field name="sortie" type="ObjectOutputStream" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="String" name="nomMachine"/>
+          <Argument type="int" name="numeroPort"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="setFormatDate" returnType="void" visibility="public">
+          <Argument type="String" name="formatDate"/>
+        </Method>
+        <Method name="getFormatDate" returnType="String" visibility="public"/>
+        <Method name="getConnection" returnType="Socket" visibility="public"/>
+        <Method name="closeConnection" returnType="void" visibility="public"/>
+        <Method name="executeQuery" returnType="JeuResultat" visibility="public">
+          <Argument type="String" name="requete"/>
+        </Method>
+        <Method name="executeUpdate" returnType="Integer" visibility="public">
+          <Argument type="String" name="requete"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="SecteurDAO" package="daoServeurJdbcMapping" visibility="public" xPosition="620.0" yPosition="20.0">
+      <Fields>
+        <Field name="priseServeur" type="PriseServeurJdbc" visibility="private"/>
+        <Field name="jeuResultat" type="JeuResultat" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="PriseServeurJdbc" name="priseServeur"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="lire" returnType="void" visibility="public">
+          <Argument type="Secteur" name="secteur"/>
+        </Method>
+        <Method name="creer" returnType="int" visibility="public">
+          <Argument type="Secteur" name="secteur"/>
+        </Method>
+        <Method name="modifier" returnType="int" visibility="public">
+          <Argument type="Secteur" name="secteur"/>
+        </Method>
+        <Method name="detruire" returnType="int" visibility="public">
+          <Argument type="Secteur" name="secteur"/>
+        </Method>
+        <Method name="lireSecteur" returnType="Secteur" visibility="public">
+          <Argument type="Contact" name="contact"/>
+        </Method>
+        <Method name="lireListe" returnType="Vector&lt;Secteur&gt;" visibility="public"/>
+        <Method name="getListeColonnes" returnType="Vector&lt;Colonne&gt;" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="VersementDAO" package="daoServeurJdbcMapping" visibility="public" xPosition="920.0" yPosition="20.0">
+      <Fields>
+        <Field name="priseServeur" type="PriseServeurJdbc" visibility="private"/>
+        <Field name="jeuResultat" type="JeuResultat" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="PriseServeurJdbc" name="priseServeur"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="lire" returnType="void" visibility="public">
+          <Argument type="Versement" name="versement"/>
+        </Method>
+        <Method name="creer" returnType="int" visibility="public">
+          <Argument type="Versement" name="versement"/>
+        </Method>
+        <Method name="modifier" returnType="int" visibility="public">
+          <Argument type="Versement" name="versement"/>
+        </Method>
+        <Method name="detruire" returnType="int" visibility="public">
+          <Argument type="Versement" name="versement"/>
+        </Method>
+        <Method name="lireListe" returnType="Vector&lt;Versement&gt;" visibility="public">
+          <Argument type="Contact" name="contact"/>
+        </Method>
+        <Method name="lireListe" returnType="Vector&lt;Versement&gt;" visibility="public"/>
+        <Method name="getListeColonnes" returnType="Vector&lt;Colonne&gt;" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="Controleur" package="gestioncontactreseau" visibility="public" xPosition="473.0" yPosition="214.0">
+      <Fields>
+        <Field name="maFenetre" type="Fenetre" visibility="private" isStatic="true"/>
+        <Field name="contactDAO" type="ContactDAO" visibility="private" isStatic="true"/>
+        <Field name="secteurDAO" type="SecteurDAO" visibility="private" isStatic="true"/>
+        <Field name="versementDAO" type="VersementDAO" visibility="private" isStatic="true"/>
+        <Field name="priseServeur" type="PriseServeurJdbc" visibility="private" isStatic="true"/>
+      </Fields>
+      <Constructors/>
+      <Methods>
+        <Method name="main" returnType="void" visibility="public" isStatic="true">
+          <Argument type="String" name="args"/>
+        </Method>
+        <Method name="creeListeContacts" returnType="void" visibility="public" isStatic="true"/>
+        <Method name="creeListeVersements" returnType="void" visibility="public" isStatic="true"/>
+        <Method name="creeListeSecteurs" returnType="void" visibility="public" isStatic="true"/>
+        <Method name="majContacts" returnType="void" visibility="public" isStatic="true">
+          <Argument type="Vector&lt;Contact&gt;" name="contactsInseres"/>
+          <Argument type="Vector&lt;Contact&gt;" name="contactsModifies"/>
+          <Argument type="Vector&lt;Contact&gt;" name="contactsSupprimes"/>
+        </Method>
+        <Method name="majVersements" returnType="void" visibility="public" isStatic="true">
+          <Argument type="Vector&lt;Versement&gt;" name="versementsInseres"/>
+          <Argument type="Vector&lt;Versement&gt;" name="versementsModifies"/>
+          <Argument type="Vector&lt;Versement&gt;" name="versementsSupprimes"/>
+        </Method>
+        <Method name="majSecteurs" returnType="void" visibility="public" isStatic="true">
+          <Argument type="Vector&lt;Secteur&gt;" name="secteursInseres"/>
+          <Argument type="Vector&lt;Secteur&gt;" name="secteursModifies"/>
+          <Argument type="Vector&lt;Secteur&gt;" name="secteursSupprimes"/>
+        </Method>
+        <Method name="arreter" returnType="void" visibility="public" isStatic="true"/>
+      </Methods>
+    </Class>
+    <Class name="Fenetre" package="gestioncontactreseau" visibility="public" xPosition="1520.0" yPosition="20.0">
+      <Fields>
+        <Field name="barreMenu" type="JMenuBar" visibility="private"/>
+        <Field name="menuTables" type="JMenu" visibility="private"/>
+        <Field name="itemContact" type="JMenuItem" visibility="private"/>
+        <Field name="itemVersement" type="JMenuItem" visibility="private"/>
+        <Field name="itemSecteur" type="JMenuItem" visibility="private"/>
+        <Field name="panneauFond" type="JPanel" visibility="private"/>
+        <Field name="panneauFenetres" type="JDesktopPaneMG" visibility="private"/>
+        <Field name="defilePanneauFenetres" type="JScrollPaneMG" visibility="private"/>
+        <Field name="fenetreContact" type="FenetreInterneContact" visibility="private"/>
+        <Field name="fenetreVersement" type="FenetreInterneVersement" visibility="private"/>
+        <Field name="fenetreSecteur" type="FenetreInterneSecteur" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="String" name="s"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="actionPerformed" returnType="void" visibility="public">
+          <Argument type="ActionEvent" name="e"/>
+        </Method>
+        <Method name="valideItemContact" returnType="void" visibility="public"/>
+        <Method name="valideItemVersement" returnType="void" visibility="public"/>
+        <Method name="valideItemSecteur" returnType="void" visibility="public"/>
+        <Method name="afficheMessage" returnType="void" visibility="public">
+          <Argument type="String" name="message"/>
+        </Method>
+        <Method name="afficheFenetreContact" returnType="void" visibility="public">
+          <Argument type="Vector&lt;Contact&gt;" name="listeContacts"/>
+          <Argument type="Vector&lt;Colonne&gt;" name="listeColonnes"/>
+          <Argument type="Vector&lt;Secteur&gt;" name="listeSecteurs"/>
+        </Method>
+        <Method name="afficheFenetreVersement" returnType="void" visibility="public">
+          <Argument type="Vector&lt;Versement&gt;" name="listeVersements"/>
+          <Argument type="Vector&lt;Colonne&gt;" name="listeColonnes"/>
+        </Method>
+        <Method name="afficheFenetreSecteur" returnType="void" visibility="public">
+          <Argument type="Vector&lt;Secteur&gt;" name="listeSecteurs"/>
+          <Argument type="Vector&lt;Colonne&gt;" name="listeColonnes"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="FenetreInterneContact" package="gestioncontactreseau" visibility="public" xPosition="1820.0" yPosition="20.0">
+      <Fields>
+        <Field name="barreMenu" type="JMenuBar" visibility="private"/>
+        <Field name="menuEdition" type="JMenu" visibility="private"/>
+        <Field name="supprimerLignesItem" type="JMenuItem" visibility="private"/>
+        <Field name="restaurerLignesItem" type="JMenuItem" visibility="private"/>
+        <Field name="panneauFond" type="JPanel" visibility="private"/>
+        <Field name="table" type="JTable" visibility="private"/>
+        <Field name="modeleTable" type="ModeleTableContact" visibility="private"/>
+        <Field name="modeleColonne" type="ModeleColonneTable" visibility="private"/>
+        <Field name="defileur" type="JScrollPane" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="Vector&lt;Contact&gt;" name="listeContacts"/>
+          <Argument type="Vector&lt;Colonne&gt;" name="listeColonnes"/>
+          <Argument type="Vector&lt;Secteur&gt;" name="listeSecteurs"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="actionPerformed" returnType="void" visibility="public">
+          <Argument type="ActionEvent" name="e"/>
+        </Method>
+        <Method name="afficheMessage" returnType="void" visibility="public">
+          <Argument type="String" name="message"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="FenetreInterneSecteur" package="gestioncontactreseau" visibility="public" xPosition="2120.0" yPosition="20.0">
+      <Fields>
+        <Field name="barreMenu" type="JMenuBar" visibility="private"/>
+        <Field name="menuEdition" type="JMenu" visibility="private"/>
+        <Field name="supprimerLignesItem" type="JMenuItem" visibility="private"/>
+        <Field name="restaurerLignesItem" type="JMenuItem" visibility="private"/>
+        <Field name="secteursSupprimes" type="Vector&lt;Secteur&gt;" visibility="private"/>
+        <Field name="panneauFond" type="JPanel" visibility="private"/>
+        <Field name="panneauTable" type="PanneauTable" visibility="private"/>
+        <Field name="modeleTable" type="ModeleTableSecteur" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="Vector&lt;Secteur&gt;" name="listeSecteurs"/>
+          <Argument type="Vector&lt;Colonne&gt;" name="listeColonnes"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="actionPerformed" returnType="void" visibility="public">
+          <Argument type="ActionEvent" name="e"/>
+        </Method>
+        <Method name="afficheMessage" returnType="void" visibility="public">
+          <Argument type="String" name="message"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="FenetreInterneVersement" package="gestioncontactreseau" visibility="public" xPosition="-126.0" yPosition="20.0">
+      <Fields>
+        <Field name="barreMenu" type="JMenuBar" visibility="private"/>
+        <Field name="menuEdition" type="JMenu" visibility="private"/>
+        <Field name="supprimerLignesItem" type="JMenuItem" visibility="private"/>
+        <Field name="restaurerLignesItem" type="JMenuItem" visibility="private"/>
+        <Field name="versementsSupprimes" type="Vector&lt;Versement&gt;" visibility="private"/>
+        <Field name="panneauFond" type="JPanel" visibility="private"/>
+        <Field name="panneauTable" type="PanneauTable" visibility="private"/>
+        <Field name="modeleTable" type="ModeleTableVersement" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="Vector&lt;Versement&gt;" name="listeVersements"/>
+          <Argument type="Vector&lt;Colonne&gt;" name="listeColonnes"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="actionPerformed" returnType="void" visibility="public">
+          <Argument type="ActionEvent" name="e"/>
+        </Method>
+        <Method name="afficheMessage" returnType="void" visibility="public">
+          <Argument type="String" name="message"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="ModeleTableContact" package="gestioncontactreseau" visibility="public" xPosition="1121.0" yPosition="532.0">
+      <Fields/>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="Vector&lt;Contact&gt;" name="listeContacts"/>
+          <Argument type="Vector&lt;Colonne&gt;" name="listeColonnes"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="getListeContacts" returnType="Vector&lt;Contact&gt;" visibility="public"/>
+        <Method name="getListeContactsSupprimes" returnType="Vector&lt;Contact&gt;" visibility="public"/>
+        <Method name="getListeContacts" returnType="Vector&lt;Contact&gt;" visibility="public">
+          <Argument type="Character" name="marqueur"/>
+        </Method>
+        <Method name="isCellEditable" returnType="boolean" visibility="public">
+          <Argument type="int" name="lig"/>
+          <Argument type="int" name="col"/>
+        </Method>
+        <Method name="getRowCount" returnType="int" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="ModeleTableSecteur" package="gestioncontactreseau" visibility="public" xPosition="509.0" yPosition="544.0">
+      <Fields/>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="Vector&lt;Secteur&gt;" name="listeSecteurs"/>
+          <Argument type="Vector&lt;Colonne&gt;" name="listeColonnes"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="getListeSecteurs" returnType="Vector&lt;Secteur&gt;" visibility="public"/>
+        <Method name="getListeSecteursSupprimes" returnType="Vector&lt;Secteur&gt;" visibility="public"/>
+        <Method name="getListeSecteurs" returnType="Vector&lt;Secteur&gt;" visibility="public">
+          <Argument type="Character" name="marqueur"/>
+        </Method>
+        <Method name="isCellEditable" returnType="boolean" visibility="public">
+          <Argument type="int" name="lig"/>
+          <Argument type="int" name="col"/>
+        </Method>
+        <Method name="getRowCount" returnType="int" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="ModeleTableVersement" package="gestioncontactreseau" visibility="public" xPosition="35.0" yPosition="633.0">
+      <Fields/>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="Vector&lt;Versement&gt;" name="listeVersements"/>
+          <Argument type="Vector&lt;Colonne&gt;" name="listeColonnes"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="getListeVersements" returnType="Vector&lt;Versement&gt;" visibility="public"/>
+        <Method name="getListeVersementsSupprimes" returnType="Vector&lt;Versement&gt;" visibility="public"/>
+        <Method name="getListeVersements" returnType="Vector&lt;Versement&gt;" visibility="public">
+          <Argument type="Character" name="marqueur"/>
+        </Method>
+        <Method name="isCellEditable" returnType="boolean" visibility="public">
+          <Argument type="int" name="lig"/>
+          <Argument type="int" name="col"/>
+        </Method>
+        <Method name="getRowCount" returnType="int" visibility="public"/>
+      </Methods>
+    </Class>
+  </ClassDiagramComponents>
+  <ClassDiagramRelations>
+    <HasRelation name="modeleTable" source="gestioncontactreseau.FenetreInterneSecteur" target="gestioncontactreseau.ModeleTableSecteur" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="fenetreContact" source="gestioncontactreseau.Fenetre" target="gestioncontactreseau.FenetreInterneContact" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="fenetreSecteur" source="gestioncontactreseau.Fenetre" target="gestioncontactreseau.FenetreInterneSecteur" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="modeleTable" source="gestioncontactreseau.FenetreInterneContact" target="gestioncontactreseau.ModeleTableContact" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="priseServeur" source="daoServeurJdbcMapping.ContactDAO" target="daoServeurJdbcMapping.PriseServeurJdbc" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="versementDAO" source="gestioncontactreseau.Controleur" target="daoServeurJdbcMapping.VersementDAO" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="secteurDAO" source="gestioncontactreseau.Controleur" target="daoServeurJdbcMapping.SecteurDAO" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="contactDAO" source="gestioncontactreseau.Controleur" target="daoServeurJdbcMapping.ContactDAO" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="priseServeur" source="daoServeurJdbcMapping.VersementDAO" target="daoServeurJdbcMapping.PriseServeurJdbc" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="priseServeur" source="gestioncontactreseau.Controleur" target="daoServeurJdbcMapping.PriseServeurJdbc" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="fenetreVersement" source="gestioncontactreseau.Fenetre" target="gestioncontactreseau.FenetreInterneVersement" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="priseServeur" source="daoServeurJdbcMapping.SecteurDAO" target="daoServeurJdbcMapping.PriseServeurJdbc" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="maFenetre" source="gestioncontactreseau.Controleur" target="gestioncontactreseau.Fenetre" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="modeleTable" source="gestioncontactreseau.FenetreInterneVersement" target="gestioncontactreseau.ModeleTableVersement" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+  </ClassDiagramRelations>
+</ClassDiagram>

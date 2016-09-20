@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+
+<html>
+   <head>
+      <title>Autres informations</title>
+      <meta http-equiv="Content-Type"
+            content="text/html; charset=utf-8" />
+      <link rel="stylesheet"
+            type="text/css"
+            href="miseEnPage.css" />
+   </head>
+
+   <body>
+      <form action="ServletDonnees" method="post">
+         <fieldset>
+            <legend>Informations complémentaires</legend>
+
+            <div class="divTexteCompl">
+               <label for="t1">Texte 1 : </label>
+               <input type="text"
+                      name="texte1"
+                      size="60"
+                      id="t1" />
+            </div>
+
+            <div class="divTexteCompl">
+               <label for="t2">Texte 2 : </label>
+               <input type="text"
+                      name="texte2"
+                      size="60"
+                      id="t2" />
+            </div>
+
+            <div class="divTexteCompl">
+               <label for="t3">Texte 3 : </label>
+               <input type="text"
+                      name="texte3"
+                      size="60"
+                      id="t3" />
+            </div>
+         </fieldset>
+
+         <div id="envoyer">
+            <input type="submit"
+                   value="Envoyer" />
+         </div>
+      </form>
+   </body>
+</html>
