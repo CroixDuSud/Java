@@ -1,0 +1,120 @@
+<html DIR="LTR" xmlns:tool="http://www.microsoft.com/tooltip" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=Windows-1252" />
+    <META NAME="save" CONTENT="history" />
+    <title>Utilisation d'une instruction SQL avec paramètres</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/script_loc.js">
+      
+    </script>
+    <script src="../local/script_main.js">
+      
+    </script>
+  </head>
+  <body style="display: none;">
+    <!--Topic built:11/3/2006-->
+<input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <div id="header">
+        <tr>
+          <td align="left">
+            <span id="headerBold">Utilisation d'une instruction SQL avec paramètres</span>
+          </td>
+        </tr>
+      </table>
+      <IMG id="SeeAlso1" style="display:none; height:0; width:0;" src="../local/SeeAlso1a.gif">
+        
+      </IMG>
+      <IMG id="SeeAlso2" style="display:none; height:0; width:0;" src="../local/SeeAlso1c.gif">
+        
+      </IMG>
+      <IMG id="Filter1" style="display:none; height:0; width:0;" src="../local/Filter1a.gif">
+        
+      </IMG>
+      <IMG id="Filter2" style="display:none; height:0; width:0;" src="../local/Filter1c.gif">
+        
+      </IMG>
+      <span style="display:none" id="languageSpan">
+        <h1 class="heading">
+          Langage
+        </h1>
+        <div id="selectLanguage" class="section">
+          <div class="languageFilter" id="VisualBasic" onclick="ChangeLanguage(this.id)" onkeypress="ChangeLanguage_CheckKey(this.id)" tabindex="0">
+            [Visual Basic]
+          </div>
+          <div class="languageFilter" id="CSharp" onclick="ChangeLanguage(this.id)" onkeypress="ChangeLanguage_CheckKey(this.id)" tabindex="0">
+            [C#]
+          </div>
+          <div class="languageFilter" id="ManagedCPlusPlus" onclick="ChangeLanguage(this.id)" onkeypress="ChangeLanguage_CheckKey(this.id)" tabindex="0">
+            [C++]
+          </div>
+          <div class="languageFilter" id="JSharp" onclick="ChangeLanguage(this.id)" onkeypress="ChangeLanguage_CheckKey(this.id)" tabindex="0">
+            [J#]
+          </div>
+          <div class="languageFilter" id="JScript" onclick="ChangeLanguage(this.id)" onkeypress="ChangeLanguage_CheckKey(this.id)" tabindex="0">
+            [JScript]
+          </div>
+          <div class="languageFilter" id="all" onclick="ChangeLanguage(this.id)" onkeypress="ChangeLanguage_CheckKey(this.id)" tabindex="0">
+            (Afficher tout)
+          </div>
+        </div>
+      </span>
+    </div>
+    <div id="mainSection">
+      <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+      </div>
+      <font color="DarkGray"><!-- [This topic is pre-release documentation and is subject to change in future releases. Blank topics are included as placeholders.]<br/>[Documentation built on 11/3/2006]  --></font><p /><p />
+      <div id="introductionSection" class="section">
+    <p>Pour travailler sur des données d'une base de données SQL Server en utilisant une instruction SQL contenant des paramètres IN, vous pouvez utiliser la méthode <a href="dfff3358-f391-4af6-84c1-b94c029f506d.htm">executeQuery</a> de la classe <a href="a8481c06-fbba-432b-8c69-4f4619c20ad4.htm">SQLServerPreparedStatement</a> pour retourner un <a href="eaffcff1-286c-459f-83da-3150778480c9.htm">SQLServerResultSet</a> contenant les données demandées. Pour ce faire, vous devez commencer par créer un objet <b>SQLServerPreparedStatement</b> à l'aide de la méthode <a href="bd4e4085-f704-4a73-b6a7-7d443d564728.htm">prepareStatement</a> de la classe <a href="937292a6-1525-423e-a2b2-a18fd34c2893.htm">SQLServerConnection</a>. </p>
+    <p>Lors de la construction d'une instruction SQL, les paramètres IN sont spécifiés à l'aide du caractère ? (point d'interrogation) qui fait office d'espace réservé pour les valeurs de paramètre qui sont transmises par la suite à l'instruction SQL. Pour spécifier une valeur de paramètre, vous pouvez utiliser l'une des méthodes de définition de la classe <b>SQLServerPreparedStatement</b>. La méthode setter que vous utilisez est déterminée par le type de données de la valeur que vous souhaitez transmettre dans l'instruction SQL. </p>
+    <p>Lorsque vous transmettez une valeur à la méthode setter, vous devez spécifier non seulement la valeur réelle à utiliser dans l'instruction SQL, mais également la position ordinale du paramètre dans l'instruction. Par exemple, si votre instruction SQL contient un seul paramètre, sa valeur ordinale est 1 ; si l'instruction contient deux paramètres, la première valeur ordinale est 1 et la seconde 2.</p>
+    <p>Dans l'exemple suivant, une connexion ouverte à l'exemple de base de données SQL Server 2005 AdventureWorks est transmise à la fonction, une instruction SQL préparée est générée et exécutée avec une seule valeur de paramètre String, puis les résultats sont lus dans le jeu de résultats.</p>
+    <div class="sampleCode">
+		<span class="langLabel" name="label"></span><span codeLanguage="other"><pre>public static void executeStatement(Connection con) {
+   try {
+      String SQL = "SELECT LastName, FirstName FROM Person.Contact WHERE LastName = ?";
+      PreparedStatement pstmt = con.prepareStatement(SQL);
+      pstmt.setString(1, "Smith");
+      ResultSet rs = pstmt.executeQuery();
+
+      while (rs.next()) {
+         System.out.println(rs.getString("LastName") + ", " + rs.getString("FirstName"));
+      }
+      rs.close();
+      pstmt.close();
+   }
+   catch (Exception e) {
+      e.printStackTrace();
+   }
+}
+</pre></span>
+	</div>
+  </div>
+      <span id="seeAlsoSpan">
+        <h1 class="heading">
+          Voir aussi
+        </h1>
+        <div id="seeAlsoSection" class="section">
+          <a href="fe28f48a-e1bc-48ff-a5e7-c24cd6e5ecc7.htm">Utilisation des instructions avec SQL</a>
+        </div>
+      </span>
+      <!--[if gte IE 5]>
+			<tool:tip element="seeAlsoToolTip" avoidmouse="false"/><tool:tip element="languageFilterToolTip" avoidmouse="false"/>
+		<![endif]-->
+      <div id="footer" class="section">
+        <hr /><A NAME="feedback"></A><span id="fb" class="feedbackcss"></span>
+		<a href="9bad553b-9e70-4696-8499-2e35f772a1e0.htm">
+			
+			© 2006 Microsoft Corporation. Tous droits réservés.
+		</a>
+ 	
+      </div>
+    </div>
+  </body>
+</html>

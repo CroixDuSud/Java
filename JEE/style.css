@@ -15,9 +15,9 @@ body
     
 }
 
-#radio
+#radio,#numC
 {
-    
+    display: inline-block;
 }
 
 #send
@@ -42,10 +42,17 @@ iframe
 
 #numC
 {
+    width: 350px;
     flex: 2;
 }
 
 #radioG
 {
-    flex: 3;
+    width: 300px;
+    float: right;
+}
+
+#liste
+{
+    margin-top: 2em;
 }

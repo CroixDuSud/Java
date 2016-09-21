@@ -1,0 +1,172 @@
+<html DIR="LTR" xmlns:tool="http://www.microsoft.com/tooltip" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=Windows-1252" />
+    <META NAME="save" CONTENT="history" />
+    <title>Travail sur une connexion</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/script_loc.js">
+      
+    </script>
+    <script src="../local/script_main.js">
+      
+    </script>
+  </head>
+  <body style="display: none;">
+    <!--Topic built:11/3/2006-->
+<input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <div id="header">
+        <tr>
+          <td align="left">
+            <span id="headerBold">Travail sur une connexion</span>
+          </td>
+        </tr>
+      </table>
+      <IMG id="SeeAlso1" style="display:none; height:0; width:0;" src="../local/SeeAlso1a.gif">
+        
+      </IMG>
+      <IMG id="SeeAlso2" style="display:none; height:0; width:0;" src="../local/SeeAlso1c.gif">
+        
+      </IMG>
+      <IMG id="Filter1" style="display:none; height:0; width:0;" src="../local/Filter1a.gif">
+        
+      </IMG>
+      <IMG id="Filter2" style="display:none; height:0; width:0;" src="../local/Filter1c.gif">
+        
+      </IMG>
+      <span style="display:none" id="languageSpan">
+        <h1 class="heading">
+          Langage
+        </h1>
+        <div id="selectLanguage" class="section">
+          <div class="languageFilter" id="VisualBasic" onclick="ChangeLanguage(this.id)" onkeypress="ChangeLanguage_CheckKey(this.id)" tabindex="0">
+            [Visual Basic]
+          </div>
+          <div class="languageFilter" id="CSharp" onclick="ChangeLanguage(this.id)" onkeypress="ChangeLanguage_CheckKey(this.id)" tabindex="0">
+            [C#]
+          </div>
+          <div class="languageFilter" id="ManagedCPlusPlus" onclick="ChangeLanguage(this.id)" onkeypress="ChangeLanguage_CheckKey(this.id)" tabindex="0">
+            [C++]
+          </div>
+          <div class="languageFilter" id="JSharp" onclick="ChangeLanguage(this.id)" onkeypress="ChangeLanguage_CheckKey(this.id)" tabindex="0">
+            [J#]
+          </div>
+          <div class="languageFilter" id="JScript" onclick="ChangeLanguage(this.id)" onkeypress="ChangeLanguage_CheckKey(this.id)" tabindex="0">
+            [JScript]
+          </div>
+          <div class="languageFilter" id="all" onclick="ChangeLanguage(this.id)" onkeypress="ChangeLanguage_CheckKey(this.id)" tabindex="0">
+            (Afficher tout)
+          </div>
+        </div>
+      </span>
+    </div>
+    <div id="mainSection">
+      <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+      </div>
+      <font color="DarkGray"><!-- [This topic is pre-release documentation and is subject to change in future releases. Blank topics are included as placeholders.]<br/>[Documentation built on 11/3/2006]  --></font><p /><p />
+      <div id="introductionSection" class="section">
+    <p>Les sections suivantes proposent des exemples des différents modes de connexion à une base de données SQL Server à l'aide de la classe <a href="937292a6-1525-423e-a2b2-a18fd34c2893.htm">SQLServerConnection</a> du pilote JDBC de Microsoft de SQL Server 2005.</p>
+    <div style="margin: .5em 1.5em .5em 1.5em"><b>Remarque : </b>
+      Si vous rencontrez des problèmes de connexion à SQL Server via le pilote JDBC, consultez <a href="bfba0b49-2e1f-411d-a625-d25fad9ea12d.htm">Résolution des problèmes de connectivité</a> pour obtenir des suggestions de solutions.<p></p>
+    </div>
+  </div>
+      <h1 class="heading">Création d'une connexion via la classe DriverManager</h1>
+      <div id="sectionSection" class="section">
+        <content xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+      <p xmlns="">La façon la plus simple de créer une connexion à une base de données SQL Server consiste à charger le pilote JDBC et à appeler la méthode <b>getConnection</b> de la classe <b>DriverManager</b>, comme suit :</p>
+      <div class="sampleCode" xmlns=""><span codeLanguage="other"><pre>Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+String connectionUrl = "jdbc:sqlserver://localhost;database=AdventureWorks;integratedSecurity=true;
+Connection con = DriverManager.getConnection(connectionUrl);</pre></span></div>
+      <p xmlns="">Cette technique crée une connexion de base de données via le premier pilote disponible dans la liste des pilotes capables de se connecter avec succès à l'URL donnée.</p>
+    </content>
+      </div>
+      <h1 class="heading">Création d'une connexion via la classe SQLServerDriver</h1>
+      <div id="sectionSection" class="section">
+        <content xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+      <p xmlns="">Si vous devez spécifier un pilote en particulier dans la liste des pilotes pour <b>DriverManager</b>, vous pouvez créer une connexion de base de données à l'aide de la méthode <a href="43813a4c-1cc7-4659-ba27-f1786f1371eb.htm">connect</a> de la classe <a href="fbdceae5-7e7b-4edb-8c33-c701ca6b2d53.htm">SQLServerDriver</a>, comme suit :</p>
+      <div class="sampleCode" xmlns=""><span codeLanguage="other"><pre>Driver d = (Driver) Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+String connectionUrl = "jdbc:sqlserver://localhost;database=AdventureWorks;integratedSecurity=true;
+Connection con = d.connect(connectionUrl, new Properties());</pre></span></div>
+    </content>
+      </div>
+      <h1 class="heading">Création d'une connexion via la classe SQLServerDataSource</h1>
+      <div id="sectionSection" class="section">
+        <content xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+      <p xmlns="">Si vous devez établir une connexion à l'aide de la classe <a href="097434fd-2b74-411c-a5ed-eba04481dde5.htm">SQLServerDataSource</a>, vous pouvez utiliser les différentes méthodes setter de la classe avant d'appeler la méthode <a href="7f520e96-5313-468f-b987-535ddaea027e.htm">getConnection</a>, comme suit :</p>
+      <div class="sampleCode" xmlns=""><span codeLanguage="other"><pre>SQLServerDataSource ds = new SQLServerDataSource();
+ds.setUser("MyUserName");
+ds.setPassword("*****");
+ds.setServerName("localhost");
+ds.setPortNumber(1433); 
+ds.setDatabaseName("AdventureWorks");
+Connection con = ds.getConnection();</pre></span></div>
+    </content>
+      </div>
+      <h1 class="heading">Création d'une connexion visant une source de données très spécifique</h1>
+      <div id="sectionSection" class="section">
+        <content xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+      <p xmlns="">Si vous devez créer une connexion de base de données qui vise une source de données très spécifique, plusieurs approches s'offrent à vous. Chacune d'elles dépend des propriétés définies à l'aide de l'URL de connexion.</p>
+      <p xmlns="">Pour établir une connexion à l'instance par défaut sur un serveur distant, utilisez ce qui suit :</p>
+      <p xmlns=""><code>String url = "jdbc:sqlserver://MyServer;integratedSecurity=true;</code></p>
+      <p xmlns="">Pour établir une connexion à un port spécifique sur un serveur, utilisez ce qui suit :</p>
+      <p xmlns=""><code>String url = "jdbc:sqlserver://MyServer:1533;integratedSecurity=true;</code></p>
+      <p xmlns="">Pour établir une connexion à une instance nommée sur un serveur, utilisez ce qui suit :</p>
+      <p xmlns=""><code>String url = "jdbc:sqlserver://209.196.43.19;instanceName=INSTANCE1;integratedSecurity=true;</code></p>
+      <p xmlns="">Pour établir une connexion à une base de données spécifique sur un serveur, utilisez ce qui suit :</p>
+      <p xmlns=""><code>String url = "jdbc:sqlserver://172.31.255.255;database=AdventureWorks;integratedSecurity=true;</code></p>
+      <p xmlns="">Pour plus d'exemples d'URL de connexion, voir <a href="44996746-d373-4f59-9863-a8a20bb8024a.htm">Création de l'URL de connexion</a>.</p>
+    </content>
+      </div>
+      <h1 class="heading">Création d'une connexion avec un délai de connexion personnalisé</h1>
+      <div id="sectionSection" class="section">
+        <content xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+      <p xmlns="">Si vous devez vous adapter à la charge du serveur ou au trafic réseau, vous pouvez établir une connexion ayant une valeur de délai de connexion spécifique, exprimée en secondes, comme suit :</p>
+      <p xmlns=""><code>String url = "jdbc:sqlserver://MyServer;loginTimeout=90;integratedSecurity=true;</code></p>
+    </content>
+      </div>
+      <h1 class="heading">Création d'une connexion avec une identité au niveau de l'application</h1>
+      <div id="sectionSection" class="section">
+        <content xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+      <p xmlns="">Si vous devez utiliser la journalisation et la définition de profils, vous devez identifier votre connexion comme provenant d'une application spécifique, comme suit :</p>
+      <p xmlns=""><code>String url = "jdbc:sqlserver://MyServer;applicationName=MYAPP.EXE;integratedSecurity=true;</code></p>
+    </content>
+      </div>
+      <h1 class="heading">Fermeture d'une connexion</h1>
+      <div id="sectionSection" class="section">
+        <content xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+      <p xmlns="">Vous pouvez explicitement fermer une connexion de base de données en appelant la méthode <a href="f0f26585-bdf7-4737-b434-8c7e115c8e94.htm">close</a> de la classe <b>SQLServerConnection</b>, comme suit :</p>
+      <p xmlns=""><code>con.close();</code></p>
+      <p xmlns="">Cela libère les ressources de base de données utilisées par l'objet <b>SQLServerConnection</b> ou retourne la connexion au regroupement de connexions dans les scénarios regroupés.</p>
+      <div style="margin: .5em 1.5em .5em 1.5em" xmlns=""><b>Remarque : </b>
+        L'appel de la méthode <b>close</b> entraîne également l'annulation des transactions en attente.<p></p>
+      </div>
+    </content>
+      </div>
+      <span id="seeAlsoSpan">
+        <h1 class="heading">
+          Voir aussi
+        </h1>
+        <div id="seeAlsoSection" class="section">
+          <a href="94bcfbe3-f00e-4774-bda8-bb7577518fec.htm">Connexion à SQL Server à l'aide du pilote JDBC</a>
+        </div>
+      </span>
+      <!--[if gte IE 5]>
+			<tool:tip element="seeAlsoToolTip" avoidmouse="false"/><tool:tip element="languageFilterToolTip" avoidmouse="false"/>
+		<![endif]-->
+      <div id="footer" class="section">
+        <hr /><A NAME="feedback"></A><span id="fb" class="feedbackcss"></span>
+		<a href="9bad553b-9e70-4696-8499-2e35f772a1e0.htm">
+			
+			© 2006 Microsoft Corporation. Tous droits réservés.
+		</a>
+ 	
+      </div>
+    </div>
+  </body>
+</html>

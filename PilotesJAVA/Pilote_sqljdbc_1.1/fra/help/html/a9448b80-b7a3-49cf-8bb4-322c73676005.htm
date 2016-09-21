@@ -1,0 +1,170 @@
+<html DIR="LTR" xmlns:tool="http://www.microsoft.com/tooltip" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=Windows-1252" />
+    <META NAME="save" CONTENT="history" />
+    <title>Prise en charge de J2EE</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/script_loc.js">
+      
+    </script>
+    <script src="../local/script_main.js">
+      
+    </script>
+  </head>
+  <body style="display: none;">
+    <!--Topic built:11/3/2006-->
+<input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <div id="header">
+        <tr>
+          <td align="left">
+            <span id="headerBold">Prise en charge de J2EE</span>
+          </td>
+        </tr>
+      </table>
+      <IMG id="SeeAlso1" style="display:none; height:0; width:0;" src="../local/SeeAlso1a.gif">
+        
+      </IMG>
+      <IMG id="SeeAlso2" style="display:none; height:0; width:0;" src="../local/SeeAlso1c.gif">
+        
+      </IMG>
+      <IMG id="Filter1" style="display:none; height:0; width:0;" src="../local/Filter1a.gif">
+        
+      </IMG>
+      <IMG id="Filter2" style="display:none; height:0; width:0;" src="../local/Filter1c.gif">
+        
+      </IMG>
+      <span style="display:none" id="languageSpan">
+        <h1 class="heading">
+          Langage
+        </h1>
+        <div id="selectLanguage" class="section">
+          <div class="languageFilter" id="VisualBasic" onclick="ChangeLanguage(this.id)" onkeypress="ChangeLanguage_CheckKey(this.id)" tabindex="0">
+            [Visual Basic]
+          </div>
+          <div class="languageFilter" id="CSharp" onclick="ChangeLanguage(this.id)" onkeypress="ChangeLanguage_CheckKey(this.id)" tabindex="0">
+            [C#]
+          </div>
+          <div class="languageFilter" id="ManagedCPlusPlus" onclick="ChangeLanguage(this.id)" onkeypress="ChangeLanguage_CheckKey(this.id)" tabindex="0">
+            [C++]
+          </div>
+          <div class="languageFilter" id="JSharp" onclick="ChangeLanguage(this.id)" onkeypress="ChangeLanguage_CheckKey(this.id)" tabindex="0">
+            [J#]
+          </div>
+          <div class="languageFilter" id="JScript" onclick="ChangeLanguage(this.id)" onkeypress="ChangeLanguage_CheckKey(this.id)" tabindex="0">
+            [JScript]
+          </div>
+          <div class="languageFilter" id="all" onclick="ChangeLanguage(this.id)" onkeypress="ChangeLanguage_CheckKey(this.id)" tabindex="0">
+            (Afficher tout)
+          </div>
+        </div>
+      </span>
+    </div>
+    <div id="mainSection">
+      <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+      </div>
+      <font color="DarkGray"><!-- [This topic is pre-release documentation and is subject to change in future releases. Blank topics are included as placeholders.]<br/>[Documentation built on 11/3/2006]  --></font><p /><p />
+      <div id="introductionSection" class="section">
+    <p>Les sections suivantes décrivent la manière dont le pilote JDBC de Microsoft SQL Server 2005 prend en charge les fonctionnalités d'API optionnelles de J2EE et JDBC 3.0. Les exemples de code source contenus dans ce système d'aide constituent une bonne référence pour la prise en main de ces fonctionnalités.</p>
+    <p>Commencez par vous assurer que votre environnement Java (JDK, JRE) inclut le package javax.sql. Il s'agit d'un package obligatoire pour toute application JDBC utilisant l'API en option. JDK 1.4 et ses versions supérieures intègrent déjà ce package, de sorte que vous ne devez pas l'installer séparément. </p>
+  </div>
+      <h1 class="heading">Nom du pilote</h1>
+      <div id="sectionSection" class="section">
+        <content xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+      <p xmlns="">Le nom de classe du pilote est <b>com.microsoft.sqlserver.jdbc.SQLServerDriver</b>. Le pilote se trouve dans le fichier sqljdbc.jar.</p>
+      <p xmlns="">Le nom de classe est utilisé à chaque chargement du pilote à l'aide de la classe JDBC <b>DriverManager</b>. Il est également utilisé chaque fois que vous devez spécifier le nom de classe du pilote dans une configuration de pilote. Par exemple, la configuration d'une source de données dans un serveur d'applications J2EE peut nécessiter la saisie du nom de classe du pilote.</p>
+    </content>
+      </div>
+      <h1 class="heading">Sources de données</h1>
+      <div id="sectionSection" class="section">
+        <content xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+      <p xmlns="">Le pilote JDBC prend en charge les sources de données J2EE/JDBC 3.0. La classe <a href="95fc7b07-2498-4a7e-8f7f-ee0d86b598b4.htm">SQLServerXADataSource</a> du pilote JDBC est implémentée par <b>com.microsoft.sqlserver.jdbc.SQLServerXADataSource</b>. </p>
+    </content>
+        <sections xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+      <h1 class="heading" xmlns="">Noms de sources de données</h1><div id="sectionSection" class="section" xmlns=""><content xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+          <p xmlns="">Vous pouvez établir des connexions de base de données à l'aide de sources de données. Le tableau suivant décrit les sources de données disponibles avec le pilote JDBC :</p>
+          <h2 class="heading" xmlns=""></h2><table cellspacing="0" cellpadding="0" border="1" style="background-color: #CCCCCC;" xmlns=""><tr>
+                <th>
+                  Type de source de données
+                </th>
+                <th>
+                  Nom de la classe
+                </th>
+                <th>
+                  Description
+                </th>
+              </tr><tr>
+              <td>
+                <p>DataSource</p>
+              </td>
+              <td>
+                <p>com.microsoft.sqlserver.jdbc.SQLServerDataSource</p>
+              </td>
+              <td>
+                <p>Source de données non regroupables.</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>ConnectionPoolDataSource</p>
+              </td>
+              <td>
+                <p>com.microsoft.sqlserver.jdbc.SQLServerConnectionPoolDataSource</p>
+              </td>
+              <td>
+                <p>Source de données pour la configuration des regroupements de connexions du serveur d'application J2EE. Généralement utilisée lorsque l'application s'exécute dans un serveur d'applications J2EE.</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>XADataSource</p>
+              </td>
+              <td>
+                <p>com.microsoft.sqlserver.jdbc.SQLServerXADataSource</p>
+              </td>
+              <td>
+                <p>Source de données pour la configuration de sources de données J2EE XA. Généralement utilisée lorsque l'application s'exécute dans un serveur d'applications J2EE et un gestionnaire de transactions XA.</p>
+              </td>
+            </tr></table>
+        </content></div>
+      <h1 class="heading" xmlns="">Propriétés de la source de données</h1><div id="sectionSection" class="section" xmlns=""><content xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+          <p xmlns="">Toutes les sources de données offrent la possibilité de définir et d'obtenir une propriété associée au jeu de propriétés du pilote sous-jacent. </p>
+          <p xmlns="">Exemples :</p>
+          <p xmlns=""><code>setServerName("localhost");</code></p>
+          <p xmlns=""><code>setDatabaseName("AdventureWorks"); </code></p>
+          <p xmlns="">La section suivante montre comment une application se connecte à l'aide d'une source de données :</p>
+          <div class="sampleCode" xmlns=""><span codeLanguage="other"><pre>initialize JNDI ..
+Context ctx = new InitialContext(System.getProperties());
+...
+DataSource ds = (DataSource) ctx.lookup("MyDataSource");
+Connection c = ds.getConnection("user", "pwd");</pre></span></div>
+          <p xmlns="">Pour plus d'informations sur les propriétés des sources de données, voir <a href="f3363d05-07fc-4bf8-ae5e-2a7a968808ad.htm">Définition des propriétés de la source de données</a>.</p>
+        </content></div>
+    </sections>
+      </div>
+      <span id="seeAlsoSpan">
+        <h1 class="heading">
+          Voir aussi
+        </h1>
+        <div id="seeAlsoSection" class="section">
+          <a href="939a8773-2583-49a4-bf00-6b892fbe39dc.htm">Présentation du pilote JDBC</a>
+        </div>
+      </span>
+      <!--[if gte IE 5]>
+			<tool:tip element="seeAlsoToolTip" avoidmouse="false"/><tool:tip element="languageFilterToolTip" avoidmouse="false"/>
+		<![endif]-->
+      <div id="footer" class="section">
+        <hr /><A NAME="feedback"></A><span id="fb" class="feedbackcss"></span>
+		<a href="9bad553b-9e70-4696-8499-2e35f772a1e0.htm">
+			
+			© 2006 Microsoft Corporation. Tous droits réservés.
+		</a>
+ 	
+      </div>
+    </div>
+  </body>
+</html>

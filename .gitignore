@@ -1,2 +1,6 @@
 *.db
 /utilitaires/utilitaires/dist/
+/NetBeansProjects/GestionContactJdbc/build/
+/NetBeansProjects/GestionContactJdbc/nbproject/private/
+/NetBeansProjects/GestionContactJdbcV1/build/
+/NetBeansProjects/GestionContactJdbcV1/nbproject/private/

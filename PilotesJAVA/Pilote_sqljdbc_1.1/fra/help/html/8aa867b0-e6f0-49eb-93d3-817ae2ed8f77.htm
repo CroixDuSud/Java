@@ -1,0 +1,99 @@
+<html DIR="LTR" xmlns:tool="http://www.microsoft.com/tooltip" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=Windows-1252" />
+    <META NAME="save" CONTENT="history" />
+    <title>Validation d'entrée utilisateur</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/script_loc.js">
+      
+    </script>
+    <script src="../local/script_main.js">
+      
+    </script>
+  </head>
+  <body style="display: none;">
+    <!--Topic built:11/3/2006-->
+<input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <div id="header">
+        <tr>
+          <td align="left">
+            <span id="headerBold">Validation d'entrée utilisateur</span>
+          </td>
+        </tr>
+      </table>
+      <IMG id="SeeAlso1" style="display:none; height:0; width:0;" src="../local/SeeAlso1a.gif">
+        
+      </IMG>
+      <IMG id="SeeAlso2" style="display:none; height:0; width:0;" src="../local/SeeAlso1c.gif">
+        
+      </IMG>
+      <IMG id="Filter1" style="display:none; height:0; width:0;" src="../local/Filter1a.gif">
+        
+      </IMG>
+      <IMG id="Filter2" style="display:none; height:0; width:0;" src="../local/Filter1c.gif">
+        
+      </IMG>
+      <span style="display:none" id="languageSpan">
+        <h1 class="heading">
+          Langage
+        </h1>
+        <div id="selectLanguage" class="section">
+          <div class="languageFilter" id="VisualBasic" onclick="ChangeLanguage(this.id)" onkeypress="ChangeLanguage_CheckKey(this.id)" tabindex="0">
+            [Visual Basic]
+          </div>
+          <div class="languageFilter" id="CSharp" onclick="ChangeLanguage(this.id)" onkeypress="ChangeLanguage_CheckKey(this.id)" tabindex="0">
+            [C#]
+          </div>
+          <div class="languageFilter" id="ManagedCPlusPlus" onclick="ChangeLanguage(this.id)" onkeypress="ChangeLanguage_CheckKey(this.id)" tabindex="0">
+            [C++]
+          </div>
+          <div class="languageFilter" id="JSharp" onclick="ChangeLanguage(this.id)" onkeypress="ChangeLanguage_CheckKey(this.id)" tabindex="0">
+            [J#]
+          </div>
+          <div class="languageFilter" id="JScript" onclick="ChangeLanguage(this.id)" onkeypress="ChangeLanguage_CheckKey(this.id)" tabindex="0">
+            [JScript]
+          </div>
+          <div class="languageFilter" id="all" onclick="ChangeLanguage(this.id)" onkeypress="ChangeLanguage_CheckKey(this.id)" tabindex="0">
+            (Afficher tout)
+          </div>
+        </div>
+      </span>
+    </div>
+    <div id="mainSection">
+      <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+      </div>
+      <font color="DarkGray"><!-- [This topic is pre-release documentation and is subject to change in future releases. Blank topics are included as placeholders.]<br/>[Documentation built on 11/3/2006]  --></font><p /><p />
+      <div id="introductionSection" class="section">
+    <p>Lorsque vous créez une application qui accède à des données, vous devez partir de l'hypothèse que toutes les entrées utilisateur sont malveillantes jusqu'à preuve du contraire. À défaut de ce faire, vous rendriez votre application vulnérable aux attaques. Un type d'attaque susceptible de se produire est une injection SQL, où un code nuisible est ajouté à des chaînes qui sont ultérieurement transmises à une instance de SQL Server en vue de leur analyse et de leur exécution. Pour éviter ce type d'attaque, vous devez utiliser des procédures stockées avec des paramètres si c'est possible et toujours valider les entrées utilisateur.</p>
+    <p>La validation d'entrées utilisateur dans le code client est importante afin de ne pas perdre de temps en boucles de connexion avec le serveur. Il est également important de valider les paramètres des procédures stockées sur le serveur afin de capter les entrées qui ne sont pas valides et qui ignorent la validation coté client.</p>
+    <p>Pour plus d'informations sur l'injection SQL et la manière de l'éviter, voir la rubrique « Injection SQL » de la documentation en ligne de SQL Server 2005. Pour plus d'informations sur la validation des paramètres de procédure stockée, voir la rubrique « Procédures stockées (Moteur de base de données) » et les rubriques connexes de la documentation en ligne de SQL Server 2005.</p>
+  </div>
+      <span id="seeAlsoSpan">
+        <h1 class="heading">
+          Voir aussi
+        </h1>
+        <div id="seeAlsoSection" class="section">
+          <a href="90724ec6-a9cb-43ef-903e-793f89410bc0.htm">Sécurisation d'applications de pilote JDBC</a>
+        </div>
+      </span>
+      <!--[if gte IE 5]>
+			<tool:tip element="seeAlsoToolTip" avoidmouse="false"/><tool:tip element="languageFilterToolTip" avoidmouse="false"/>
+		<![endif]-->
+      <div id="footer" class="section">
+        <hr /><A NAME="feedback"></A><span id="fb" class="feedbackcss"></span>
+		<a href="9bad553b-9e70-4696-8499-2e35f772a1e0.htm">
+			
+			© 2006 Microsoft Corporation. Tous droits réservés.
+		</a>
+ 	
+      </div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,133 @@
+<html DIR="LTR" xmlns:tool="http://www.microsoft.com/tooltip" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=Windows-1252" />
+    <META NAME="save" CONTENT="history" />
+    <title>Caractéristiques internationales du pilote JDBC</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/script_loc.js">
+      
+    </script>
+    <script src="../local/script_main.js">
+      
+    </script>
+  </head>
+  <body style="display: none;">
+    <!--Topic built:11/3/2006-->
+<input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <div id="header">
+        <tr>
+          <td align="left">
+            <span id="headerBold">Caractéristiques internationales du pilote JDBC</span>
+          </td>
+        </tr>
+      </table>
+      <IMG id="SeeAlso1" style="display:none; height:0; width:0;" src="../local/SeeAlso1a.gif">
+        
+      </IMG>
+      <IMG id="SeeAlso2" style="display:none; height:0; width:0;" src="../local/SeeAlso1c.gif">
+        
+      </IMG>
+      <IMG id="Filter1" style="display:none; height:0; width:0;" src="../local/Filter1a.gif">
+        
+      </IMG>
+      <IMG id="Filter2" style="display:none; height:0; width:0;" src="../local/Filter1c.gif">
+        
+      </IMG>
+      <span style="display:none" id="languageSpan">
+        <h1 class="heading">
+          Langage
+        </h1>
+        <div id="selectLanguage" class="section">
+          <div class="languageFilter" id="VisualBasic" onclick="ChangeLanguage(this.id)" onkeypress="ChangeLanguage_CheckKey(this.id)" tabindex="0">
+            [Visual Basic]
+          </div>
+          <div class="languageFilter" id="CSharp" onclick="ChangeLanguage(this.id)" onkeypress="ChangeLanguage_CheckKey(this.id)" tabindex="0">
+            [C#]
+          </div>
+          <div class="languageFilter" id="ManagedCPlusPlus" onclick="ChangeLanguage(this.id)" onkeypress="ChangeLanguage_CheckKey(this.id)" tabindex="0">
+            [C++]
+          </div>
+          <div class="languageFilter" id="JSharp" onclick="ChangeLanguage(this.id)" onkeypress="ChangeLanguage_CheckKey(this.id)" tabindex="0">
+            [J#]
+          </div>
+          <div class="languageFilter" id="JScript" onclick="ChangeLanguage(this.id)" onkeypress="ChangeLanguage_CheckKey(this.id)" tabindex="0">
+            [JScript]
+          </div>
+          <div class="languageFilter" id="all" onclick="ChangeLanguage(this.id)" onkeypress="ChangeLanguage_CheckKey(this.id)" tabindex="0">
+            (Afficher tout)
+          </div>
+        </div>
+      </span>
+    </div>
+    <div id="mainSection">
+      <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+      </div>
+      <font color="DarkGray"><!-- [This topic is pre-release documentation and is subject to change in future releases. Blank topics are included as placeholders.]<br/>[Documentation built on 11/3/2006]  --></font><p /><p />
+      <div id="introductionSection" class="section">
+    <p>Les caractéristiques d'internationalisation du pilote JDBC de Microsoft de SQL Server 2005 incluent ce qui suit :</p>
+    <ul><li>
+        Prise en charge d'une version complètement localisée dans les mêmes langues que SQL Server.<br></br>
+      </li><li>
+        Prise en charge des conversions de langage Java 1.4 pour les données SQL Server sensibles aux paramètres régionaux.<br></br>
+      </li><li>
+        Prise en charge des langues internationales, indépendamment du système d'exploitation.<br></br>
+      </li></ul>
+  </div>
+      <h1 class="heading">Gestion des données de type caractères</h1>
+      <div id="sectionSection" class="section">
+        <content xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+      <p xmlns="">Les données de type caractères dans Java sont traitées en tant qu'Unicode, par défaut ; l'objet chaîne Java représente des données de type caractères Unicode. Dans le pilote JDBC, les méthodes getter et setter du flux de données ASCII constituent la seule exception à cette règle ; il s'agit de cas à part car ces méthodes utilisent des flux de données de type byte avec l'hypothèse implicite de pages de code simple et très répandu (ASCII).</p>
+      <p xmlns="">En outre, le pilote JDBC fournit la propriété de chaîne de connexion sendStringParametersAsUnicode. Cette propriété peut être utilisée pour spécifier que les paramètres préparés pour les données de type caractères sont envoyés en tant qu'ASCII et non en tant qu'Unicode. </p>
+      <p xmlns="">Pour plus d'informations sur la propriété de chaîne de connexion sendStringParametersAsUnicode, voir <a href="f1b62700-f046-488d-bd6b-a5cd8fc345b7.htm">Définition des propriétés de connexion</a>.</p>
+    </content>
+        <sections xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+      <h1 class="heading" xmlns="">Conversions entrantes du pilote</h1><div id="sectionSection" class="section" xmlns=""><content xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+          <p xmlns="">Les données de type texte Unicode provenant du serveur ne doivent pas être converties. Elles sont transmises directement en Unicode. Les données non Unicode provenant du serveur sont converties en Unicode à partir de la page de code des données, au niveau base de données ou colonne. Le pilote JDBC utilise les routines de conversion de machine virtuelle Java (Java Virtual Machine, JVM) pour effectuer ces conversions. Ces conversions sont effectuées sur toutes les méthodes getter des flux de données de type chaînes et caractères.</p>
+          <p xmlns="">Si la machine virtuelle JVM ne prend pas en charge la page de code appropriée pour les données de la base de données, le pilote JDBC génère une exception « Page de code XXX non prise en charge par l'environnement Java ».</p>
+        </content></div>
+      <h1 class="heading" xmlns="">Conversions sortantes du pilote</h1><div id="sectionSection" class="section" xmlns=""><content xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+          <p xmlns="">Les données de type caractères allant du pilote au serveur commencent en Unicode. Unicode est transmis au serveur, sur lequel les conversions appropriées sont effectuées si la colonne de destination n'est pas une colonne de type Unicode (nchar, nvarchar, ntext). Dans ce cas, le texte Unicode est transmis à partir des méthodes setter et updater du pilote JDBC pour les flux de données chaînes et caractères.</p>
+        </content></div>
+    </sections>
+      </div>
+      <h1 class="heading">Problèmes de mise en forme</h1>
+      <div id="sectionSection" class="section">
+        <content xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+      <p xmlns="">Pour les dates, les heures et les devises, toute la mise en forme avec les données localisées est effectuée au niveau du langage Java, à l'aide de l'objet <b>Locale</b> et des différentes méthodes de mise en forme pour les types de données date, calendrier et nombre. Dans le cas, rare, où le pilote JDBC doit transmettre des données sensibles aux paramètres régionaux dans un format localisé, le programme approprié de mise en forme est utilisé avec les paramètres régionaux JVM par défaut.</p>
+    </content>
+      </div>
+      <h1 class="heading">Paramètres non Unicode</h1>
+      <div id="sectionSection" class="section">
+        <content xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+      <p xmlns="">Résultat de l'amélioration des performances, les paramètres de chaînes peuvent être transmis à SQL Server sous une forme non Unicode en définissant la propriété de la chaîne de connexion sendStringParametersAsUnicode. Le paramètre par défaut pour sendStringParametersAsUnicode est « true », ce qui signifie que les paramètres de chaîne sont envoyés en Unicode. Si sendStringParametersAsUnicode est définie sur « false », tous les paramètres de chaîne sur cette connexion sont envoyés au serveur avec le classement par défaut de la base de données.</p>
+    </content>
+      </div>
+      <span id="seeAlsoSpan">
+        <h1 class="heading">
+          Voir aussi
+        </h1>
+        <div id="seeAlsoSection" class="section">
+          <a href="939a8773-2583-49a4-bf00-6b892fbe39dc.htm">Présentation du pilote JDBC</a>
+        </div>
+      </span>
+      <!--[if gte IE 5]>
+			<tool:tip element="seeAlsoToolTip" avoidmouse="false"/><tool:tip element="languageFilterToolTip" avoidmouse="false"/>
+		<![endif]-->
+      <div id="footer" class="section">
+        <hr /><A NAME="feedback"></A><span id="fb" class="feedbackcss"></span>
+		<a href="9bad553b-9e70-4696-8499-2e35f772a1e0.htm">
+			
+			© 2006 Microsoft Corporation. Tous droits réservés.
+		</a>
+ 	
+      </div>
+    </div>
+  </body>
+</html>

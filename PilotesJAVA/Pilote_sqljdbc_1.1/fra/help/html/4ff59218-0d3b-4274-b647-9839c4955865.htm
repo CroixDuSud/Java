@@ -1,0 +1,188 @@
+<html DIR="LTR" xmlns:tool="http://www.microsoft.com/tooltip" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=Windows-1252" />
+    <META NAME="save" CONTENT="history" />
+    <title>Utilisation de la mise en miroir de bases de données (JDBC)</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/script_loc.js">
+      
+    </script>
+    <script src="../local/script_main.js">
+      
+    </script>
+  </head>
+  <body style="display: none;">
+    <!--Topic built:11/3/2006-->
+<input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <div id="header">
+        <tr>
+          <td align="left">
+            <span id="headerBold">Utilisation de la mise en miroir de bases de données (JDBC)</span>
+          </td>
+        </tr>
+      </table>
+      <IMG id="SeeAlso1" style="display:none; height:0; width:0;" src="../local/SeeAlso1a.gif">
+        
+      </IMG>
+      <IMG id="SeeAlso2" style="display:none; height:0; width:0;" src="../local/SeeAlso1c.gif">
+        
+      </IMG>
+      <IMG id="Filter1" style="display:none; height:0; width:0;" src="../local/Filter1a.gif">
+        
+      </IMG>
+      <IMG id="Filter2" style="display:none; height:0; width:0;" src="../local/Filter1c.gif">
+        
+      </IMG>
+      <span style="display:none" id="languageSpan">
+        <h1 class="heading">
+          Langage
+        </h1>
+        <div id="selectLanguage" class="section">
+          <div class="languageFilter" id="VisualBasic" onclick="ChangeLanguage(this.id)" onkeypress="ChangeLanguage_CheckKey(this.id)" tabindex="0">
+            [Visual Basic]
+          </div>
+          <div class="languageFilter" id="CSharp" onclick="ChangeLanguage(this.id)" onkeypress="ChangeLanguage_CheckKey(this.id)" tabindex="0">
+            [C#]
+          </div>
+          <div class="languageFilter" id="ManagedCPlusPlus" onclick="ChangeLanguage(this.id)" onkeypress="ChangeLanguage_CheckKey(this.id)" tabindex="0">
+            [C++]
+          </div>
+          <div class="languageFilter" id="JSharp" onclick="ChangeLanguage(this.id)" onkeypress="ChangeLanguage_CheckKey(this.id)" tabindex="0">
+            [J#]
+          </div>
+          <div class="languageFilter" id="JScript" onclick="ChangeLanguage(this.id)" onkeypress="ChangeLanguage_CheckKey(this.id)" tabindex="0">
+            [JScript]
+          </div>
+          <div class="languageFilter" id="all" onclick="ChangeLanguage(this.id)" onkeypress="ChangeLanguage_CheckKey(this.id)" tabindex="0">
+            (Afficher tout)
+          </div>
+        </div>
+      </span>
+    </div>
+    <div id="mainSection">
+      <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+      </div>
+      <font color="DarkGray"><!-- [This topic is pre-release documentation and is subject to change in future releases. Blank topics are included as placeholders.]<br/>[Documentation built on 11/3/2006]  --></font><p /><p />
+      <div id="introductionSection" class="section">
+    <p>La mise en miroir de bases de données est principalement une solution logicielle visant à augmenter la disponibilité de la base de données et la redondance des données. Le pilote JDBC de Microsoft de SQL Server 2005 fournit une prise en charge implicite de la mise en miroir de bases de données ; ainsi, le développeur ne doit écrire aucun code ou prendre aucune autre mesure lorsqu'il a été configuré pour la base de données.</p>
+    <p>La mise en miroir de bases de données, implémentée pour chaque base de données, conserve une copie d'une base de données de production SQL Server 2005 sur un serveur en veille. Ce serveur est un serveur en veille automatique ou semi-automatique, selon la configuration et l'état de la session de mise en miroir de bases de données. Un serveur en veille automatique prend en charge un basculement rapide sans perte de transactions validées ; un serveur en veille semi-automatique prend quant à lui en charge le service forcé (avec une perte de données éventuelle).</p>
+    <p>La base de données de production est appelée base de données <i>principale</i> et la copie « en veille » est appelée base de données <i>miroir</i>. La base de données principale et la base de données miroir doivent résider dans des instances séparées de SQL Server 2005 (instances de serveur) ainsi que sur des ordinateurs séparés, si possible.</p>
+    <p>L'instance de serveur de production, également appelée serveur principal, communique avec l'instance de serveur en veille, également appelée serveur miroir. Les serveurs principal et miroir font agissent en tant que partenaires dans une session de mise en miroir de bases de données. En cas d'échec du serveur principal, le serveur miroir peut créer sa base de données dans la base de données principale grâce à un processus appelé <i>basculement</i>. Par exemple, Partner_A et Partner_B sont deux serveurs partenaires, avec la base de données principale initialement résidant sur Partner_A en tant que serveur principal et la base de données miroir résidant sur Partner_B en tant que serveur miroir. Si Partner_A se déconnecte, la base de données sur Partner_B peut basculer pour devenir la base de données principale actuelle. Lorsque Partner_A rejoint la session de mise en miroir, il devient serveur miroir et sa base de données devient la base de données miroir.</p>
+    <p>Si le serveur Partner_A est irrémédiablement endommagé, un serveur Partner_C peut être connecté pour faire office de serveur miroir pour Partner_B, qui est maintenant le serveur principal. Cependant, dans ce scénario, l'application cliente doit inclure une logique de programmation, afin de garantir la mise à jour des propriétés de chaîne de connexion avec les nouveaux noms de serveurs utilisés dans la configuration de la mise en miroir de bases de données. Si ce n'est pas le cas, la connexion aux serveurs risque d'échouer.</p>
+    <p>D'autres configurations de mise en miroir de bases de données offrent différents niveaux de performances et de sécurité des données et prennent en charge différentes formes de basculement. Pour plus d'informations, voir « Présentation de la mise en miroir de bases de données » dans la documentation en ligne de SQL Server.</p>
+  </div>
+      <h1 class="heading">Programmation</h1>
+      <div id="sectionSection" class="section">
+        <content xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+      <p xmlns="">En cas d'échec du serveur de la base de données principale, l'application cliente reçoit des erreurs en réponse aux appels API, qui indiquent que la connexion à la base de données a été perdue. Lorsque cela se produit, toutes les modifications non validées apportées à la base de données sont perdues et la transaction actuelle est annulée. Dans ce cas, l'application doit fermer la connexion (ou libérer l'objet de la source de données) et essayer de la réouvrir. Lors de la connexion, la nouvelle connexion est redirigée de manière transparente vers la base de données miroir, qui fait maintenant office de serveur principal, sans que le client ait à modifier la chaîne de connexion ou l'objet de la source de données.</p>
+      <p xmlns="">Lorsqu'une connexion est établie initialement, le serveur principal envoie l'identité de son partenaire de basculement au client qui sera utilisé lors d'un basculement. Lorsqu'une application essaie d'établir une connexion initiale avec un serveur principal en échec, le client ne connaît pas l'identité du partenaire de basculement. Pour permettre aux clients de faire face à ce scénario, la propriété de chaîne de connexion failoverPartner, et éventuellement la méthode de source de données <a href="5310b7c2-9d10-474f-ad3a-218fe5da694b.htm">setFailoverPartner</a>, permet au client de spécifier tout seul l'identité du partenaire de basculement. La propriété du client est utilisée uniquement dans ce scénario ; si le serveur principal est disponible, elle n'est pas utilisée. </p>
+      <div style="margin: .5em 1.5em .5em 1.5em" xmlns=""><b>Remarque : </b>
+        Lorsqu'un failoverPartner est spécifié dans la chaîne de connexion ou conjointement avec un objet de la source de données, la propriété de la base de données doit également être définie, sinon une exception sera générée. Pour plus d'informations sur failoverPartner et d'autres propriétés de chaîne de connexion, voir <a href="f1b62700-f046-488d-bd6b-a5cd8fc345b7.htm">Définition des propriétés de connexion</a>.<p></p>
+      </div>
+      <p xmlns="">Si le serveur du partenaire de basculement fourni par le client ne désigne pas un serveur faisant office de partenaire de basculement pour la base de données spécifiée, la connexion est refusée par le serveur. Bien que la classe <a href="097434fd-2b74-411c-a5ed-eba04481dde5.htm">SQLServerDataSource</a> fournisse la méthode <a href="885f927f-9c48-42e0-a7fb-fd936d2b8130.htm">getFailoverPartner</a>, cette méthode retourne uniquement le nom du partenaire de basculement spécifié dans la chaîne de connexion ou la méthode <b>setFailoverPartner</b>. Pour extraire le nom du partenaire de basculement réel en cours d'utilisation, utilisez l'instruction Transact-SQL suivante :</p>
+      <div class="sampleCode" xmlns=""><span codeLanguage="other"><pre>SELECT m.mirroring_role_DESC, m.mirroring_state_DESC,
+m.mirroring_partner_instance FROM sys.databases as db,
+sys.database_mirroring AS m WHERE db.name = 'MirroringDBName'
+AND db.database_id = m.database_id</pre></span></div>
+      <div style="margin: .5em 1.5em .5em 1.5em" xmlns=""><b>Remarque : </b>
+        Vous devrez modifier cette instruction pour utiliser le nom de votre base de données de mise en miroir.<p></p>
+      </div>
+      <p xmlns="">Vous devez envisager de mettre en cache les informations du partenaire afin de mettre à jour la chaîne de connexion ou concevoir une stratégie de nouvelle tentative en cas d'échec de la première tentative de création d'une connexion.</p>
+    </content>
+      </div>
+      <h1 class="heading">Exemple</h1>
+      <div id="sectionSection" class="section">
+        <content xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+      <p xmlns="">Dans l'exemple suivant, une tentative est réalisée en premier lieu pour établir une connexion au serveur de principe. En cas d'échec et de génération d'une exception, une tentative est réalisée pour établir une connexion au serveur miroir, qui peut avoir été promu serveur de principe. Remarquez l'utilisation de la propriété failoverPartner dans la chaîne de connexion.</p>
+      <div class="sampleCode" xmlns=""><span codeLanguage="other"><pre>import java.sql.*;
+
+public class clientFailover {
+
+   public static void main(String[] args) {
+
+      // Create a variable for the connection string.
+      String connectionUrl = "jdbc:sqlserver://serverA:1433;" +
+         "databaseName=AdventureWorks;integratedSecurity=true;" +
+         "failoverPartner=serverB";
+
+      // Declare the JDBC objects.
+      Connection con = null;
+      Statement stmt = null;
+
+      try {
+         // Establish the connection to the principal server.
+         Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+         con = DriverManager.getConnection(connectionUrl);
+         System.out.println("Connected to the principal server.");
+
+         // Note that if a failover of serverA occurs here, then an
+         // exception will be thrown and the failover partner will
+         // be used in the first catch block below.
+
+         // Create and execute an SQL statement that inserts some data.
+         stmt = con.createStatement();
+
+         // Note that the following statement assumes that the 
+         // TestTable table has been created in the AdventureWorks
+         // sample database.
+         stmt.executeUpdate("INSERT INTO TestTable (Col2, Col3) VALUES ('a', 10)");
+      }
+
+      // Handle any errors that may have occurred.
+      catch (SQLException se) {
+         try {
+            // The connection to the principal server failed,
+            // try the mirror server which may now be the new
+            // principal server.
+            System.out.println("Connection to principal server failed, " +
+            "trying the mirror server.");
+            con = DriverManager.getConnection(connectionUrl);
+            System.out.println("Connected to the new principal server.");
+            stmt = con.createStatement();
+            stmt.executeUpdate("INSERT INTO TestTable (Col2, Col3) VALUES ('a', 10)");
+         }
+         catch (Exception e) {
+            e.printStackTrace();
+         }
+      }
+      catch (Exception e) {
+         e.printStackTrace();
+      }
+      // Close the JDBC objects.
+      finally {
+         if (stmt != null) try { stmt.close(); } catch(Exception e) {}
+         if (con != null) try { con.close(); } catch(Exception e) {}
+      }
+   }
+}</pre></span></div>
+    </content>
+      </div>
+      <span id="seeAlsoSpan">
+        <h1 class="heading">
+          Voir aussi
+        </h1>
+        <div id="seeAlsoSection" class="section">
+          <a href="94bcfbe3-f00e-4774-bda8-bb7577518fec.htm">Connexion à SQL Server à l'aide du pilote JDBC</a>
+        </div>
+      </span>
+      <!--[if gte IE 5]>
+			<tool:tip element="seeAlsoToolTip" avoidmouse="false"/><tool:tip element="languageFilterToolTip" avoidmouse="false"/>
+		<![endif]-->
+      <div id="footer" class="section">
+        <hr /><A NAME="feedback"></A><span id="fb" class="feedbackcss"></span>
+		<a href="9bad553b-9e70-4696-8499-2e35f772a1e0.htm">
+			
+			© 2006 Microsoft Corporation. Tous droits réservés.
+		</a>
+ 	
+      </div>
+    </div>
+  </body>
+</html>

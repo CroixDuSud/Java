@@ -39,6 +39,7 @@ public class ServletAccueil extends HttpServlet
         String numContact;
         String choixGestion;
         String erreur;
+        String choixRadio[] = new String[3];
         
         /*
         Cookie numContactCookie;
@@ -49,12 +50,6 @@ public class ServletAccueil extends HttpServlet
         ServletContext contexte;
         RequestDispatcher dispatcher;
         
-        //contexte = getServletContext();
-        //dispatcher = contexte.getRequestDispatcher("/Donnees");
-        
-        request.setCharacterEncoding("utf-8");
-        response.setContentType("text/html;charset=UTF-8");
-        
         /*---------------------------------------------------------------------
         Lecture des paramètre transmis par le formulaire de gestionContact via
         la servletAcceuil :
@@ -63,13 +58,32 @@ public class ServletAccueil extends HttpServlet
         choixGestion = request.getParameter("choix");
         erreur = request.getParameter("erreur");
         
+        
         HttpSession session = request.getSession();
         session.setAttribute("numContact", numContact);
         session.setAttribute("choix", choixGestion);
         session.setAttribute("erreur", erreur);
         
-        //if(choixGestion )
+        //contexte = getServletContext();
+        //dispatcher = contexte.getRequestDispatcher("/");
         
+        request.setCharacterEncoding("utf-8");
+        response.setContentType("text/html;charset=UTF-8");
+        
+        //choixRadio = getParameterValues("")
+        
+        if(choixGestion.equals("Modification") )
+        {
+            contexte = getServletContext();
+            dispatcher = contexte.getRequestDispatcher("/ServletAffichageModif");
+            dispatcher.forward(request, response);
+        }
+        if(choixGestion.equals("ListeDesContacts"))
+        {
+            contexte = getServletContext();
+            dispatcher = contexte.getRequestDispatcher("/ServletAffichageListe");
+            dispatcher.forward(request, response);
+        }
         
         
         /*
@@ -91,6 +105,11 @@ public class ServletAccueil extends HttpServlet
             out.close();
         }
         */
+    }
+    
+    void traitementListe()
+    {
+        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

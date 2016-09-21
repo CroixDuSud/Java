@@ -1,0 +1,155 @@
+<html DIR="LTR" xmlns:tool="http://www.microsoft.com/tooltip" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=Windows-1252" />
+    <META NAME="save" CONTENT="history" />
+    <title>Connexion à SQL Server à l'aide du pilote JDBC</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/script_loc.js">
+      
+    </script>
+    <script src="../local/script_main.js">
+      
+    </script>
+  </head>
+  <body style="display: none;">
+    <!--Topic built:11/3/2006-->
+<input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <div id="header">
+        <tr>
+          <td align="left">
+            <span id="headerBold">Connexion à SQL Server à l'aide du pilote JDBC</span>
+          </td>
+        </tr>
+      </table>
+      <IMG id="SeeAlso1" style="display:none; height:0; width:0;" src="../local/SeeAlso1a.gif">
+        
+      </IMG>
+      <IMG id="SeeAlso2" style="display:none; height:0; width:0;" src="../local/SeeAlso1c.gif">
+        
+      </IMG>
+      <IMG id="Filter1" style="display:none; height:0; width:0;" src="../local/Filter1a.gif">
+        
+      </IMG>
+      <IMG id="Filter2" style="display:none; height:0; width:0;" src="../local/Filter1c.gif">
+        
+      </IMG>
+      <span style="display:none" id="languageSpan">
+        <h1 class="heading">
+          Langage
+        </h1>
+        <div id="selectLanguage" class="section">
+          <div class="languageFilter" id="VisualBasic" onclick="ChangeLanguage(this.id)" onkeypress="ChangeLanguage_CheckKey(this.id)" tabindex="0">
+            [Visual Basic]
+          </div>
+          <div class="languageFilter" id="CSharp" onclick="ChangeLanguage(this.id)" onkeypress="ChangeLanguage_CheckKey(this.id)" tabindex="0">
+            [C#]
+          </div>
+          <div class="languageFilter" id="ManagedCPlusPlus" onclick="ChangeLanguage(this.id)" onkeypress="ChangeLanguage_CheckKey(this.id)" tabindex="0">
+            [C++]
+          </div>
+          <div class="languageFilter" id="JSharp" onclick="ChangeLanguage(this.id)" onkeypress="ChangeLanguage_CheckKey(this.id)" tabindex="0">
+            [J#]
+          </div>
+          <div class="languageFilter" id="JScript" onclick="ChangeLanguage(this.id)" onkeypress="ChangeLanguage_CheckKey(this.id)" tabindex="0">
+            [JScript]
+          </div>
+          <div class="languageFilter" id="all" onclick="ChangeLanguage(this.id)" onkeypress="ChangeLanguage_CheckKey(this.id)" tabindex="0">
+            (Afficher tout)
+          </div>
+        </div>
+      </span>
+    </div>
+    <div id="mainSection">
+      <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+      </div>
+      <font color="DarkGray"><!-- [This topic is pre-release documentation and is subject to change in future releases. Blank topics are included as placeholders.]<br/>[Documentation built on 11/3/2006]  --></font><p /><p />
+      <div id="introductionSection" class="section">
+    <p>L'une des principales choses à faire avec le pilote JDBC de Microsoft de SQL Server 2005 est d'établir une connexion avec une base de données SQL Server. Toute interaction avec la base de données se produit via l'objet <a href="937292a6-1525-423e-a2b2-a18fd34c2893.htm">SQLServerConnection</a> et, comme le pilote JDBC présente une architecture très plate, pratiquement tout comportement intéressant touche l'objet <b>SQLServerConnection</b>.</p>
+    <p>Les rubriques de cette section décrivent la création et le fonctionnement d'une connexion à une base de données SQL Server.</p>
+  </div>
+      <h1 class="heading">
+        Dans cette section
+      </h1>
+      <div id="inThisSectionSection" class="section">
+    <content xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+      <h2 class="heading" xmlns=""></h2><table cellspacing="0" cellpadding="0" border="1" style="background-color: #CCCCCC;" xmlns=""><tr>
+            <th>
+              Rubrique
+            </th>
+            <th>
+              Description
+            </th>
+          </tr><tr>
+          <td>
+            <p><a href="44996746-d373-4f59-9863-a8a20bb8024a.htm">Création de l'URL de connexion</a></p>
+          </td>
+          <td>
+            <p>Décrit la manière de créer une URL pour se connecter à une base de données SQL Server. Décrit également la connexion à des instances nommées d'une base de données SQL Server.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p><a href="f1b62700-f046-488d-bd6b-a5cd8fc345b7.htm">Définition des propriétés de connexion</a></p>
+          </td>
+          <td>
+            <p>Décrit les diverses propriétés de connexion et la façon de les utiliser pour se connecter à une base de données SQL Server.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p><a href="f3363d05-07fc-4bf8-ae5e-2a7a968808ad.htm">Définition des propriétés de la source de données</a></p>
+          </td>
+          <td>
+            <p>Décrit la manière d'utiliser des sources de données dans un environnement J2EE.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p><a href="cf8ee392-8a10-40a3-ae32-31c7b1efdd04.htm">Travail sur une connexion</a></p>
+          </td>
+          <td>
+            <p>Décrit les diverses méthodes permettant de créer une instance d'une connexion à une base de données SQL Server.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p><a href="699d4e8a-34bf-4c60-b0d5-4a10dad6084a.htm">Utilisation d'un regroupement de connexions</a></p>
+          </td>
+          <td>
+            <p>Décrit la manière dont le pilote JDBC prend en charge l'utilisation d'un regroupement de connexions.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p><a href="4ff59218-0d3b-4274-b647-9839c4955865.htm">Utilisation de la mise en miroir de bases de données (JDBC)</a></p>
+          </td>
+          <td>
+            <p>Décrit la manière dont le pilote JDBC prend en charge l'utilisation d'une mise en miroir de bases de données.</p>
+          </td>
+        </tr></table>
+    </content>
+  </div>
+      <span id="seeAlsoSpan">
+        <h1 class="heading">
+          Voir aussi
+        </h1>
+        <div id="seeAlsoSection" class="section">
+          <a href="939a8773-2583-49a4-bf00-6b892fbe39dc.htm">Présentation du pilote JDBC</a>
+        </div>
+      </span>
+      <!--[if gte IE 5]>
+			<tool:tip element="seeAlsoToolTip" avoidmouse="false"/><tool:tip element="languageFilterToolTip" avoidmouse="false"/>
+		<![endif]-->
+      <div id="footer" class="section">
+        <hr /><A NAME="feedback"></A><span id="fb" class="feedbackcss"></span>
+		<a href="9bad553b-9e70-4696-8499-2e35f772a1e0.htm">
+			
+			© 2006 Microsoft Corporation. Tous droits réservés.
+		</a>
+ 	
+      </div>
+    </div>
+  </body>
+</html>

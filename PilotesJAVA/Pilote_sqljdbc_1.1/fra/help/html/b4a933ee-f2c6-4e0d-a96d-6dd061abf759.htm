@@ -1,0 +1,169 @@
+<html DIR="LTR" xmlns:tool="http://www.microsoft.com/tooltip" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=Windows-1252" />
+    <META NAME="save" CONTENT="history" />
+    <title>Exemple de source de données</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/script_loc.js">
+      
+    </script>
+    <script src="../local/script_main.js">
+      
+    </script>
+  </head>
+  <body style="display: none;">
+    <!--Topic built:11/3/2006-->
+<input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <div id="header">
+        <tr>
+          <td align="left">
+            <span id="headerBold">Exemple de source de données</span>
+          </td>
+        </tr>
+      </table>
+      <IMG id="SeeAlso1" style="display:none; height:0; width:0;" src="../local/SeeAlso1a.gif">
+        
+      </IMG>
+      <IMG id="SeeAlso2" style="display:none; height:0; width:0;" src="../local/SeeAlso1c.gif">
+        
+      </IMG>
+      <IMG id="Filter1" style="display:none; height:0; width:0;" src="../local/Filter1a.gif">
+        
+      </IMG>
+      <IMG id="Filter2" style="display:none; height:0; width:0;" src="../local/Filter1c.gif">
+        
+      </IMG>
+      <span style="display:none" id="languageSpan">
+        <h1 class="heading">
+          Langage
+        </h1>
+        <div id="selectLanguage" class="section">
+          <div class="languageFilter" id="VisualBasic" onclick="ChangeLanguage(this.id)" onkeypress="ChangeLanguage_CheckKey(this.id)" tabindex="0">
+            [Visual Basic]
+          </div>
+          <div class="languageFilter" id="CSharp" onclick="ChangeLanguage(this.id)" onkeypress="ChangeLanguage_CheckKey(this.id)" tabindex="0">
+            [C#]
+          </div>
+          <div class="languageFilter" id="ManagedCPlusPlus" onclick="ChangeLanguage(this.id)" onkeypress="ChangeLanguage_CheckKey(this.id)" tabindex="0">
+            [C++]
+          </div>
+          <div class="languageFilter" id="JSharp" onclick="ChangeLanguage(this.id)" onkeypress="ChangeLanguage_CheckKey(this.id)" tabindex="0">
+            [J#]
+          </div>
+          <div class="languageFilter" id="JScript" onclick="ChangeLanguage(this.id)" onkeypress="ChangeLanguage_CheckKey(this.id)" tabindex="0">
+            [JScript]
+          </div>
+          <div class="languageFilter" id="all" onclick="ChangeLanguage(this.id)" onkeypress="ChangeLanguage_CheckKey(this.id)" tabindex="0">
+            (Afficher tout)
+          </div>
+        </div>
+      </span>
+    </div>
+    <div id="mainSection">
+      <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+      </div>
+      <font color="DarkGray"><!-- [This topic is pre-release documentation and is subject to change in future releases. Blank topics are included as placeholders.]<br/>[Documentation built on 11/3/2006]  --></font><p /><p />
+      <div id="introductionSection" class="section">
+    <p>Cet exemple d'application du pilote JDBC de Microsoft de SQL Server 2005 présente la connexion à une base de données SQL Server grâce à un objet de source de données. Il présente également l'extraction de données à partir d'une base de données SQL Server grâce à une procédure stockée.</p>
+    <p>Le fichier de code de cet exemple est appelé connectDS.java et se trouve à l'emplacement suivant :</p>
+    <p>&lt;<i>répertoire d'installation</i>&gt;\sqljdbc_&lt;<i>version</i>&gt;\&lt;<i>langue</i>&gt;\help\samples\connections</p>
+  </div>
+      <h1 class="heading">
+        Configuration requise
+      </h1>
+      <div id="requirementsSection" class="section">
+    <content xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+      <p xmlns="">Pour exécuter cet exemple d'application, vous devez définir l'instruction classpath pour inclure le fichier sqljdbc.jar. Si l'instruction classpath n'a pas d'entrée pour sqljdbc.jar, l'exemple d'application lève l'exception courante « Classe introuvable ». Vous devrez également accéder à l'exemple de base de données SQL Server 2000 AdventureWorks.</p>
+      <p xmlns="">Pour plus d'informations sur la définition de l'instruction classpath, voir <a href="6faaf05b-8b70-4ed2-9b44-eee5897f1cd0.htm">Utilisation du pilote JDBC</a>.</p>
+    </content>
+  </div>
+      <h1 class="heading">
+        Exemple
+      </h1>
+      <div id="codeExampleSection" class="section">
+    <description xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+      <content>
+        <p xmlns="">Dans l'exemple suivant, l'exemple de code définit plusieurs propriétés de connexion grâce aux méthodes setter de l'objet <a href="097434fd-2b74-411c-a5ed-eba04481dde5.htm">SQLServerDataSource</a>, puis appelle la méthode <a href="a15ee185-f433-4915-9c75-5ebd90c758fd.htm">getConnection</a> de l'objet <b>SQLServerDataSource</b> pour retourner un objet <a href="937292a6-1525-423e-a2b2-a18fd34c2893.htm">SQLServerConnection</a>.</p>
+        <p xmlns="">Puis, l'exemple de code utilise la méthode <a href="265b024c-898a-4bd0-98b5-f06076717b9e.htm">prepareCall</a> de l'objet <b>SQLServerConnection</b> pour créer un objet <a href="30710a63-c05d-47d9-9cf9-c087a1c76373.htm">SQLServerCallableStatement</a>, puis la méthode <a href="dfff3358-f391-4af6-84c1-b94c029f506d.htm">executeQuery</a> est appelée pour exécuter la procédure stockée.</p>
+        <p xmlns="">Enfin, l'exemple utilise l'objet <a href="eaffcff1-286c-459f-83da-3150778480c9.htm">SQLServerResultSet</a> retourné par la méthode <b>executeQuery</b> pour répéter les résultats retournés par la procédure stockée.</p>
+      </content>
+    </description>
+    <div class="sampleCode"><span codeLanguage="other"><pre>import java.sql.*;
+import com.microsoft.sqlserver.jdbc.*;
+
+public class connectDS {
+
+   public static void main(String[] args) {
+
+      // Declare the JDBC objects.
+      Connection con = null;
+      CallableStatement cstmt = null;
+      ResultSet rs = null;
+
+      try {
+         // Establish the connection. 
+         SQLServerDataSource ds = new SQLServerDataSource();
+         ds.setUser("UserName");
+         ds.setPassword("*****");
+         ds.setServerName("localhost");
+         ds.setPortNumber(1433); 
+         ds.setDatabaseName("AdventureWorks");
+         con = ds.getConnection();
+
+         // Execute a stored procedure that returns some data.
+         cstmt = con.prepareCall("{call dbo.uspGetEmployeeManagers(?)}");
+         cstmt.setInt(1, 50);
+         rs = cstmt.executeQuery();
+
+         // Iterate through the data in the result set and display it.
+         while (rs.next()) {
+            System.out.println("EMPLOYEE: " + rs.getString("LastName") + 
+               ", " + rs.getString("FirstName"));
+            System.out.println("MANAGER: " + rs.getString("ManagerLastName") + 
+               ", " + rs.getString("ManagerFirstName"));
+            System.out.println();
+         }
+      }
+
+      // Handle any errors that may have occurred.
+      catch (Exception e) {
+         e.printStackTrace();
+
+      finally {
+         if (rs != null) try { rs.close(); } catch(Exception e) {}
+         if (cstmt != null) try { cstmt.close(); } catch(Exception e) {}
+         if (con != null) try { con.close(); } catch(Exception e) {}
+         System.exit(1);
+      }
+   }
+}</pre></span></div>
+  </div>
+      <span id="seeAlsoSpan">
+        <h1 class="heading">
+          Voir aussi
+        </h1>
+        <div id="seeAlsoSection" class="section">
+          <a href="ce43cc20-46a3-42ff-a3fb-75ad1ed10e08.htm">Connexion et extraction de données</a>
+        </div>
+      </span>
+      <!--[if gte IE 5]>
+			<tool:tip element="seeAlsoToolTip" avoidmouse="false"/><tool:tip element="languageFilterToolTip" avoidmouse="false"/>
+		<![endif]-->
+      <div id="footer" class="section">
+        <hr /><A NAME="feedback"></A><span id="fb" class="feedbackcss"></span>
+		<a href="9bad553b-9e70-4696-8499-2e35f772a1e0.htm">
+			
+			© 2006 Microsoft Corporation. Tous droits réservés.
+		</a>
+ 	
+      </div>
+    </div>
+  </body>
+</html>

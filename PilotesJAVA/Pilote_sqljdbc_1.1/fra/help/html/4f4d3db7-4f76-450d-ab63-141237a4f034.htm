@@ -1,0 +1,286 @@
+<html DIR="LTR" xmlns:tool="http://www.microsoft.com/tooltip" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=Windows-1252" />
+    <META NAME="save" CONTENT="history" />
+    <title>Types de curseurs</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/script_loc.js">
+      
+    </script>
+    <script src="../local/script_main.js">
+      
+    </script>
+  </head>
+  <body style="display: none;">
+    <!--Topic built:11/3/2006-->
+<input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <div id="header">
+        <tr>
+          <td align="left">
+            <span id="headerBold">Types de curseurs</span>
+          </td>
+        </tr>
+      </table>
+      <IMG id="SeeAlso1" style="display:none; height:0; width:0;" src="../local/SeeAlso1a.gif">
+        
+      </IMG>
+      <IMG id="SeeAlso2" style="display:none; height:0; width:0;" src="../local/SeeAlso1c.gif">
+        
+      </IMG>
+      <IMG id="Filter1" style="display:none; height:0; width:0;" src="../local/Filter1a.gif">
+        
+      </IMG>
+      <IMG id="Filter2" style="display:none; height:0; width:0;" src="../local/Filter1c.gif">
+        
+      </IMG>
+      <span style="display:none" id="languageSpan">
+        <h1 class="heading">
+          Langage
+        </h1>
+        <div id="selectLanguage" class="section">
+          <div class="languageFilter" id="VisualBasic" onclick="ChangeLanguage(this.id)" onkeypress="ChangeLanguage_CheckKey(this.id)" tabindex="0">
+            [Visual Basic]
+          </div>
+          <div class="languageFilter" id="CSharp" onclick="ChangeLanguage(this.id)" onkeypress="ChangeLanguage_CheckKey(this.id)" tabindex="0">
+            [C#]
+          </div>
+          <div class="languageFilter" id="ManagedCPlusPlus" onclick="ChangeLanguage(this.id)" onkeypress="ChangeLanguage_CheckKey(this.id)" tabindex="0">
+            [C++]
+          </div>
+          <div class="languageFilter" id="JSharp" onclick="ChangeLanguage(this.id)" onkeypress="ChangeLanguage_CheckKey(this.id)" tabindex="0">
+            [J#]
+          </div>
+          <div class="languageFilter" id="JScript" onclick="ChangeLanguage(this.id)" onkeypress="ChangeLanguage_CheckKey(this.id)" tabindex="0">
+            [JScript]
+          </div>
+          <div class="languageFilter" id="all" onclick="ChangeLanguage(this.id)" onkeypress="ChangeLanguage_CheckKey(this.id)" tabindex="0">
+            (Afficher tout)
+          </div>
+        </div>
+      </span>
+    </div>
+    <div id="mainSection">
+      <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+      </div>
+      <font color="DarkGray"><!-- [This topic is pre-release documentation and is subject to change in future releases. Blank topics are included as placeholders.]<br/>[Documentation built on 11/3/2006]  --></font><p /><p />
+      <div id="introductionSection" class="section">
+    <p>Les opérations effectuées dans une base de données relationnelle agissent sur un jeu de lignes complet. Le jeu de lignes retourné par une instruction SELECT comprend toutes les lignes qui répondent aux conditions définies par la clause WHERE de l'instruction. Ce jeu de lignes complet retourné par l'instruction est le jeu de résultats. Les applications ne peuvent pas toujours fonctionner efficacement avec le jeu de résultats en tant qu'unité. Ces applications ont besoin d'un mécanisme pour fonctionner avec une seule ligne ou un petit bloc de lignes à la fois. Les curseurs constituent une extension des jeux de résultats qui offrent ce mécanisme.</p>
+    <p>Les curseurs étendent le traitement du jeu de résultats comme suit :</p>
+    <ul><li>
+        en permettant un positionnement dans des lignes spécifiques du jeu de résultats ;<br></br>
+      </li><li>
+        en extrayant une ligne ou un bloc de lignes de la position actuelle dans le jeu de résultats ;<br></br>
+      </li><li>
+        en prenant en charge les modifications de données apportées à la ligne dans la position actuelle dans le jeu de résultats ;<br></br>
+      </li><li>
+        en prenant en charge différents niveaux de visibilité des modifications apportées par d'autres utilisateurs aux données de la base de données présentées dans le jeu de résultats.<br></br>
+      </li></ul>
+    <div style="margin: .5em 1.5em .5em 1.5em"><b>Remarque : </b>
+      Pour une description complète des types de curseurs SQL Server, voir la rubrique « Types de curseurs (moteur de base de données) » dans la documentation en ligne SQL Server.<p></p>
+    </div>
+    <p>La spécification JDBC prend en charge les curseurs en avant uniquement et déroulants, qui sont sensibles ou non aux modifications apportées par d'autres travaux et peuvent être en lecture seule ou mis à jour. Cette fonctionnalité est assurée par la classe <a href="eaffcff1-286c-459f-83da-3150778480c9.htm">SQLServerResultSet</a> du pilote JDBC de Microsoft SQL Server 2005.</p>
+    <p>Le pilote JDBC prend en charge les types de curseurs suivants :</p>
+    <h2 class="heading"></h2><table cellspacing="0" cellpadding="0" border="1" style="background-color: #CCCCCC;"><tr>
+          <th>
+            Type de curseur
+          </th>
+          <th>
+            Type de curseur SQL Server
+          </th>
+          <th>
+            Caractéristiques
+          </th>
+          <th>
+            Description
+          </th>
+        </tr><tr>
+        <td>
+          <p>TYPE_FORWARD_ONLY (CONCUR_READ_ONLY)</p>
+        </td>
+        <td>
+          <p>Avance rapide</p>
+        </td>
+        <td>
+          <p>En avant uniquement, en lecture seule</p>
+        </td>
+        <td>
+          <p>Utilisé avec une valeur d'accès simultané de CONCUR_READ_ONLY, le type de curseur SQL Server dépend du paramétrage de la propriété de connexion selectMethod. Si cette valeur est « cursor », un curseur de serveur d'avance rapide est utilisé et se comporte comme un curseur TYPE_SS_SERVER_CURSOR_FORWARD_ONLY. Si cette valeur est « direct » (valeur par défaut), un jeu de résultats côté client totalement en mémoire tampon est retourné et se comporte comme un curseur TYPE_SS_DIRECT_FORWARD_ONLY. La différence reflète un compromis de conception au niveau de la consommation des ressources du serveur. Notez que la valeur « direct » ne doit pas être utilisée pour les jeux de résultats très volumineux. Il est préférable d'utiliser « cursor » ou un curseur TYPE_SS_SERVER_CURSOR_FORWARD_ONLY explicite.</p>
+        </td>
+      </tr><tr>
+        <td>
+          <p>TYPE_FORWARD_ONLY (CONCUR_UPDATABLE)</p>
+        </td>
+        <td>
+          <p>Avance rapide</p>
+        </td>
+        <td>
+          <p>En avant uniquement, pouvant être mis à jour</p>
+        </td>
+        <td>
+          <p>L'application doit parcourir le jeu de résultats une fois (en avant) pour mettre à jour une ou plusieurs lignes. Notez que la propriété de connexion selectMethod n'a pas d'impact sur TYPE_FORWARD_ONLY (CONCUR_UPDATABLE). Les jeux de résultats pouvant être mis à jour utilisent toujours un curseur de serveur.</p>
+        </td>
+      </tr><tr>
+        <td>
+          <p>TYPE_SCROLL_INSENSITIVE</p>
+        </td>
+        <td>
+          <p>Statique</p>
+        </td>
+        <td>
+          <p>Déroulant, ne pouvant pas être mis à jour</p>
+        </td>
+        <td>
+          <p>L'application requiert une capture instantanée de base de données.</p>
+        </td>
+      </tr><tr>
+        <td>
+          <p>TYPE_SCROLL_SENSITIVE</p>
+        </td>
+        <td>
+          <p>Jeu de clés</p>
+        </td>
+        <td>
+          <p>Déroulant et pouvant être mis à jour. Les mises à jour de lignes sont visibles et les suppressions apparaissent comme des données manquantes. Les insertions effectuées à partir du jeu de résultats sont visibles, contrairement à celles provenant d'ailleurs.</p>
+        </td>
+        <td>
+          <p>L'application ne doit voir les données modifiées que pour les lignes existantes.</p>
+        </td>
+      </tr><tr>
+        <td>
+          <p>TYPE_SS_DIRECT_FORWARD_ONLY</p>
+        </td>
+        <td>
+          <p>N/A</p>
+        </td>
+        <td>
+          <p>En avant uniquement, en lecture seule</p>
+        </td>
+        <td>
+          <p>Valeur entière = 2003. Fournit un curseur côté client en lecture seule totalement mis en mémoire tampon. Aucun curseur de serveur n'est créé.</p>
+        </td>
+      </tr><tr>
+        <td>
+          <p>TYPE_SS_SERVER_CURSOR_FORWARD_ONLY</p>
+        </td>
+        <td>
+          <p>Avance rapide</p>
+        </td>
+        <td>
+          <p>En avant uniquement</p>
+        </td>
+        <td>
+          <p>Valeur entière = 2004. Rapide, accède à toutes les données.</p>
+        </td>
+      </tr><tr>
+        <td>
+          <p>TYPE_SS_SCROLL_STATIC</p>
+        </td>
+        <td>
+          <p>Statique</p>
+        </td>
+        <td>
+          <p>Les mises à jour effectuées par d'autres utilisateurs ne sont pas reflétées</p>
+        </td>
+        <td>
+          <p>Valeur entière = 1004. L'application requiert une capture instantanée de base de données. Il s'agit du synonyme spécifique à SQL Server pour JDBC TYPE_SCROLL_INSENSITIVE.</p>
+        </td>
+      </tr><tr>
+        <td>
+          <p>TYPE_SS_SCROLL_KEYSET</p>
+        </td>
+        <td>
+          <p>Jeu de clés</p>
+        </td>
+        <td>
+          <p>Les mises à jour effectuées par d'autres utilisateurs sont reflétées ; l'appartenance aux lignes est fixe</p>
+        </td>
+        <td>
+          <p>Valeur entière = 1005. L'application ne doit voir les données modifiées que pour les lignes existantes. Il s'agit du synonyme spécifique à SQL Server pour JDBC TYPE_SCROLL_SENSITIVE.</p>
+        </td>
+      </tr><tr>
+        <td>
+          <p>TYPE_SS_SCROLL_DYNAMIC</p>
+        </td>
+        <td>
+          <p>Dynamique</p>
+        </td>
+        <td>
+          <p>Déroulant et pouvant être mis à jour. Les mises à jour de lignes sont visibles et les suppressions apparaissent comme des données provisoirement manquantes dans le tampon d'extraction actuel. Les insertions effectuées à partir du jeu de résultats et d'ailleurs sont visibles.</p>
+        </td>
+        <td>
+          <p>Valeur entière = 1006. L'application doit voir les données modifiées pour les lignes existantes et les lignes insérées et supprimées pendant la durée de vie du curseur.</p>
+        </td>
+      </tr></table>
+  </div>
+      <h1 class="heading">Positionnement du curseur</h1>
+      <div id="sectionSection" class="section">
+        <content xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+      <p xmlns="">Les curseurs TYPE_FORWARD_ONLY, TYPE_SS_DIRECT_FORWARD_ONLY et TYPE_SS_SERVER_CURSOR_FORWARD_ONLY ne prennent en charge que la méthode de positionnement <a href="60248447-6908-4036-a779-a501453cd553.htm">next</a>.</p>
+      <p xmlns="">Le curseur TYPE_SS_SCROLL_DYNAMIC ne prend pas en charge les méthodes <a href="638e8148-8ca0-4e1f-9ec2-04a11bc9809b.htm">absolute</a> et <a href="a266e3bc-05c2-44e2-9346-125ae6780216.htm">getRow</a>. La méthode <b>absolute</b> peut être remplacée par une combinaison d'appels aux méthodes <a href="67ed9447-7b10-4c87-98e7-f4c2e2470b3a.htm">first</a> et <a href="2bcdbb69-95fd-4ae8-8488-1a75a91fe2e0.htm">relative</a> pour les curseurs dynamiques.</p>
+      <p xmlns="">La méthode <b>getRow</b> n'est prise en charge que par les curseurs TYPE_FORWARD_ONLY, TYPE_SS_DIRECT_FORWARD_ONLY, TYPE_SS_SERVER_CURSOR_FORWARD_ONLY, TYPE_SS_SCROLL_KEYSET et TYPE_SS_SCROLL_STATIC. La méthode <b>getRow</b> avec tous les types de curseurs en avant uniquement retourne le nombre de lignes lues via le curseur.</p>
+      <div style="margin: .5em 1.5em .5em 1.5em" xmlns=""><b>Remarque : </b>
+        Lorsqu'une application effectue un appel de positionnement de curseur non pris en charge ou un appel non pris en charge à la méthode <b>getRow</b>, une exception est levée à l'aide du message « L'opération demandée n'est pas prise en charge pour ce type de curseur ».<p></p>
+      </div>
+      <p xmlns="">Seuls les curseurs TYPE_SS_SCROLL_KEYSET et l'équivalent TYPE_SCROLL_SENSITIVE affichent les lignes supprimées. Si le curseur est positionné sur une ligne supprimée, les valeurs de colonne ne sont pas disponibles et la méthode <a href="9c6db315-e614-4604-b020-41af6a214cc1.htm">rowDeleted</a> retourne « true ». Les appels aux méthodes <b>get&lt;Type&gt;</b> lèvent une exception et le message « Impossible d'obtenir une valeur à partir d'une ligne supprimée ». Les lignes supprimées ne peuvent pas être mises à jour. Si vous tentez d'appeler une méthode <b>update&lt;Type&gt;</b> sur une ligne supprimée, une exception est levée avec le message « Une ligne supprimée ne peut pas être mise à jour ». Le curseur TYPE_SS_SCROLL_DYNAMIC se comporte de la même façon jusqu'à ce qu'il soit extrait du tampon d'extraction actuel.</p>
+      <p xmlns="">Les curseurs avant et dynamique affichent les lignes supprimées de la même façon mais uniquement tant qu'ils restent accessibles dans le tampon d'extraction. Pour les curseurs avant, cette opération est assez directe. Pour les curseurs dynamiques, c'est plus complexe lorsque la taille d'extraction est supérieure à 1. Une application peut faire avancer et reculer le curseur dans la fenêtre définie par le tampon d'extraction mais la ligne supprimée disparaît après la fermeture du tampon d'extraction original dans lequel elle a été mise à jour. Si une application ne veut pas voir des lignes provisoirement supprimées en utilisant des curseurs dynamiques, il convient d'utiliser une extraction relative (0).</p>
+      <p xmlns="">Si les valeurs clés d'une ligne de curseur TYPE_SS_SCROLL_KEYSET or TYPE_SCROLL_SENSITIVE sont mises à jour à l'aide du curseur, la ligne conserve sa position originale dans le jeu de résultats, que la ligne mise à jour corresponde ou non aux critères de sélection du curseur. Si la ligne a été mise à jour à l'extérieur du curseur, une ligne supprimée s'affiche à la position originale de la ligne mais la ligne ne figure dans le curseur que si une autre ligne contenant les nouvelles valeurs clés était présente dans le curseur et a été supprimée entre-temps. </p>
+      <p xmlns="">Pour les curseurs dynamiques, les lignes mises à jour conservent leur position dans le tampon d'extraction jusqu'à la fermeture de la fenêtre définie par le tampon d'extraction. Les lignes mises à jour pourraient ensuite réapparaître à d'autres positions dans le jeu de résultats ou disparaître complètement. Les applications devant éviter des incohérences temporaires dans le jeu de résultats doivent utiliser une taille d'extraction de 1 (la valeur par défaut est de 8 lignes avec une valeur d'accès simultané CONCUR_SS_SCROLL_LOCKS et de 128 lignes avec d'autres valeurs d'accès simultané).</p>
+    </content>
+      </div>
+      <h1 class="heading">Conversion de curseur</h1>
+      <div id="sectionSection" class="section">
+        <content xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+      <p xmlns="">SQL Server peut parfois implémenter un type de curseur différent de celui demandé ; il est alors question de conversion de curseur implicite (ou dégradation de curseur).</p>
+      <p xmlns="">Pour plus d'informations sur la conversion de curseur implicite, voir la rubrique « Utilisation de conversions de curseur implicites » de la documentation en ligne SQL Server.</p>
+    </content>
+      </div>
+      <h1 class="heading">Mise à jour du curseur</h1>
+      <div id="sectionSection" class="section">
+        <content xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+      <p xmlns="">Les mises à jour immédiates sont prises en charge pour les curseurs dont le type et l'accès simultané prennent en charge les mises à jour. Si le curseur n'est pas positionné sur une ligne pouvant être mise à jour dans le jeu de résultats (aucun appel à la méthode <b>get&lt;Type&gt;</b> n'a réussi), un appel à la méthode <b>update&lt;Type&gt;</b> lève une exception avec le message « Le jeu de résultats n'a pas de ligne actuelle ». La spécification JDBC stipule qu'une exception est générée en cas d'appel à une méthode de mise à jour pour une colonne de curseur de type CONCUR_READ_ONLY. Dans les situations où la ligne ne peut pas être mise à jour, par exemple en raison d'un conflit d'accès simultané optimiste de mise à jour ou de suppression, il se peut que l'exception ne soit pas générée avant l'appel à la méthode <a href="363d1008-1396-4fc0-8e27-c9ba2499e7f1.htm">insertRow</a>, <a href="cfced0ca-a281-40dc-8d2f-370d5f0bf12b.htm">updateRow</a> ou <a href="aa04a644-c7c2-4738-8b6e-7fea566d2c16.htm">deleteRow</a>.</p>
+      <p xmlns="">Après un appel à la méthode <b>update&lt;Type&gt;</b>, la colonne affectée est inaccessible à <b>get&lt;Type&gt;</b> tant que la méthode <b>updateRow</b> ou <a href="2ecacca4-f7bc-4f5d-886a-da7747fdccae.htm">cancelRowUpdates</a> n'a pas été appelée. Cela évite des problèmes résultant d'une mise à jour de colonne à l'aide d'un type différent de celui retourné par le serveur, au risque que les appels suivants à la méthode getter invoquent des conversions de type côté client produisant des résultats inexacts. Les appels à la méthode <b>get&lt;Type&gt;</b> lèvent une exception avec le message « Impossible d'accéder aux colonnes mises à jour tant que la méthode updateRow() ou cancelRowUpdates() n'a pas été appelée ».</p>
+      <div style="margin: .5em 1.5em .5em 1.5em" xmlns=""><b>Remarque : </b>
+        En cas d'appel à la méthode <b>updateRow</b> sans qu'aucune colonne ait été mise à jour, le pilote JDBC lève une exception avec le message « Méthode updateRow() appelée sans qu'aucune colonne ait été mise à jour ».<p></p>
+      </div>
+      <p xmlns="">Après l'appel à la méthode <a href="f3c54bfe-d5b7-4f6e-ae6c-3e8954e5b1c9.htm">moveToInsertRow</a>, une exception est générée si une méthode autre que <b>get&lt;Type&gt;</b>, <b>update&lt;Type&gt;</b>, <b>insertRow,</b> et des méthodes de positionnement de curseur (notamment <a href="9a7c754c-2d72-4207-b3bd-2afc6047fb3d.htm">moveToCurrentRow</a>) sont appliquées au jeu de résultats. La méthode <b>moveToInsertRow</b> place le jeu de résultats en mode d'insertion et les méthodes de positionnement du curseur mettent fin au mode d'insertion. Les appels de positionnement de curseur relatif déplacent le curseur par rapport à la position qu'il avait avant l'appel à la méthode <b>moveToInsertRow</b>. Après des appels de positionnement de curseur, la position de destination éventuelle du curseur devient la nouvelle position du curseur.</p>
+      <p xmlns="">Si l'appel de positionnement de curseur effectué en mode d'insertion ne réussit pas, la position du curseur après l'appel qui a échoué est la position originale du curseur avant l'appel à la méthode <b>moveToInsetRow</b>. En cas d'échec de l'appel à la méthode <b>insertRow</b>, le curseur reste positionné sur la ligne d'insertion en mode d'insertion.</p>
+      <p xmlns="">Les colonnes figurant dans la ligne d'insertion sont initialement dans un état non initialisé. Les appels à la méthode <b>update&lt;Type&gt;</b> définissent l'état de la colonne sur initialisé. Un appel à la méthode <b>get&lt;Type&gt;</b> pour une colonne non initialisée lève une exception. Un appel à la méthode <b>insertRow</b> rétablit l'état non initialisé pour toutes les colonnes de la ligne d'insertion.</p>
+      <p xmlns="">Si des colonnes ne sont pas initialisées lors de l'appel à la méthode <b>insertRow</b>, la valeur par défaut pour la colonne est insérée. S'il n'y a pas de valeur par défaut et si la colonne peut présenter une valeur NULL, cette valeur est insérée. S'il n'y a pas de valeur par défaut et si la colonne ne peut pas présenter la valeur NULL, le serveur retourne une erreur et une exception est levée.</p>
+      <div style="margin: .5em 1.5em .5em 1.5em" xmlns=""><b>Remarque : </b>
+        <p></p>
+        Les appels à la méthode <b>getRow</b> retournent la valeur 0 en mode d'insertion. <p></p>
+        Le pilote JDBC ne prend pas en charge les mises à jour ni les suppressions positionnées. Conformément à la spécification JDBC, l'appel à la méthode <a href="3f3ec4f2-103a-4e16-9206-c5bd8639f946.htm">setCursorName</a> est sans effet et l'appel à la méthode <a href="e5b3af67-423a-4551-a4c6-a4bc076bd504.htm">getCursorName</a> lève une exception. <p></p>
+        Les curseurs en lecture seule et statiques ne peuvent jamais être mis à jour. <p></p>
+        SQL Server limite les curseurs de serveur à un seul jeu de résultats. Si un lot ou une procédure stockée contient plusieurs instructions, il convient d'utiliser un curseur client en avant uniquement et en lecture seule.<p></p>
+      </div>
+    </content>
+      </div>
+      <span id="seeAlsoSpan">
+        <h1 class="heading">
+          Voir aussi
+        </h1>
+        <div id="seeAlsoSection" class="section">
+          <a href="9ed5ad41-22e0-4e4a-8a79-10512db60d50.htm">Gestion de jeux de résultats avec le pilote JDBC</a>
+        </div>
+      </span>
+      <!--[if gte IE 5]>
+			<tool:tip element="seeAlsoToolTip" avoidmouse="false"/><tool:tip element="languageFilterToolTip" avoidmouse="false"/>
+		<![endif]-->
+      <div id="footer" class="section">
+        <hr /><A NAME="feedback"></A><span id="fb" class="feedbackcss"></span>
+		<a href="9bad553b-9e70-4696-8499-2e35f772a1e0.htm">
+			
+			© 2006 Microsoft Corporation. Tous droits réservés.
+		</a>
+ 	
+      </div>
+    </div>
+  </body>
+</html>

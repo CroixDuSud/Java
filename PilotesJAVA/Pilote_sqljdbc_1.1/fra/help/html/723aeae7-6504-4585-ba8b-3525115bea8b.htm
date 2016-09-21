@@ -1,0 +1,284 @@
+<html DIR="LTR" xmlns:tool="http://www.microsoft.com/tooltip" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=Windows-1252" />
+    <META NAME="save" CONTENT="history" />
+    <title>Suivi du fonctionnement du pilote</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/script_loc.js">
+      
+    </script>
+    <script src="../local/script_main.js">
+      
+    </script>
+  </head>
+  <body style="display: none;">
+    <!--Topic built:11/3/2006-->
+<input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <div id="header">
+        <tr>
+          <td align="left">
+            <span id="headerBold">Suivi du fonctionnement du pilote</span>
+          </td>
+        </tr>
+      </table>
+      <IMG id="SeeAlso1" style="display:none; height:0; width:0;" src="../local/SeeAlso1a.gif">
+        
+      </IMG>
+      <IMG id="SeeAlso2" style="display:none; height:0; width:0;" src="../local/SeeAlso1c.gif">
+        
+      </IMG>
+      <IMG id="Filter1" style="display:none; height:0; width:0;" src="../local/Filter1a.gif">
+        
+      </IMG>
+      <IMG id="Filter2" style="display:none; height:0; width:0;" src="../local/Filter1c.gif">
+        
+      </IMG>
+      <span style="display:none" id="languageSpan">
+        <h1 class="heading">
+          Langage
+        </h1>
+        <div id="selectLanguage" class="section">
+          <div class="languageFilter" id="VisualBasic" onclick="ChangeLanguage(this.id)" onkeypress="ChangeLanguage_CheckKey(this.id)" tabindex="0">
+            [Visual Basic]
+          </div>
+          <div class="languageFilter" id="CSharp" onclick="ChangeLanguage(this.id)" onkeypress="ChangeLanguage_CheckKey(this.id)" tabindex="0">
+            [C#]
+          </div>
+          <div class="languageFilter" id="ManagedCPlusPlus" onclick="ChangeLanguage(this.id)" onkeypress="ChangeLanguage_CheckKey(this.id)" tabindex="0">
+            [C++]
+          </div>
+          <div class="languageFilter" id="JSharp" onclick="ChangeLanguage(this.id)" onkeypress="ChangeLanguage_CheckKey(this.id)" tabindex="0">
+            [J#]
+          </div>
+          <div class="languageFilter" id="JScript" onclick="ChangeLanguage(this.id)" onkeypress="ChangeLanguage_CheckKey(this.id)" tabindex="0">
+            [JScript]
+          </div>
+          <div class="languageFilter" id="all" onclick="ChangeLanguage(this.id)" onkeypress="ChangeLanguage_CheckKey(this.id)" tabindex="0">
+            (Afficher tout)
+          </div>
+        </div>
+      </span>
+    </div>
+    <div id="mainSection">
+      <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+      </div>
+      <font color="DarkGray"><!-- [This topic is pre-release documentation and is subject to change in future releases. Blank topics are included as placeholders.]<br/>[Documentation built on 11/3/2006]  --></font><p /><p />
+      <div id="introductionSection" class="section">
+    <p>Le pilote JDBC de Microsoft de SQL Server 2005 prend en charge l'utilisation du suivi (ou journalisation) pour aider à résoudre les problèmes survenus avec le pilote JDBC lorsqu'il est utilisé dans votre application. Pour permettre l'utilisation du suivi, le pilote JDBC utilise les API de journalisation de java.util.logging, qui offrent un ensemble de classes pour la création d'objets <b>Logger</b> et <b>LogRecord</b>. </p>
+    <div style="margin: .5em 1.5em .5em 1.5em"><b>Remarque : </b>
+      Pour le composant natif (sqljdbc_xa.dll) fourni avec le pilote JDBC, le suivi est activé par le système de diagnostic intégré BID (Built-In Diagnostics). Pour obtenir des informations sur le système de diagnostic intégré BID, voir <a href="http://go.microsoft.com/fwlink/?LinkId=70042" target="_blank" alt=""><linkText xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">Suivi de l'accès aux données dans SQL Server 2005</linkText></a>.<p></p>
+    </div>
+    <p>Lors du développement de votre application, vous pouvez appeler des objets <b>Logger</b>, qui créent des objets <b>LogRecord</b>, ensuite transmis à des objets <b>Handler</b> pour traitement. Les objets <b>Logger</b> et <b>Handler</b> utilisent tous deux des niveaux de journalisation et, éventuellement, des filtres de journalisation, pour réguler les <b>LogRecords</b> qui sont traités. Une fois les opérations de journalisation terminées, les objets <b>Handler</b> peuvent éventuellement utiliser des objets <b>Formatter</b> pour publier les informations du journal.</p>
+    <p>Par défaut, le système java.util.logging écrit sa sortie dans un fichier. Ce fichier journal de sortie doit disposer des autorisations d'écriture dans le contexte dans lequel le pilote JDBC s'exécute.</p>
+    <div style="margin: .5em 1.5em .5em 1.5em"><b>Remarque : </b>
+      Pour plus d'informations sur l'utilisation des divers objets de journalisation en relation avec le suivi de programme, voir la documentation (en anglais) <a href="http://go.microsoft.com/fwlink/?LinkId=57239" target="_blank" alt=""><linkText xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">Java Logging APIs</linkText></a> sur le site Web de Sun Microsystems.<p></p>
+    </div>
+    <p>Les sections suivantes décrivent les niveaux de journalisation et les catégories qui peuvent être journalisées. Elles fournissent également des informations sur la procédure d'activation du suivi dans votre application.</p>
+  </div>
+      <h1 class="heading">Niveaux de journalisation</h1>
+      <div id="sectionSection" class="section">
+        <content xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+      <p xmlns="">Chaque message de journal créé est associé à un niveau de journalisation. Le niveau de journalisation détermine l'importance du message de journal ; il est défini par la classe <b>Level</b> dans java.util.logging. Le tableau suivant décrit les niveaux de journalisation disponibles.</p>
+      <h2 class="heading" xmlns=""></h2><table cellspacing="0" cellpadding="0" border="1" style="background-color: #CCCCCC;" xmlns=""><tr>
+            <th>
+              Nom
+            </th>
+            <th>
+              Description
+            </th>
+          </tr><tr>
+          <td>
+            <p>SEVERE</p>
+          </td>
+          <td>
+            <p>Indique un échec grave ; il s'agit du niveau de journalisation le plus élevé. Dans le pilote JDBC, ce niveau permet de signaler des erreurs et des exceptions.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>WARNING</p>
+          </td>
+          <td>
+            <p>Indique un problème potentiel.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>INFO</p>
+          </td>
+          <td>
+            <p>Fournit des messages d'information.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>CONFIG</p>
+          </td>
+          <td>
+            <p>Fournit des messages de configuration. Dans le pilote JDBC, ce niveau est utilisé pour les paramètres de configuration de portée globale.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>FINE</p>
+          </td>
+          <td>
+            <p>Fournit des informations de suivi. Dans le pilote JDBC, ce niveau est utilisé pour la plupart des messages de journal.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>FINER</p>
+          </td>
+          <td>
+            <p>Fournit des informations de suivi détaillées.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>FINEST</p>
+          </td>
+          <td>
+            <p>Fournit des informations de suivi très détaillées. Il s'agit du niveau de journalisation le plus bas.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>OFF</p>
+          </td>
+          <td>
+            <p>Désactive la journalisation.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>ALL</p>
+          </td>
+          <td>
+            <p>Active la journalisation de tous les messages.</p>
+          </td>
+        </tr></table>
+    </content>
+      </div>
+      <h1 class="heading">Catégories de journalisation</h1>
+      <div id="sectionSection" class="section">
+        <content xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+      <p xmlns="">Lorsque vous créez un objet <b>Logger</b>, vous devez indiquer à l'objet l'entité ou la catégorie nommée dont vous souhaitez obtenir des informations de journal. Le pilote JDBC prend en charge les catégories de journalisation suivantes.</p>
+      <h2 class="heading" xmlns=""></h2><table cellspacing="0" cellpadding="0" border="1" style="background-color: #CCCCCC;" xmlns=""><tr>
+            <th>
+              Nom
+            </th>
+            <th>
+              Description
+            </th>
+          </tr><tr>
+          <td>
+            <p>SQLServerConnection</p>
+          </td>
+          <td>
+            <p>Journalise les messages dans la classe <a href="937292a6-1525-423e-a2b2-a18fd34c2893.htm">SQLServerConnection</a>. Le niveau de journalisation par défaut est FINE.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>SQLServerStatement</p>
+          </td>
+          <td>
+            <p>Journalise les messages dans la classe <a href="ec24963c-8b51-4838-91e9-1fbfa2347451.htm">SQLServerStatement</a>. Le niveau de journalisation par défaut est FINE.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>TDS.DATA</p>
+          </td>
+          <td>
+            <p>Journalise les messages TDS. Cette catégorie génère des messages clairs et très détaillés et ne peut être activée que lorsque le niveau de journalisation est défini sur FINEST.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>TDS.TOKEN</p>
+          </td>
+          <td>
+            <p>Journalise les messages TDS. Cette catégorie ne journalise que les jetons des paquets TDS et est moins claire que la catégorie TDS.DATA.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>XA</p>
+          </td>
+          <td>
+            <p>Journalise les messages relatifs à toutes les transactions XA dans les classes <a href="5ecb4bf1-b8d1-47cf-9cb1-7a18acc11ce2.htm">SQLServerXAConnection</a>, <a href="df957b79-536f-4db7-b6ac-3d59343559fc.htm">SQLServerXAResource</a> et <a href="95fc7b07-2498-4a7e-8f7f-ee0d86b598b4.htm">SQLServerXADataSource</a>. Le niveau de journalisation par défaut est FINE.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>SQLServerDataSource</p>
+          </td>
+          <td>
+            <p>Journalise les messages dans les classes <a href="097434fd-2b74-411c-a5ed-eba04481dde5.htm">SQLServerDataSource</a>, <a href="b00e5a90-2af7-4d04-8ef8-256183777dcf.htm">SQLServerConnectionPoolDataSource</a> et <a href="4c87e9d3-904a-4b86-90cc-3684034c86ee.htm">SQLServerPooledConnection</a>. Le niveau de journalisation par défaut est FINE. </p>
+          </td>
+        </tr></table>
+    </content>
+      </div>
+      <h1 class="heading">Activation du suivi par programme</h1>
+      <div id="sectionSection" class="section">
+        <content xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+      <p xmlns="">Vous pouvez activer le suivi par programme en créant un objet <b>Logger</b> et en indiquant la catégorie à journaliser. Par exemple, le code suivant montre comment activer la journalisation pour les instructions SQL :</p>
+      <div class="sampleCode" xmlns=""><span codeLanguage="other"><pre>Logger logger = Logger.getLogger("com.microsoft.sqlserver.jdbc.SQLServerStatement");
+logger.setLevel(Level.FINE);</pre></span></div>
+      <p xmlns="">Pour désactiver la journalisation dans le code, utilisez ce qui suit :</p>
+      <div class="sampleCode" xmlns=""><span codeLanguage="other"><pre>logger.setLevel(Level.OFF);</pre></span></div>
+      <p xmlns="">Pour journaliser toutes les catégories disponibles, utilisez ce qui suit :</p>
+      <div class="sampleCode" xmlns=""><span codeLanguage="other"><pre>Logger logger = Logger.getLogger("com.microsoft.sqlserver.jdbc");
+logger.setLevel(Level.FINE);</pre></span></div>
+      <p xmlns="">Pour désactiver la journalisation d'une catégorie spécifique, utilisez ce qui suit :</p>
+      <div class="sampleCode" xmlns=""><span codeLanguage="other"><pre>Logger logger = Logger.getLogger("com.microsoft.sqlserver.jdbc.TDS");
+logger.setLevel(Level.OFF);</pre></span></div>
+    </content>
+      </div>
+      <h1 class="heading">Activation du suivi à l'aide du fichier Logging.Properties</h1>
+      <div id="sectionSection" class="section">
+        <content xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+      <p xmlns="">Vous pouvez également activer le suivi à l'aide du fichier <code> logging.properties </code> qui se trouve dans le répertoire <code> lib </code> d'installation de Java Runtime Environment (JRE). Ce fichier permet de définir les valeurs par défaut des fonctionnalités de journalisation et de gestion utilisées lorsque le suivi est activé.</p>
+      <p xmlns="">L'exemple suivant présente les paramètres pouvant être définis dans les fichiers <code>logging.properties</code> :</p>
+      <div class="sampleCode" xmlns=""><span codeLanguage="other"><pre>   # Specify the handlers to create in the root logger
+   # (all loggers are children of the root logger).
+   # The following creates two handlers.
+   handlers = java.util.logging.ConsoleHandler, java.util.logging.FileHandler
+
+   # Set the default logging level for the root logger.
+   .level = OFF
+
+   # Set the default logging level for new ConsoleHandler instances.
+   java.util.logging.ConsoleHandler.level = FINE
+
+   # Set the default logging level for new FileHandler instances.
+   java.util.logging.FileHandler.level = OFF
+
+   # Set the default formatter for new ConsoleHandler instances.
+   java.util.logging.ConsoleHandler.formatter = java.util.logging.SimpleFormatter
+
+   # Set the default logging level for the logger named ConnectionPool.
+   ConnectionPool.level = OFF</pre></span></div>
+      <div style="margin: .5em 1.5em .5em 1.5em" xmlns=""><b>Remarque : </b>
+        Vous pouvez définir les propriétés dans le fichier <code> logging.properties </code> à l'aide de l'objet <b>LogManager</b> figurant dans java.util.logging.<p></p>
+      </div>
+    </content>
+      </div>
+      <span id="seeAlsoSpan">
+        <h1 class="heading">
+          Voir aussi
+        </h1>
+        <div id="seeAlsoSection" class="section">
+          <a href="723e2680-a0c5-4a7d-a319-1e49e41078cf.htm">Diagnostic des problèmes liés au pilote JDBC</a>
+        </div>
+      </span>
+      <!--[if gte IE 5]>
+			<tool:tip element="seeAlsoToolTip" avoidmouse="false"/><tool:tip element="languageFilterToolTip" avoidmouse="false"/>
+		<![endif]-->
+      <div id="footer" class="section">
+        <hr /><A NAME="feedback"></A><span id="fb" class="feedbackcss"></span>
+		<a href="9bad553b-9e70-4696-8499-2e35f772a1e0.htm">
+			
+			© 2006 Microsoft Corporation. Tous droits réservés.
+		</a>
+ 	
+      </div>
+    </div>
+  </body>
+</html>

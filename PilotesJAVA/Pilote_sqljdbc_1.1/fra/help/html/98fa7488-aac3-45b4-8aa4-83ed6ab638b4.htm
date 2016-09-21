@@ -1,0 +1,129 @@
+<html DIR="LTR" xmlns:tool="http://www.microsoft.com/tooltip" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=Windows-1252" />
+    <META NAME="save" CONTENT="history" />
+    <title>Conversions de types de données</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/script_loc.js">
+      
+    </script>
+    <script src="../local/script_main.js">
+      
+    </script>
+  </head>
+  <body style="display: none;">
+    <!--Topic built:11/3/2006-->
+<input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <div id="header">
+        <tr>
+          <td align="left">
+            <span id="headerBold">Conversions de types de données</span>
+          </td>
+        </tr>
+      </table>
+      <IMG id="SeeAlso1" style="display:none; height:0; width:0;" src="../local/SeeAlso1a.gif">
+        
+      </IMG>
+      <IMG id="SeeAlso2" style="display:none; height:0; width:0;" src="../local/SeeAlso1c.gif">
+        
+      </IMG>
+      <IMG id="Filter1" style="display:none; height:0; width:0;" src="../local/Filter1a.gif">
+        
+      </IMG>
+      <IMG id="Filter2" style="display:none; height:0; width:0;" src="../local/Filter1c.gif">
+        
+      </IMG>
+      <span style="display:none" id="languageSpan">
+        <h1 class="heading">
+          Langage
+        </h1>
+        <div id="selectLanguage" class="section">
+          <div class="languageFilter" id="VisualBasic" onclick="ChangeLanguage(this.id)" onkeypress="ChangeLanguage_CheckKey(this.id)" tabindex="0">
+            [Visual Basic]
+          </div>
+          <div class="languageFilter" id="CSharp" onclick="ChangeLanguage(this.id)" onkeypress="ChangeLanguage_CheckKey(this.id)" tabindex="0">
+            [C#]
+          </div>
+          <div class="languageFilter" id="ManagedCPlusPlus" onclick="ChangeLanguage(this.id)" onkeypress="ChangeLanguage_CheckKey(this.id)" tabindex="0">
+            [C++]
+          </div>
+          <div class="languageFilter" id="JSharp" onclick="ChangeLanguage(this.id)" onkeypress="ChangeLanguage_CheckKey(this.id)" tabindex="0">
+            [J#]
+          </div>
+          <div class="languageFilter" id="JScript" onclick="ChangeLanguage(this.id)" onkeypress="ChangeLanguage_CheckKey(this.id)" tabindex="0">
+            [JScript]
+          </div>
+          <div class="languageFilter" id="all" onclick="ChangeLanguage(this.id)" onkeypress="ChangeLanguage_CheckKey(this.id)" tabindex="0">
+            (Afficher tout)
+          </div>
+        </div>
+      </span>
+    </div>
+    <div id="mainSection">
+      <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+      </div>
+      <font color="DarkGray"><!-- [This topic is pre-release documentation and is subject to change in future releases. Blank topics are included as placeholders.]<br/>[Documentation built on 11/3/2006]  --></font><p /><p />
+      <div id="introductionSection" class="section">
+    <p>Pour faciliter la conversion des types de données en langage de programmation Java en types de données SQL Server, le pilote JDBC de Microsoft de SQL Server 2005 assure les conversions des types de données requises par la spécification JDBC. Pour une plus grande flexibilité, tous les types sont convertibles en types de données Object, String et Bytes.</p>
+  </div>
+      <h1 class="heading">Conversions de méthode getter</h1>
+      <div id="sectionSection" class="section">
+        <content xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+      <p xmlns="">Le diagramme suivant, basé sur les types de données SQL Server 2005, présente la carte de conversion du pilote JDBC pour les méthodes <b>get&lt;Type&gt;</b> de la classe <a href="eaffcff1-286c-459f-83da-3150778480c9.htm">SQLServerResultSet</a> et les conversions prises en charge pour les méthodes <b>get&lt;Type&gt;</b> de la classe <a href="30710a63-c05d-47d9-9cf9-c087a1c76373.htm">SQLServerCallableStatement</a>.</p>
+      <div xmlns=""><img src="../local/Local_289041718_jdbcgetterconversions.gif" target="_blank" alt="JDBCGetterConversions"></img></div>
+      <p xmlns="">Trois catégories de conversions de base sont prises en charge par les méthodes getter du pilote JDBC :</p>
+      <ul xmlns=""><li>
+          <b>Sans perte (x)</b> : Conversions pour les cas où le type getter est identique ou plus petit que le type de serveur sous-jacent. Par exemple, lors de l'appel de la méthode <b>getBigDecimal</b> sur une colonne décimale de serveur sous-jacente, aucune conversion n'est nécessaire.<br></br>
+        </li><li>
+          <b>Converti (y)</b> : Conversions de types de serveurs numériques en types de langage Java où la conversion est ordinaire et suit les règles de conversion en langage Java. Pour ces conversions, la précision est toujours tronquée (jamais arrondie) et les dépassements sont gérés comme un opérateur modulo du type de destination, qui est plus petit. Par exemple, l'appel de la méthode <b>getInt</b> sur une colonne décimale sous-jacente contenant « 1.9999 » retourne « 1 », ou si la valeur décimale sous-jacente est « 3000000000 », le dépassement de la valeur int est « -1294967296 ».<br></br>
+        </li><li>
+          <b>Dépendant des données (z)</b> : Les conversions de types de caractères sous-jacents en types numériques requièrent que les types de caractères contiennent des valeurs pouvant être converties dans ces types. Aucune autre conversion n'a lieu. Si la valeur est trop élevée pour le type getter, elle n'est pas valide. Par exemple, en cas d'appel de la méthode <b>getInt</b> sur une colonne varchar(50) contenant « 53 », la valeur est retournée comme int ; en revanche, si la valeur sous-jacente est « xyz » ou « 3000000000 », une erreur est générée.<br></br>
+        </li></ul>
+    </content>
+      </div>
+      <h1 class="heading">Conversions de méthode setter</h1>
+      <div id="sectionSection" class="section">
+        <content xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+      <p xmlns="">Pour les données de type Java transmises aux méthodes <b>update&lt;Type&gt;</b> de la classe <b>SQLServerResultSet</b> et les méthodes <b>setObject&lt;Type&gt;</b> de la classe <a href="a8481c06-fbba-432b-8c69-4f4619c20ad4.htm">SQLServerPreparedStatement</a>, les conversions suivantes s'appliquent. </p>
+      <div xmlns=""><img src="../local/Local_823956002_jdbcsetterconversions.gif" target="_blank" alt="JDBCSetterConversions"></img></div>
+      <p xmlns="">La méthode <b>setObject</b> sans type de cible spécifié utilise le mappage par défaut. Les méthodes setter pour les paramètres, les méthodes <b>set&lt;Type&gt;</b> de la classe <b>SQLServerPreparedStatement</b> et les méthodes <b>set&lt;Type&gt;</b> de la classe <b>SQLServerCallableStatement</b> utilisent également le mappage par défaut de type Java en JDBC et transmettent ce type au serveur. Le serveur tente toutes les conversions et retourne des erreurs en cas d'échec.</p>
+      <p xmlns="">Dans le cas du type de données string, si la valeur est supérieure à la longueur de VARCHAR, elle est mappée vers LONGVARCHAR. Il en va de même pour byte[]. Les valeurs dont la longueur est supérieure à VARBINARY deviennent LONGVARBINARY.</p>
+      <p xmlns="">Deux catégories de conversions de base sont prises en charge par les méthodes setter du pilote JDBC :</p>
+      <ul xmlns=""><li>
+          <b>Sans perte (x)</b> : Conversions pour les cas où le type setter est identique ou plus petit que le type de serveur sous-jacent. Par exemple, lors de l'appel de la méthode <b>setBigDecimal</b> sur une colonne décimale de serveur sous-jacente, aucune conversion n'est nécessaire. Pour les cas de conversion de type de données numérique en caractère, le type de données numérique Java est converti en chaîne. Par exemple, l'appel de la méthode <b>setDouble</b> avec une valeur « 53 » sur une colonne varchar(50) produit une valeur de caractère « 53 » dans cette colonne de destination.<br></br>
+        </li><li>
+          <b>Converti (y)</b> : Conversions d'un type numérique Java en un type numérique de serveur sous-jacent de plus petite taille. Ces conversions sont de type ordinaire et suivent les conventions de conversion SQL Server. La précision est toujours tronquée (jamais arrondie) et les dépassements génèrent une erreur de conversion non prise en charge. Par exemple, l'utilisation de <b>updateDecimal</b> avec la valeur « 1.9999 » sur une colonne de nombres entiers sous-jacente produit « 1 » dans la colonne de destination ; en revanche, en cas de transmission de la valeur « 3000000000 », le pilote génère une erreur.<br></br>
+        </li></ul>
+      <p xmlns="">SQL Server traite le bloc des conversions de définition et de mise à jour et retourne des erreurs au pilote JDBC en cas de problème. Les conversions côté client constituent une exception et sont effectuées uniquement pour les valeurs de date, d'heure, d'horodatage, booléennes et de chaîne.</p>
+      <p xmlns="">Dans le cas des méthodes <b>updateObject</b> et <b>setObject</b>, elles recherchent le type de l'objet transmis et appellent la méthode de type setter appropriée.</p>
+    </content>
+      </div>
+      <span id="seeAlsoSpan">
+        <h1 class="heading">
+          Voir aussi
+        </h1>
+        <div id="seeAlsoSection" class="section">
+          <a href="7802328d-4d23-4775-9573-4169b127d258.htm">Types de données du pilote JDBC</a>
+        </div>
+      </span>
+      <!--[if gte IE 5]>
+			<tool:tip element="seeAlsoToolTip" avoidmouse="false"/><tool:tip element="languageFilterToolTip" avoidmouse="false"/>
+		<![endif]-->
+      <div id="footer" class="section">
+        <hr /><A NAME="feedback"></A><span id="fb" class="feedbackcss"></span>
+		<a href="9bad553b-9e70-4696-8499-2e35f772a1e0.htm">
+			
+			© 2006 Microsoft Corporation. Tous droits réservés.
+		</a>
+ 	
+      </div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,229 @@
+<html DIR="LTR" xmlns:tool="http://www.microsoft.com/tooltip" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=Windows-1252" />
+    <META NAME="save" CONTENT="history" />
+    <title>Contrôle d'accès simultané</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/script_loc.js">
+      
+    </script>
+    <script src="../local/script_main.js">
+      
+    </script>
+  </head>
+  <body style="display: none;">
+    <!--Topic built:11/3/2006-->
+<input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <div id="header">
+        <tr>
+          <td align="left">
+            <span id="headerBold">Contrôle d'accès simultané</span>
+          </td>
+        </tr>
+      </table>
+      <IMG id="SeeAlso1" style="display:none; height:0; width:0;" src="../local/SeeAlso1a.gif">
+        
+      </IMG>
+      <IMG id="SeeAlso2" style="display:none; height:0; width:0;" src="../local/SeeAlso1c.gif">
+        
+      </IMG>
+      <IMG id="Filter1" style="display:none; height:0; width:0;" src="../local/Filter1a.gif">
+        
+      </IMG>
+      <IMG id="Filter2" style="display:none; height:0; width:0;" src="../local/Filter1c.gif">
+        
+      </IMG>
+      <span style="display:none" id="languageSpan">
+        <h1 class="heading">
+          Langage
+        </h1>
+        <div id="selectLanguage" class="section">
+          <div class="languageFilter" id="VisualBasic" onclick="ChangeLanguage(this.id)" onkeypress="ChangeLanguage_CheckKey(this.id)" tabindex="0">
+            [Visual Basic]
+          </div>
+          <div class="languageFilter" id="CSharp" onclick="ChangeLanguage(this.id)" onkeypress="ChangeLanguage_CheckKey(this.id)" tabindex="0">
+            [C#]
+          </div>
+          <div class="languageFilter" id="ManagedCPlusPlus" onclick="ChangeLanguage(this.id)" onkeypress="ChangeLanguage_CheckKey(this.id)" tabindex="0">
+            [C++]
+          </div>
+          <div class="languageFilter" id="JSharp" onclick="ChangeLanguage(this.id)" onkeypress="ChangeLanguage_CheckKey(this.id)" tabindex="0">
+            [J#]
+          </div>
+          <div class="languageFilter" id="JScript" onclick="ChangeLanguage(this.id)" onkeypress="ChangeLanguage_CheckKey(this.id)" tabindex="0">
+            [JScript]
+          </div>
+          <div class="languageFilter" id="all" onclick="ChangeLanguage(this.id)" onkeypress="ChangeLanguage_CheckKey(this.id)" tabindex="0">
+            (Afficher tout)
+          </div>
+        </div>
+      </span>
+    </div>
+    <div id="mainSection">
+      <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+      </div>
+      <font color="DarkGray"><!-- [This topic is pre-release documentation and is subject to change in future releases. Blank topics are included as placeholders.]<br/>[Documentation built on 11/3/2006]  --></font><p /><p />
+      <div id="introductionSection" class="section">
+    <p>L'accès simultané désigne les diverses techniques utilisées pour préserver l'intégrité de la base de données lorsque plusieurs utilisateurs mettent à jour les lignes en même temps. Un accès simultané incorrect peut générer des problèmes tels que des lectures de mauvaise qualité, des lectures fantômes et des lectures non renouvelées. Le pilote JDBC de Microsoft SQL Server 2005 intègre des interfaces avec toutes les autres techniques utilisées par SQL Server pour résoudre ces problèmes. </p>
+    <div style="margin: .5em 1.5em .5em 1.5em"><b>Remarque : </b>
+      Pour plus d'informations sur la simultanéité de SQL Server, voir « Gestion d'accès simultanés aux données » dans la documentation en ligne de SQL Server.<p></p>
+    </div>
+    <p>Le pilote JDBC prend en charge les types d'accès simultanés suivants :</p>
+    <h2 class="heading"></h2><table cellspacing="0" cellpadding="0" border="1" style="background-color: #CCCCCC;"><tr>
+          <th>
+            Type d'accès simultané
+          </th>
+          <th>
+            Caractéristiques
+          </th>
+          <th>
+            Verrous de ligne
+          </th>
+          <th>
+            Description
+          </th>
+        </tr><tr>
+        <td>
+          <p>CONCUR_READ_ONLY</p>
+        </td>
+        <td>
+          <p>Lecture seule</p>
+        </td>
+        <td>
+          <p>Non</p>
+        </td>
+        <td>
+          <p>Les mises à jour à l'aide du curseur ne sont pas autorisées et aucun verrou n'est appliqué aux lignes qui composent le jeu de résultats.</p>
+        </td>
+      </tr><tr>
+        <td>
+          <p>CONCUR_UPDATABLE</p>
+        </td>
+        <td>
+          <p>Lecture écriture optimistes</p>
+        </td>
+        <td>
+          <p>Non</p>
+        </td>
+        <td>
+          <p>La base de données opère sur la base de l'hypothèse que des conflits de lignes sont improbables, mais possibles. L'intégrité des lignes est contrôlée à l'aide d'une comparaison d'horodatage.</p>
+        </td>
+      </tr><tr>
+        <td>
+          <p>CONCUR_SS_SCROLL_LOCKS</p>
+        </td>
+        <td>
+          <p>Lecture écriture pessimistes</p>
+        </td>
+        <td>
+          <p>Oui</p>
+        </td>
+        <td>
+          <p>La base de données opère sur la base de l'hypothèse que des conflits de lignes sont probables. L'intégrité des lignes est assurée par un verrouillage de ligne.</p>
+        </td>
+      </tr><tr>
+        <td>
+          <p>CONCUR_SS_OPTIMISTIC_CC</p>
+        </td>
+        <td>
+          <p>Lecture écriture optimistes</p>
+        </td>
+        <td>
+          <p>Non</p>
+        </td>
+        <td>
+          <p>La base de données opère sur la base de l'hypothèse que des conflits de lignes sont improbables, mais possibles. L'intégrité des lignes est contrôlée à l'aide d'une comparaison d'horodatage. </p>
+          <p>Pour SQL Server 2005, le serveur définit ce paramètre comme CONCUR_SS_OPTIMISTIC_CCVAL si la table ne contient pas de colonne timestamp.</p>
+          <p>Pour SQL Server 2000, si la table sous-jacente contient une colonne timestamp, le paramètre OPTIMISTIC WITH ROW VERSIONING est utilisé si le paramètre OPTIMISTIC WITH VALUES est spécifié. Si le paramètre OPTIMISTIC WITH ROW VERSIONING est spécifié et si la table ne contient pas d'horodatages, le paramètre OPTIMISTIC WITH VALUES est utilisé.</p>
+        </td>
+      </tr><tr>
+        <td>
+          <p>CONCUR_SS_OPTIMISTIC_CCVAL</p>
+        </td>
+        <td>
+          <p>Lecture écriture optimistes</p>
+        </td>
+        <td>
+          <p>Non</p>
+        </td>
+        <td>
+          <p>La base de données opère sur la base de l'hypothèse que des conflits de lignes sont improbables, mais possibles. L'intégrité des lignes est contrôlée à l'aide d'une comparaison de données de lignes.</p>
+        </td>
+      </tr></table>
+  </div>
+      <h1 class="heading">Les jeux de résultats ne sont pas actualisables</h1>
+      <div id="sectionSection" class="section">
+        <content xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+      <p xmlns="">Un jeu de résultats est actualisable lorsque des lignes peuvent y être insérées, mises à jour et supprimées. Dans les cas suivants, SQL Server ne peut pas créer de curseur actualisable. L'exception générée est « Le jeu de résultats ne peut pas être mis à jour ».</p>
+      <h2 class="heading" xmlns=""></h2><table cellspacing="0" cellpadding="0" border="1" style="background-color: #CCCCCC;" xmlns=""><tr>
+            <th>
+              Cause
+            </th>
+            <th>
+              Description
+            </th>
+            <th>
+              Remède
+            </th>
+          </tr><tr>
+          <td>
+            <p>Aucune instruction n'est créée à l'aide de la syntaxe JDBC 2.0</p>
+          </td>
+          <td>
+            <p>JDBC 2.0 utilise de nouvelles méthodes pour la création d'instructions. En cas d'utilisation de la syntaxe JDBC 1.0, le jeu de résultats est en lecture seule par défaut.</p>
+          </td>
+          <td>
+            <p>Spécifiez le type de jeu de résultats et la simultanéité lors de la création de l'instruction.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>L'instruction est créée à l'aide du paramètre TYPE_SCROLL_INSENSITIVE.</p>
+          </td>
+          <td>
+            <p>SQL Server crée un curseur de capture instantanée statique. Celui-ci est déconnecté des lignes de la table sous-jacente afin de protéger le curseur contre les mises à jour de lignes par d'autres utilisateurs.</p>
+          </td>
+          <td>
+            <p>Utilisez TYPE_SCROLL_SENSITIVE, TYPE_SS_SCROLL_KEYSET, TYPE_SS_SCROLL_DYNAMIC ou TYPE_FORWARD_ONLY avec CONCUR_UPDATABLE afin d'éviter de créer un curseur statique.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>La conception de la table exclut l'utilisation d'un curseur KEYSET ou DYNAMIC</p>
+          </td>
+          <td>
+            <p>La table sous-jacente ne contient pas de clé unique pour permettre à SQL Server d'identifier une ligne sans équivoque.</p>
+          </td>
+          <td>
+            <p>Ajoutez des clés uniques à la table afin d'obtenir une identification unique de chaque ligne.</p>
+          </td>
+        </tr></table>
+    </content>
+      </div>
+      <span id="seeAlsoSpan">
+        <h1 class="heading">
+          Voir aussi
+        </h1>
+        <div id="seeAlsoSection" class="section">
+          <a href="9ed5ad41-22e0-4e4a-8a79-10512db60d50.htm">Gestion de jeux de résultats avec le pilote JDBC</a>
+        </div>
+      </span>
+      <!--[if gte IE 5]>
+			<tool:tip element="seeAlsoToolTip" avoidmouse="false"/><tool:tip element="languageFilterToolTip" avoidmouse="false"/>
+		<![endif]-->
+      <div id="footer" class="section">
+        <hr /><A NAME="feedback"></A><span id="fb" class="feedbackcss"></span>
+		<a href="9bad553b-9e70-4696-8499-2e35f772a1e0.htm">
+			
+			© 2006 Microsoft Corporation. Tous droits réservés.
+		</a>
+ 	
+      </div>
+    </div>
+  </body>
+</html>

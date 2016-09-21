@@ -1,0 +1,325 @@
+﻿Informations sur la version
+Pilote 1.1 JDBC de Microsoft SQL Server 2005
+Août 2006
+
+
+INTRODUCTION
+------------
+Le présent fichier contient des informations importantes ou de dernière minute
+qui complètent la documentation du pilote JDBC de Microsoft SQL Server 2005
+. Il est recommandé de lire ce fichier entièrement avant
+de procéder à l'installation du pilote JDBC.
+
+Nous attachons une grande importance à vos commentaires et nous efforcerons
+d'y donner suite dans les meilleurs délais. Pour plus d'informations
+sur l'envoi de commentaires via le groupe de discussion relatif au pilote JDBC sur les forums en ligne,
+visitez la page consacrée au pilote JDBC de Microsoft SQL Server 2005 à l'adresse
+http://msdn.microsoft.com/data/ref/jdbc.
+
+
+INSTALLATION
+------------
+Les instructions relatives à l'installation du pilote JDBC se trouvent dans le fichier install.txt.
+Référez-vous à ce fichier pour plus d'informations sur l'installation du pilote JDBC
+sur des systèmes d’exploitation Windows et Unix.
+
+
+CONTENU DE LA VERSION
+----------------
+Le fichier exécutable zip ou tar du pilote JDBC de Microsoft SQL Server 2005
+décompresse les fichiers suivants aux emplacements spécifiés, liés
+au répertoire d'installation sélectionné :
+
+<répertoire d’installation>\sqljdbc_<version>\<langue>\install.txt
+<répertoire d’installation>\sqljdbc_<version>\<langue>\release.txt
+<répertoire d’installation>\sqljdbc_<version>\<langue>\license.txt
+<répertoire d’installation>\sqljdbc_<version>\<langue>\sqljdbc.jar
+<répertoire d’installation>\sqljdbc_<version>\<langue>\auth\x86\sqljdbc_auth.dll
+<répertoire d’installation>\sqljdbc_<version>\<langue>\auth\x64\sqljdbc_auth.dll
+<répertoire d’installation>\sqljdbc_<version>\<langue>\help\default.htm
+<répertoire d’installation>\sqljdbc_<version>\<langue>\help\index.htm
+<répertoire d’installation>\sqljdbc_<version>\<langue>\help\toc.htm
+<répertoire d’installation>\sqljdbc_<version>\<langue>\help\html\<pages du document...>
+<répertoire d’installation>\sqljdbc_<version>\<langue>\help\local\<pages du document...>
+<répertoire d’installation>\sqljdbc_<version>\<langue>\help\samples\<fichiers d’exemple...>
+<répertoire d’installation>\sqljdbc_<version>\<langue>\xa\xa_install.sql
+<répertoire d’installation>\sqljdbc_<version>\<langue>\xa\x86\sqljdbc_xa.dll
+<répertoire d’installation>\sqljdbc_<version>\<langue>\xa\x64\sqljdbc_xa.dll
+
+
+MODIFIER LA LISTE
+-----------
+La liste suivante répertorie les modifications apportées au pilote JDBC de Microsoft SQL Server
+2005 depuis la version 1.0 de janvier 2006.
+
+409319 L’annulation de l’exécution de l’instruction fonctionne à partir de n’importe quel thread sans
+       fermer la connexion.
+
+423894 Sun CTS : DatabaseMetaData.getNumericFunctions ne renvoie plus
+       MOD dans la liste des fonctions prises en charge pour SQL Server 2000.
+
+426389 L’appel Statement.execute ne provoque plus d’exception SQLException avec le
+       message « sp_cursoropen/sp_cursorprepare: le paramètre d’instruction peut
+       être uniquement une procédure de sélection unique ou une procédure stockée unique » pour les requêtes UPDATE
+       WHERE lorsque la propriété de connexion selectMethod=cursor est définie.
+
+436718 L’appel PreparedStatement.execute ne provoque plus d’exception SQLException 
+       avec le message « sp_cursoropen/sp_cursorprepare: le paramètre 
+       d’instruction peut uniquement être un lot ou une procédure stockée avec une 
+       sélection unique, sans FOR BROWSE, COMPUTE BY ou des attributions variables » pour 
+       les requêtes INSERT INTO, lorsque la propriété de connexion selectMethod=cursor est définie.
+
+434562 Les types JDBC appropriés sont désormais rapportés dans la colonne DATA_TYPE à partir de 
+       différents appels de métadonnées pour les types GUID, NCHAR, NVARCHAR et NVARCHAR(max) SQL Server.
+       Ce sont respectivement sql.types.char, sql.types.varchar et sql.types.longvarchar 
+       .
+
+450639 Le pilote ne génère plus d’exception SQLException avec le message « Le serveur 
+       n’a pas réussi à reprendre la transaction, desc:  4600000001. » pendant la configuration de
+       SQL Server 2005 comme stockage des messages JBoss JMS.
+
+425030 Le pilote gère correctement la définition et l’extraction des dates, des heures et des 
+       horodatages avec des fuseaux horaires différents de ceux par défaut du système.
+
+432090 L’exécution de l’instruction DBCC SHOW_STATISTICS produit le bon 
+       jeu de résultats.
+
+429427 L’appel CallableStatement.clearParameters ne provoque plus d’exception 
+       NullPointerException sur un appel suivant pour extraire une valeur de paramètre OUT.
+
+433170 Plusieurs aspects du comportement de transaction XA ont été corrigés.
+
+438767 Le comportement des méthodes getTime et getDate avec les objets et les valeurs de calendrier 
+       autour des transitions d’heure avancée (HA) vers d’autres fuseaux horaires 
+       et d’autres paramètres régionaux a été corrigé.
+
+422875 PreparedStatement.setObject et ResultSet.updateObject avec échelle mettra 
+       correctement les valeurs numériques à l’échelle.
+
+435796 L’exécution des instructions SQL WRITETEXT ne génère plus d’exception SQLException 
+       avec le message « Aucune TDS_RET_STATUS n’a été trouvée pour les paramètres de sortie 
+       de la procédure stockée ».
+
+424295 DatabaseMetaData.getMaxConnections ne génère plus d’exception SQLException avec 
+       le message « L’option de configuration 'connexions utilisateur' n’existe pas 
+       ou peut être une option avancée » pour les serveurs SQL Server 2005.
+
+423881 Le pilote retourne correctement les nombres de mises à jour à partir des déclencheurs.
+
+20012145 Le pilote définit le mode de transaction dans une base de données SQL Server et 
+         rapporte correctement le mode autocommit du pilote lorsque la
+         méthode Connection.setAutoCommit est appelée.
+
+428803 L’exécution d’une instruction après avoir défini un flux de données de caractère ou binaires avec 
+       une longueur réelle autre que celle transmise à la méthode setter ne ferme plus 
+       la connexion après avoir généré l’exception SQLException correspondante.
+
+430837 Les connexions obtenues à partir de SQLServerXADataSource peuvent être utilisées dans des transactions locales 
+       lorsqu’elles se trouvent hors de portée d’une transaction XA.
+
+20012126 Le type BIGINT SQL est utilisé pour envoyer des valeurs de paramètre d’instruction java.sql.BIGINT préparées 
+         à une base de données SQL Server, ce qui améliore 
+         l’efficacité du plan d’exécution de la requête.
+
+428197 L’exécution du lot des instructions préparées fonctionne correctement lorsqu’il y a
+       plusieurs éléments dans le lot.
+
+426966 La gestion des littéraux délimités par des guillemets doubles dans les instructions SQL a été améliorée.
+
+429085 Les modifications historiques dans l’heure avancée (HA) de tous les fuseaux horaires sont
+       correctement gérées.
+
+433394 L’appel de Calling Statement.executeBatch après avoir défini une valeur BLOB ne génère plus
+       d’exception SQLException avec le message « La conversion de BLOB en BINARY n’est pas prise en charge. »
+
+435448 Le pilote ne génère plus d’exception SQLException avec le message 
+       « com.microsoft.sqlserver.jdbc.SQLServerException: syntaxe incorrecte près de '-' » 
+       lors de l’envoi au serveur d’une valeur BigDecimal de paramètre d’instruction préparée 
+       avec 5.0 JRE.
+
+423733 ResultSet.rowDeleted ne génère plus d’exception ArrayIndexOutOfBounds 
+       après un appel à ResultSet.beforeFirst or ResultSet.afterLast.
+
+429214 Les parties non utilisées des objets java.sql.Time et java.sql.Date sont normalisées
+       en valeurs correctes.
+
+424450 L’envoi d’une valeur de flux de données ASCII ou binaires, comprenant entre 4 022 et 4 025 octets,  
+       vers une colonne varbinary(max) dans un serveur SQL Server 2005 ne génère plus
+       d’exception IndexOutOfBoundsException.
+
+428725 Les valeurs numériques fractionnées sont tronquées correctement par les méthodes getter pendant la conversion
+       en types intégraux.
+
+432590 L’envoi au serveur d’un flux de données ASCII dépassant 4 000 caractères en utilisant 
+       la méthode PreparedStatement.setObject comme Type.VARCHAR envoie le flux entier 
+       au lieu de le tronquer à 4 000 caractères.
+
+445528 La méthode SQLServerResultSet.getBoolean est uniquement prise en charge pour les types de données de nombre et 
+       de caractère. Elle convertit les valeurs « 1 », 1, « true » en true et les valeurs
+       « 0 », 0 et « false » en false. Pour toutes les autres valeurs, le comportement n’est pas défini.
+
+421916 Les méthodes setObject(parameter, null) des classes SQLServerPreparedStatement et
+       SQLServerCallableStatement ne génèrent plus d’exception NullPointerException. Voir les
+       rubriques API setObject du système d’aide JDBC pour plus d’informations.
+
+450271 Les objets SQLServerPreparedStatement ne génèrent plus de nouvelles exceptions à partir des 
+       exécutions précédentes.
+
+441998 Modification de l’isolation de transaction par défaut de SERIALIZABLE à READ_COMMITTED
+       dans les transactions XA.
+
+442038 L’utilisation de la méthode setTimestamp avec un objet de calendrier produit désormais des horodatages corrects
+       pendant la période de sortie de l’heure avancée.
+
+443970 L’exécution SQLServerStatement, avec la propriété de chaîne de connexion selectMethod, définie 
+       sur « curseur », respecte désormais l’expiration de la requête.
+
+444121 Les classements de base de données EBCDIC sont maintenant pris en charge.
+
+439751 La fin des nouvelles lignes peut maintenant être utilisée dans la syntaxe d’échappement SQL {appel...}.
+
+440734 La fermeture d’un flux de données déjà fermé, retourné par la méthode getXXXStream, ne génère plus
+       d’exception.
+
+
+PROBLÈMES CONNUS
+------------
+Voici des problèmes connus rencontrés avec le pilote JDBC de Microsoft SQL Server 2005 :
+
+
+1) LE CHARGEMENT DU PILOTE GÉNÈRE UN CONFLIT AVEC LE PILOTE JDBC DE SQL SERVER 2000
+
+Si vous chargez le pilote JDBC de Microsoft SQL Server 2000 et le
+pilote JDBC de Microsoft SQL Server 2005 au cours du même processus, dans certains
+cas, la version 2000 du pilote JDBC n'accepte pas correctement un
+appel de méthode DriverManager.getConnection destiné à la 
+version 2005 du pilote JDBC.
+
+Ce problème est dû au fait que la version 2000 du pilote JDBC
+n’accepte pas correctement le préfixe d’URL « jdbc:sqlserver:// » si elle est
+chargée en premier lieu.  
+
+Pour résoudre ce problème, commencez par charger la version 2005 de la classe du pilote JDBC
+comme suit :
+
+Class.forName(« com.microsoft.sqlserver.jdbc.SQLServerDriver ») ; // Version 2005
+Class.forName(« com.microsoft.jdbc.sqlserver.SQLServerDriver ») ; // Version 2000
+
+Cela garantit que le préfixe d’URL « jdbc:sqlserver:// » sera géré
+par la version 2005 du pilote JDBC et que le préfixe d’URL « jdbc:microsoft:sqlserver:// »
+sera géré par la version 2000 du pilote JDBC.
+
+
+2) LIMITATIONS DE L'OBTENTION DE MÉTADONNÉES DE PARAMÈTRE POUR DES INSTRUCTIONS PRÉPARÉES
+
+Certaines contraintes s'appliquent lors de l'utilisation de la classe SQLServerParameterMetaData 
+avec des instructions préparées. Les instructions SQL INSERT nécessitent la
+clause INTO facultative et les instructions SQL DELETE nécessitent la clause facultative FROM pour
+obtenir correctement les métadonnées de paramètre.
+
+
+3) LIMITATIONS DE LA CONVERSION DE DONNÉES SQL SERVER 2000
+
+Lors de l'utilisation de SQL Server 2000 avec le pilote JDBC, les limitations de conversion
+de données suivantes s’appliquent :
+
+	- Les données string ne peuvent pas être converties en une colonne money
+	  ou smallmoney sous-jacente.
+	- Les données string d’une longueur supérieure à 4000 caractères ne
+	  peuvent pas être converties en colonnes sous-jacentes char ou varchar.
+	- Les données string d’une longueur supérieure à 4 000 caractères ne peuvent pas être converties en
+	  colonnes sous-jacentes nchar ou nvarchar si la propriété de chaîne de connexion sendStringParametersAsUnicode
+	  a la valeur false ou si la méthode setAsciiStream
+	  est appelée.
+	- Les données string ne peuvent pas être converties en colonnes de texte si la
+	  propriété de chaîne de connexion sendStringParametersAsUnicode a la valeur
+	  true. Si vous devez prendre en charge des conversions de données string en colonnes de texte,
+	  définissez la propriété sendStringParametersAsUnicode sur false.
+
+
+4) LIMITATIONS AVEC LES PARAMÈTRES NOMMÉS
+
+Les paramètres nommés ne sont pas pris en charge par les procédures stockées dont le nom contient
+un crochet gauche « [ » Par exemple, un nom tel que « stor[edProc ».
+Notez que cela n’affecte pas l’échappement habituel des noms de procédure stockée
+à l’aide de « [] ».
+
+
+5) ÉCHEC de XAResource.setTransactionTimeout
+
+Notez que XAResource.setTransactionTimeout ne fonctionne pas du tout à moins que le 
+correctif suivant ne soit appliqué à chaque ordinateur SQL Server participant à des transactions XA :
+
+« CORRECTIF : MSDTC ne détecte pas d'arrêt de processus et MSDTC
+ne peut pas définir des valeurs de délai pour les transactions XA dans Windows Server 2003 »
+http://support.microsoft.com/kb/899756.
+
+Sans ce correctif, la seule valeur de délai valide est la valeur par défaut,
+0, qui équivaut à un délai défini.
+
+
+6) ÉCHEC DE TRANSACTION XA SOUS WINDOWS XP
+
+Les transactions XA n’opèrent pas si SQL Server est exécuté sous Windows XP, à moins 
+d’appliquer le correctif suivant :
+
+« Ralentissement des performances lors de l'utilisation de transactions XA avec SQL Server »
+http://support.microsoft.com/kb/318818.
+
+Notez que ce problème ne se pose que si l'ordinateur SQL Server participant
+à la transaction XA opère sous Windows XP. Des applications clientes 
+opérant sous Windows XP qui se connectent à un serveur SQL Server distant n'étant pas
+exécuté sous Windows XP peuvent participer à des transactions XA. Ce problème
+ne se pose pas sous Windows 2000 et Windows Server 2003.
+
+
+7) SUN SOLARIS NÉCESSITE GZIP POUR INSTALLER LE PILOTE JDBC
+
+Si vous installez le pilote JDBC sur un ordinateur Sun Solaris, vous devrez peut-être
+commencer par installer GZIP afin de décompresser les fichiers du pilote. Vous pouvez télécharger GZIP 
+sur www.gzip.org.
+
+
+8) DÉLAIS DE CONNEXION À L’AIDE DE LA MISE EN MIROIR DE BASES DE DONNÉES
+
+Lorsque vous utilisez le pilote JDBC dans une configuration de mise en miroir de bases de données, la 
+valeur par défaut du délai de connexion est 0, ce qui peut entraîner un nombre indéfini 
+de tentatives de connexion. Par conséquent, lorsque vous essayez de vous connecter à 
+une base de données principale et à une base de données miroir qui sont à l’origine en panne, le pilote JDBC 
+oscillera indéfiniment entre les deux serveurs jusqu’à ce que l’un d’eux soit de nouveau 
+en ligne. Pour éviter ces tentatives illimitées de connexion, spécifiez une 
+valeur finie pour la propriété de chaîne de connexion loginTimeout ou intégrez
+une logique de délai dans votre application.
+
+
+9) CONVERSION DES VALEURS BIGDECIMAL
+
+Lorsque vous convertissez des valeurs BigDecimal en une représentation de chaîne, la conversion
+de ces valeurs dépend de la version de JVM que vous utilisez. 
+
+Par exemple, le code suivant montre ces différences :
+
+String str = new BigDecimal("1E10").toString();
+System.out.println(« La chaîne est »  + chaîne);
+//avec JVM 1.4 : imprime « La chaîne est 10000000000 »
+//avec JVM 1,5 : imprime « La chaîne est 1E+10 »
+
+Pour adopter un comportement cohérent lorsqu’elle utilise des valeurs BigDecimal, votre application 
+doit employer la méthode BigDecimal.toPlainString lors de l’exécution avec JVM 1.5.
+
+
+10) VALEURS DE TYPE DE COLONNE UNIQUEIDENTIFIER RETOURNÉES DIFFÉREMMENT
+
+Lorsque vous utilisez l’une des classes de métadonnées pour extraire des types de colonne, la valeur
+retournée pour le type de colonne UNIQUEIDENTIFIER est incohérente. Lors de l’extraction
+de cette valeur à l’aide de la classe SQLServerDatabaseMetaData, la valeur retournée est 
+CHAR. Cependant, si la valeur est extraite en utilisant la classe SQLServerResultSetMetaData 
+ou SQLServerParementerMetaData, la valeur retournée est VARCHAR. En outre,
+le type de colonne UNIQUEIDENTIFIER est mappé dans le type de données java.sql.Types.CHAR.
+
+
+11) LA CONNEXION JDBC IPV6 SE COMPORTE DE MANIÈRE INCOHÉRENTE LORS DE L’UTILISATION DE LA SÉCURITÉ INTÉGRÉE
+
+Lorsque vous utilisez une adresse IPV6 numérique avec sécurité intégrée, la connexion 
+peut prendre plus de temps pour s’ouvrir ou même échouer. Les connexions de sécurité intégrée à un 
+serveur IPV6 fonctionnent tant que vous utilisez le nom de l’ordinateur.

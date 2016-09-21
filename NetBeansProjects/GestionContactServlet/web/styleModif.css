@@ -13,11 +13,11 @@ label
 
 #field
 {
-    margin-left: 3em;
-    margin-right: 3em;
+    margin-left: auto;
+    margin-right: auto;
     margin-top: 3em;
     background-color: #a0a9c9;
-    width: auto;
+    width: 700px;
     box-shadow: 5px 5px 5px 0px #366cac;
 }
 
@@ -34,12 +34,12 @@ legend
 
 #codePostal
 {
-    width: 70px;
+    width: 35px;
 }
 
 #boutons
 {
-    width: 150px;
+    width: 160px;
     margin: auto;
 }
 
@@ -48,6 +48,6 @@ iframe
     margin: auto;
     display: block;
     height: 30px;
-    width: 90%;
+    width: 700px;
     background-color: #9ebcde;
 }

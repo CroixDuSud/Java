@@ -55,13 +55,15 @@ public class ServletAffichageModif extends HttpServlet
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
+            out.println("<meta charset=\"utf-8\" lang=\"fr\">");
+            out.println("<link href=\"styleModif.css\" rel=\"stylesheet\">");
             out.println("<title>Servlet ServletAffichageModif</title>");
             out.println("");
             out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet ServletAffichageModif at " + request.getContextPath() + "</h1>");
+            out.println("<body id=\"home\">");
+            //out.println("<h1>Servlet ServletAffichageModif at " + request.getContextPath() + "</h1>");
             out.println("<div>");
-            out.println("<form action=\"#\" method=\"post\">");
+            out.println("<form action=\"/ServletEnregModif\" method=\"post\">");
             out.println("<fieldset id=\"field\">");
             out.println("<legend>Modification du  contact</legend>");
             out.println("<br>");

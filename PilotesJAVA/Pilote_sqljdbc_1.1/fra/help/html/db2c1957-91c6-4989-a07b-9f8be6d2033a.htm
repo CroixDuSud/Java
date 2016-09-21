@@ -1,0 +1,119 @@
+<html DIR="LTR" xmlns:tool="http://www.microsoft.com/tooltip" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=Windows-1252" />
+    <META NAME="save" CONTENT="history" />
+    <title>Utilisation des métadonnées de paramètre</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/script_loc.js">
+      
+    </script>
+    <script src="../local/script_main.js">
+      
+    </script>
+  </head>
+  <body style="display: none;">
+    <!--Topic built:11/3/2006-->
+<input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <div id="header">
+        <tr>
+          <td align="left">
+            <span id="headerBold">Utilisation des métadonnées de paramètre</span>
+          </td>
+        </tr>
+      </table>
+      <IMG id="SeeAlso1" style="display:none; height:0; width:0;" src="../local/SeeAlso1a.gif">
+        
+      </IMG>
+      <IMG id="SeeAlso2" style="display:none; height:0; width:0;" src="../local/SeeAlso1c.gif">
+        
+      </IMG>
+      <IMG id="Filter1" style="display:none; height:0; width:0;" src="../local/Filter1a.gif">
+        
+      </IMG>
+      <IMG id="Filter2" style="display:none; height:0; width:0;" src="../local/Filter1c.gif">
+        
+      </IMG>
+      <span style="display:none" id="languageSpan">
+        <h1 class="heading">
+          Langage
+        </h1>
+        <div id="selectLanguage" class="section">
+          <div class="languageFilter" id="VisualBasic" onclick="ChangeLanguage(this.id)" onkeypress="ChangeLanguage_CheckKey(this.id)" tabindex="0">
+            [Visual Basic]
+          </div>
+          <div class="languageFilter" id="CSharp" onclick="ChangeLanguage(this.id)" onkeypress="ChangeLanguage_CheckKey(this.id)" tabindex="0">
+            [C#]
+          </div>
+          <div class="languageFilter" id="ManagedCPlusPlus" onclick="ChangeLanguage(this.id)" onkeypress="ChangeLanguage_CheckKey(this.id)" tabindex="0">
+            [C++]
+          </div>
+          <div class="languageFilter" id="JSharp" onclick="ChangeLanguage(this.id)" onkeypress="ChangeLanguage_CheckKey(this.id)" tabindex="0">
+            [J#]
+          </div>
+          <div class="languageFilter" id="JScript" onclick="ChangeLanguage(this.id)" onkeypress="ChangeLanguage_CheckKey(this.id)" tabindex="0">
+            [JScript]
+          </div>
+          <div class="languageFilter" id="all" onclick="ChangeLanguage(this.id)" onkeypress="ChangeLanguage_CheckKey(this.id)" tabindex="0">
+            (Afficher tout)
+          </div>
+        </div>
+      </span>
+    </div>
+    <div id="mainSection">
+      <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+      </div>
+      <font color="DarkGray"><!-- [This topic is pre-release documentation and is subject to change in future releases. Blank topics are included as placeholders.]<br/>[Documentation built on 11/3/2006]  --></font><p /><p />
+      <div id="introductionSection" class="section">
+    <p>Pour interroger un objet <a href="a8481c06-fbba-432b-8c69-4f4619c20ad4.htm">SQLServerPreparedStatement</a> ou <a href="30710a63-c05d-47d9-9cf9-c087a1c76373.htm">SQLServerCallableStatement</a> afin d'obtenir des informations sur les paramètres qu'il contient, le pilote JDBC de Microsoft de SQL Server 2005 implémente la classe <a href="546290e0-9411-4a2b-aa36-61251e70e9cf.htm">SQLServerParameterMetaData</a>. Cette classe contient plusieurs champs et méthodes qui retournent des informations sous la forme d'une valeur unique.</p>
+    <p>Pour créer un objet <b>SQLServerParameterMetaData</b>, vous pouvez utiliser les méthodes <a href="c2876dec-ce29-4b61-9d74-ec3173b8cba5.htm">getParameterMetaData</a> des classes <b>SQLServerPreparedStatement</b> et <b>SQLServerCallableStatement</b>.</p>
+    <p>Dans l'exemple suivant, une connexion ouverte à l'exemple de base de données SQL Server 2005 AdventureWorks est transmise à la fonction, la méthode <b>getParameterMetaData</b> de la classe <b>SQLServerCallableStatement</b> est utilisée pour retourner un objet <b>SQLServerParameterMetaData</b>, puis diverses méthodes de l'objet <b>SQLServerParameterMetaData</b> sont utilisées pour afficher des informations sur le type et le mode des paramètres contenus dans la procédure stockée HumanResources.uspUpdateEmployeeHireInfo.</p>
+    <div class="sampleCode">
+		<span class="langLabel" name="label"></span><span codeLanguage="other"><pre>public static void getParameterMetaData(Connection con) {
+   try {
+      CallableStatement cstmt = con.prepareCall("{call HumanResources.uspUpdateEmployeeHireInfo(?, ?, ?, ?, ?)}");
+      ParameterMetaData pmd = cstmt.getParameterMetaData();
+      int count = pmd.getParameterCount();
+      for (int i = 1; i &lt;= count; i++) {
+         System.out.println("TYPE: " + pmd.getParameterTypeName(i) + " MODE: " + pmd.getParameterMode(i));
+      }
+      cstmt.close();
+   }
+   catch (Exception e) {
+      e.printStackTrace();
+   }
+}
+</pre></span>
+	</div>
+    <div style="margin: .5em 1.5em .5em 1.5em"><b>Remarque : </b>
+      Certaines contraintes s'appliquent lors de l'utilisation de la classe <b>SQLServerParameterMetaData</b> avec des instructions préparées. Le pilote JDBC prend en charge les instructions SELECT, DELETE, INSERT et UPDATE. Cependant, ces instructions ne doivent pas contenir de sous-requêtes. En outre, le pilote JDBC prend en charge l'utilisation des prédicats IN, IS et LIKE. Dans les conditions de recherche, le pilote JDBC prend en charge l'utilisation des opérateurs de comparaison IS, &lt;, &gt;, LIKE, &gt;=, &lt;=, NOT IN, &lt;&gt;, !&gt;, !&lt; et !=. L'opérateur FREETEXT n'est pas pris en charge.<p></p>
+    </div>
+  </div>
+      <span id="seeAlsoSpan">
+        <h1 class="heading">
+          Voir aussi
+        </h1>
+        <div id="seeAlsoSection" class="section">
+          <a href="5cfb35d4-ddcd-40a2-8091-f29cddc32552.htm">Gestion de métadonnées avec le pilote JDBC</a>
+        </div>
+      </span>
+      <!--[if gte IE 5]>
+			<tool:tip element="seeAlsoToolTip" avoidmouse="false"/><tool:tip element="languageFilterToolTip" avoidmouse="false"/>
+		<![endif]-->
+      <div id="footer" class="section">
+        <hr /><A NAME="feedback"></A><span id="fb" class="feedbackcss"></span>
+		<a href="9bad553b-9e70-4696-8499-2e35f772a1e0.htm">
+			
+			© 2006 Microsoft Corporation. Tous droits réservés.
+		</a>
+ 	
+      </div>
+    </div>
+  </body>
+</html>

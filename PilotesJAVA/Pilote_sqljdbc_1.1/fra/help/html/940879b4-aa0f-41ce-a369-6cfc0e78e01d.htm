@@ -1,0 +1,134 @@
+<html DIR="LTR" xmlns:tool="http://www.microsoft.com/tooltip" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=Windows-1252" />
+    <META NAME="save" CONTENT="history" />
+    <title>Sécurité des applications</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/script_loc.js">
+      
+    </script>
+    <script src="../local/script_main.js">
+      
+    </script>
+  </head>
+  <body style="display: none;">
+    <!--Topic built:11/3/2006-->
+<input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <div id="header">
+        <tr>
+          <td align="left">
+            <span id="headerBold">Sécurité des applications</span>
+          </td>
+        </tr>
+      </table>
+      <IMG id="SeeAlso1" style="display:none; height:0; width:0;" src="../local/SeeAlso1a.gif">
+        
+      </IMG>
+      <IMG id="SeeAlso2" style="display:none; height:0; width:0;" src="../local/SeeAlso1c.gif">
+        
+      </IMG>
+      <IMG id="Filter1" style="display:none; height:0; width:0;" src="../local/Filter1a.gif">
+        
+      </IMG>
+      <IMG id="Filter2" style="display:none; height:0; width:0;" src="../local/Filter1c.gif">
+        
+      </IMG>
+      <span style="display:none" id="languageSpan">
+        <h1 class="heading">
+          Langage
+        </h1>
+        <div id="selectLanguage" class="section">
+          <div class="languageFilter" id="VisualBasic" onclick="ChangeLanguage(this.id)" onkeypress="ChangeLanguage_CheckKey(this.id)" tabindex="0">
+            [Visual Basic]
+          </div>
+          <div class="languageFilter" id="CSharp" onclick="ChangeLanguage(this.id)" onkeypress="ChangeLanguage_CheckKey(this.id)" tabindex="0">
+            [C#]
+          </div>
+          <div class="languageFilter" id="ManagedCPlusPlus" onclick="ChangeLanguage(this.id)" onkeypress="ChangeLanguage_CheckKey(this.id)" tabindex="0">
+            [C++]
+          </div>
+          <div class="languageFilter" id="JSharp" onclick="ChangeLanguage(this.id)" onkeypress="ChangeLanguage_CheckKey(this.id)" tabindex="0">
+            [J#]
+          </div>
+          <div class="languageFilter" id="JScript" onclick="ChangeLanguage(this.id)" onkeypress="ChangeLanguage_CheckKey(this.id)" tabindex="0">
+            [JScript]
+          </div>
+          <div class="languageFilter" id="all" onclick="ChangeLanguage(this.id)" onkeypress="ChangeLanguage_CheckKey(this.id)" tabindex="0">
+            (Afficher tout)
+          </div>
+        </div>
+      </span>
+    </div>
+    <div id="mainSection">
+      <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+      </div>
+      <font color="DarkGray"><!-- [This topic is pre-release documentation and is subject to change in future releases. Blank topics are included as placeholders.]<br/>[Documentation built on 11/3/2006]  --></font><p /><p />
+      <div id="introductionSection" class="section">
+    <p>Lorsque vous utilisez le pilote JDBC de Microsoft de SQL Server 2005, il est important de prendre certaines précautions pour garantir la sécurité de l'application. Les sections suivantes contiennent des informations sur les diverses mesures que vous pouvez prendre pour sécuriser votre application.</p>
+  </div>
+      <h1 class="heading">Utilisation d'autorisations de politique Java</h1>
+      <div id="sectionSection" class="section">
+        <content xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+      <p xmlns="">Lorsque vous utilisez le pilote JDBC de Microsoft de SQL Server 2005, il est important de spécifier les autorisations de politique Java requises par le pilote. Java Runtime Environment (JRE) intègre un modèle de sécurité étendu que vous pouvez utiliser en cours d'exécution pour déterminer si un thread a accès à une ressource. Les fichiers de politique de sécurité peuvent contrôler cet accès. Les fichiers de politique sont gérés par le déployeur et l'administrateur système pour le conteneur ; cependant, les autorisations répertoriées dans cette rubrique sont celles qui affectent le fonctionnement du pilote JDBC.</p>
+      <p xmlns="">Voici à quoi ressemble une autorisation de politique dans le fichier de politique.</p>
+      <div class="sampleCode" xmlns=""><span codeLanguage="other"><pre>// Example policy file entry.
+grant [signedBy &lt;signer&gt;,] [codeBase &lt;code source&gt;] {
+   permission  &lt;class&gt;  [&lt;name&gt; [, &lt;action list&gt;]];
+};</pre></span></div>
+      <p xmlns="">Le code base suivant doit être limité au code base du pilote JDBC afin d'octroyer le moins possible de privilèges.</p>
+      <div class="sampleCode" xmlns=""><span codeLanguage="other"><pre>grant codeBase "file:/install_dir/lib/-" {
+
+// Grant access to data source.
+permission java.util.PropertyPermission "java.naming.*", "read,write";
+
+// Specify which hosts can be connected to.
+permission java.net.socketPermission "host:port", "connect";
+
+// Logger permission to take advantage of logging.
+permission java.util.logging.LoggingPermission;
+
+// Grant listen/connect/accept permissions to the driver if 
+// connecting to a named instance as the client driver. 
+// This connects to a udp service and listens for a response.
+permission java.net.SocketPermission "*", "listen, connect, accept"; 
+}; </pre></span></div>
+      <div style="margin: .5em 1.5em .5em 1.5em" xmlns=""><b>Remarque : </b>
+        Le code « file:/install_dir/lib/- » fait référence au répertoire d'installation du pilote JDBC.<p></p>
+      </div>
+    </content>
+      </div>
+      <h1 class="heading">Protection de la communication avec le serveur</h1>
+      <div id="sectionSection" class="section">
+        <content xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+      <p xmlns="">En cas d'utilisation du pilote JDBC pour communiquer avec une base de données SQL Server, la communication n'est ni cryptée, ni signée. Pour protéger la communication avec le serveur, vous devez sécuriser le canal à l'aide d'IPSEC.</p>
+    </content>
+      </div>
+      <span id="seeAlsoSpan">
+        <h1 class="heading">
+          Voir aussi
+        </h1>
+        <div id="seeAlsoSection" class="section">
+          <a href="90724ec6-a9cb-43ef-903e-793f89410bc0.htm">Sécurisation d'applications de pilote JDBC</a>
+        </div>
+      </span>
+      <!--[if gte IE 5]>
+			<tool:tip element="seeAlsoToolTip" avoidmouse="false"/><tool:tip element="languageFilterToolTip" avoidmouse="false"/>
+		<![endif]-->
+      <div id="footer" class="section">
+        <hr /><A NAME="feedback"></A><span id="fb" class="feedbackcss"></span>
+		<a href="9bad553b-9e70-4696-8499-2e35f772a1e0.htm">
+			
+			© 2006 Microsoft Corporation. Tous droits réservés.
+		</a>
+ 	
+      </div>
+    </div>
+  </body>
+</html>

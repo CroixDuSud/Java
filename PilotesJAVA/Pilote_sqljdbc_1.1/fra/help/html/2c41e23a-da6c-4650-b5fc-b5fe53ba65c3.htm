@@ -1,0 +1,202 @@
+<html DIR="LTR" xmlns:tool="http://www.microsoft.com/tooltip" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=Windows-1252" />
+    <META NAME="save" CONTENT="history" />
+    <title>Niveaux d'isolation</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/script_loc.js">
+      
+    </script>
+    <script src="../local/script_main.js">
+      
+    </script>
+  </head>
+  <body style="display: none;">
+    <!--Topic built:11/3/2006-->
+<input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <div id="header">
+        <tr>
+          <td align="left">
+            <span id="headerBold">Niveaux d'isolation</span>
+          </td>
+        </tr>
+      </table>
+      <IMG id="SeeAlso1" style="display:none; height:0; width:0;" src="../local/SeeAlso1a.gif">
+        
+      </IMG>
+      <IMG id="SeeAlso2" style="display:none; height:0; width:0;" src="../local/SeeAlso1c.gif">
+        
+      </IMG>
+      <IMG id="Filter1" style="display:none; height:0; width:0;" src="../local/Filter1a.gif">
+        
+      </IMG>
+      <IMG id="Filter2" style="display:none; height:0; width:0;" src="../local/Filter1c.gif">
+        
+      </IMG>
+      <span style="display:none" id="languageSpan">
+        <h1 class="heading">
+          Langage
+        </h1>
+        <div id="selectLanguage" class="section">
+          <div class="languageFilter" id="VisualBasic" onclick="ChangeLanguage(this.id)" onkeypress="ChangeLanguage_CheckKey(this.id)" tabindex="0">
+            [Visual Basic]
+          </div>
+          <div class="languageFilter" id="CSharp" onclick="ChangeLanguage(this.id)" onkeypress="ChangeLanguage_CheckKey(this.id)" tabindex="0">
+            [C#]
+          </div>
+          <div class="languageFilter" id="ManagedCPlusPlus" onclick="ChangeLanguage(this.id)" onkeypress="ChangeLanguage_CheckKey(this.id)" tabindex="0">
+            [C++]
+          </div>
+          <div class="languageFilter" id="JSharp" onclick="ChangeLanguage(this.id)" onkeypress="ChangeLanguage_CheckKey(this.id)" tabindex="0">
+            [J#]
+          </div>
+          <div class="languageFilter" id="JScript" onclick="ChangeLanguage(this.id)" onkeypress="ChangeLanguage_CheckKey(this.id)" tabindex="0">
+            [JScript]
+          </div>
+          <div class="languageFilter" id="all" onclick="ChangeLanguage(this.id)" onkeypress="ChangeLanguage_CheckKey(this.id)" tabindex="0">
+            (Afficher tout)
+          </div>
+        </div>
+      </span>
+    </div>
+    <div id="mainSection">
+      <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+      </div>
+      <font color="DarkGray"><!-- [This topic is pre-release documentation and is subject to change in future releases. Blank topics are included as placeholders.]<br/>[Documentation built on 11/3/2006]  --></font><p /><p />
+      <div id="introductionSection" class="section">
+    <p>Les transactions spécifient un niveau d'isolation qui définit le degré auquel une transaction doit être isolée des modifications de ressources ou de données effectuées par d'autres transactions. Les niveaux d'isolation sont définis en termes indiquant les effets secondaires d'accès simultané, tels que les lectures de mauvaise qualité ou les lectures fantômes, qui sont autorisés.</p>
+    <p>Les niveaux d'isolation de transaction contrôlent les éléments suivants :</p>
+    <ul><li>
+        si des verrous sont appliqués lors de la lecture de données et le type de verrous demandés ;<br></br>
+      </li><li>
+        le temps de maintien des verrous de lecture ;<br></br>
+      </li><li>
+        si une opération de lecture référençant des lignes modifiées par une autre transaction :<br></br>
+        <ul><li>
+            bloquer jusqu'à la libération du verrou exclusif de la ligne ;<br></br>
+          </li><li>
+            extraire la version validée de la ligne qui existait au démarrage de l'instruction ou de la transaction ;<br></br>
+          </li><li>
+            lire la modification des données non validées.<br></br>
+          </li></ul>
+      </li></ul>
+    <p>La sélection d'un niveau d'isolation de transaction n'affecte par les verrous acquis pour la protection des modifications de données. Une transaction obtient toujours un verrou exclusif sur les données qu'elle modifie et maintient ce verrou jusqu'à la fin de la transaction, quel que soit le niveau d'isolation défini pour cette transaction. Pour les opérations de lecture, les niveaux d'isolation de transaction définissent principalement le niveau de protection contre les effets de modifications apportées par d'autres transactions.</p>
+    <p>Un niveau d'isolation inférieur augmente la capacité de nombreux utilisateurs à accéder à des données simultanément, ainsi que le nombre d'effets d'accès simultané, tels que les lectures de mauvaise qualité ou les pertes de mise à jour que les utilisateurs peuvent rencontrer. Inversement, un niveau d'isolation supérieur réduit les types d'effets d'accès simultané que les utilisateurs peuvent rencontrer, mais requiert davantage de ressources système et augmente les probabilité de blocage d'une transaction par une autre. Le choix du niveau d'isolation approprié dépend de l'équilibrage entre les conditions d'intégrité des données de l'application et la charge liée à chaque niveau d'isolation. Le niveau d'isolation le plus élevé, sérialisable, garantit qu'une transaction extraira exactement les mêmes données à chaque opération de lecture, mais le fait en appliquant un niveau de verrouillage susceptible d'avoir un impact sur d'autres utilisateurs d'un système multi-utilisateurs. Le niveau d'isolation le plus bas, non validé en lecture, peut extraire des données modifiées mais non validées par d'autres transactions. Tous les effets secondaires d'accès simultané peuvent se produire en mode non validé en lecture mais il n'y a pas de verrouillage ni de conservation de version de lecture, de sorte que la charge est réduite.</p>
+    <p>Le tableau suivant présente les effets secondaires d'accès simultané autorisés par les différents niveaux d'isolation.</p>
+    <h2 class="heading"></h2><table cellspacing="0" cellpadding="0" border="1" style="background-color: #CCCCCC;"><tr>
+          <th>
+            Niveau d'isolation
+          </th>
+          <th>
+            Lecture de mauvaise qualité
+          </th>
+          <th>
+            Lecture non renouvelée
+          </th>
+          <th>
+            Fantôme
+          </th>
+        </tr><tr>
+        <td>
+          <p>Lecture non validée</p>
+        </td>
+        <td>
+          <p>Oui</p>
+        </td>
+        <td>
+          <p>Oui</p>
+        </td>
+        <td>
+          <p>Oui</p>
+        </td>
+      </tr><tr>
+        <td>
+          <p>Lecture validée</p>
+        </td>
+        <td>
+          <p>Non</p>
+        </td>
+        <td>
+          <p>Oui</p>
+        </td>
+        <td>
+          <p>Oui</p>
+        </td>
+      </tr><tr>
+        <td>
+          <p>Lecture renouvelée</p>
+        </td>
+        <td>
+          <p>Non</p>
+        </td>
+        <td>
+          <p>Non</p>
+        </td>
+        <td>
+          <p>Oui</p>
+        </td>
+      </tr><tr>
+        <td>
+          <p>Capture instantanée</p>
+        </td>
+        <td>
+          <p>Non</p>
+        </td>
+        <td>
+          <p>Non</p>
+        </td>
+        <td>
+          <p>Non</p>
+        </td>
+      </tr><tr>
+        <td>
+          <p>Sérialisable</p>
+        </td>
+        <td>
+          <p>Non</p>
+        </td>
+        <td>
+          <p>Non</p>
+        </td>
+        <td>
+          <p>Non</p>
+        </td>
+      </tr></table>
+    <p>Les transactions doivent être exécutées à un niveau d'isolation d'au moins une lecture renouvelée afin d'éviter les pertes de mise à jour susceptibles de se produire lorsque deux transactions extraient la même ligne, puis la mettent à jour en fonction des valeurs reçues à l'origine. Si les deux transactions mettent à jours des lignes à l'aide d'une seule instruction UPDATE et ne basent pas la mise à jour sur les valeurs extraites précédemment, aucune perte de mise à jour ne peut se produire au niveau d'isolation par défaut de lecture validée.</p>
+    <p>Pour définir le niveau d'isolation pour une transaction, vous pouvez utiliser la méthode <a href="6a8fa4d3-5237-40f8-8a02-b40a3d7a1131.htm">setTransactionIsolation</a> de la classe <a href="937292a6-1525-423e-a2b2-a18fd34c2893.htm">SQLServerConnection</a>. Cette méthode accepte un nombre entier comme argument basé sur une constante de connexion comme dans l'exemple suivant :</p>
+    <div class="sampleCode"><span codeLanguage="other"><pre>con.setTransactionIsolation(Connection.TRANSACTION_READ_COMMITTED);</pre></span></div>
+    <p>Pour utiliser le nouveau niveau d'isolation de capture instantanée de SQL Server 2005, vous pouvez utiliser l'une des constantes <b>SQLServerConnection</b> comme suit :</p>
+    <div class="sampleCode"><span codeLanguage="other"><pre>con.setTransactionIsolation(SQLServerConnection.TRANSACTION_SNAPSHOT);</pre></span></div>
+    <p>ou vous pouvez utiliser :</p>
+    <div class="sampleCode"><span codeLanguage="other"><pre>con.setTransactionIsolation(Connection.TRANSACTION_READ_COMMITTED + 4094);</pre></span></div>
+    <p>Pour plus d'informations sur les niveaux d'isolation SQL Server, voir « Niveaux d'isolation dans Moteur de base de données » dans la documentation en ligne de SQL Server.</p>
+  </div>
+      <span id="seeAlsoSpan">
+        <h1 class="heading">
+          Voir aussi
+        </h1>
+        <div id="seeAlsoSection" class="section">
+          <a href="afbb776f-05dc-4e79-bb25-2c340483e401.htm">Exécution de transactions avec le pilote JDBC</a>
+        </div>
+      </span>
+      <!--[if gte IE 5]>
+			<tool:tip element="seeAlsoToolTip" avoidmouse="false"/><tool:tip element="languageFilterToolTip" avoidmouse="false"/>
+		<![endif]-->
+      <div id="footer" class="section">
+        <hr /><A NAME="feedback"></A><span id="fb" class="feedbackcss"></span>
+		<a href="9bad553b-9e70-4696-8499-2e35f772a1e0.htm">
+			
+			© 2006 Microsoft Corporation. Tous droits réservés.
+		</a>
+ 	
+      </div>
+    </div>
+  </body>
+</html>
