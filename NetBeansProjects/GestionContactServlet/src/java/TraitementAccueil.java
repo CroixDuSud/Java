@@ -10,5 +10,6 @@
  */
 public class TraitementAccueil
 {
-    
+    Vector<Contact> listeContacts;
+    Contact contact;
 }
