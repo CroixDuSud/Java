@@ -1,0 +1,16 @@
+<%-- ------------------------------------------------------------------- --%>
+<%-- piedPage.jspf : morceau de jsp qui est inclus dans index.jsp...     --%>
+<%-- ------------------------------------------------------------------- --%>
+
+<%-- ------------------------------------------------------------------- --%>
+<%-- <%@ : le tag de directive qui permet de definir le codage est       --%>
+<%-- necessaire ! A defaut les caracteres de ce fichier seront           --%>
+<%-- consideres comme iso-8859-1                                         --%>
+<%-- ------------------------------------------------------------------- --%>
+
+<%@ page pageEncoding="UTF-8" %>
+
+   <hr />
+      <h4>
+         Page créée le <%= new utilitairesMG.divers.DateFr() %>
+      </h4>

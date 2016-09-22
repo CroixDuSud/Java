@@ -1,0 +1,26 @@
+body
+{
+   background : #FFFFFF;
+   color : #000066;
+   font-family : calibri;
+}
+
+div
+{
+   margin : 0.5em;
+}
+
+input
+{
+   font-family : inherit;    
+}
+
+#texteCentre
+{
+   text-align : center;
+}
+
+.titre
+{
+   margin : 2em;
+}

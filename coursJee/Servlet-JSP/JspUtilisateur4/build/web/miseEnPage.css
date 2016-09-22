@@ -1,0 +1,41 @@
+body
+{
+   background : #AAFFFF;
+   color : #000066;
+   font-family : calibri;
+}
+
+div
+{
+   margin : 0.5em;
+}
+
+input
+{
+   font-family : inherit;    
+}
+
+#texteCentre
+{
+   text-align : center;
+}
+
+.titre
+{
+   margin : 2em;
+}
+
+.divSaisieForm
+{
+   width : 30em;
+   margin : 1em;
+}
+
+.divSaisieForm label
+{
+   display : block;
+   text-align : right;
+   margin-right : 0.5em;
+   width : 10em;
+   float : left;
+}
