@@ -31,10 +31,9 @@ legend
     font-size: 20px;
 }
 
-iframe
+#footer
 {
     margin: auto;
-    display: block;
     height: 30px;
     width: 700px;
     background-color: #9ebcde;
