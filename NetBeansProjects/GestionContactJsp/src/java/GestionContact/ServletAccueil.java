@@ -5,88 +5,113 @@
  */
 package GestionContact;
 
-import java.io.IOException;
-import java.io.PrintWriter;
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+// ==========================================================================
+// Classe ServletAccueil                         Projet gestionContactServlet
+// ==========================================================================
 
-/**
- *
- * @author afpa1800
- */
+import java.io.IOException;
+import javax.servlet.*;
+import javax.servlet.http.*;
+import utilitairesMG.jdbc.*;
+
+
 public class ServletAccueil extends HttpServlet
 {
+   private TraitementAccueil traitementAccueil;
 
-    /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException
-    {
-        response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter())
-        {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet ServletAccueil</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet ServletAccueil at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
-        }
-    }
+// --------------------------------------------------------------------------
+// Cette methode pourrait etre implementee dans ServletAffichageAccueil, qui
+// est la premiere servlet appelee dans l'application. Il faudrait alors
+// recuperer ici la base de donnees stockee dans le ServletContext. Voir
+// ce qui est fait dans ServletEnregModif...
+// --------------------------------------------------------------------------
+// Il est plus coherent de recupere la base de donnees dans une Servlet qui
+// l'utilise, dautant que les servlets d'affichage vont etre remplacees par
+// des jsp...
+// --------------------------------------------------------------------------
+   @Override
+   public void init()
+   {
+      try
+      {
+         Class.forName(getInitParameter("driverJDBC"));
+      }
+      catch(ClassNotFoundException e)
+      {
+      }
 
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
-    /**
-     * Handles the HTTP <code>GET</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
-    @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException
-    {
-        processRequest(request, response);
-    }
+      BaseDeDonnees base = new BaseDeDonnees(getInitParameter("BDD"));
 
-    /**
-     * Handles the HTTP <code>POST</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
-    @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException
-    {
-        processRequest(request, response);
-    }
+      ServletContext contexte = getServletContext();
+      contexte.setAttribute("base", base);
 
-    /**
-     * Returns a short description of the servlet.
-     *
-     * @return a String containing servlet description
-     */
-    @Override
-    public String getServletInfo()
-    {
-        return "Short description";
-    }// </editor-fold>
+      traitementAccueil = new TraitementAccueil(base);
+   }
 
+// --------------------------------------------------------------------------
+// Traitement du formulaire d'accueil (index.jsp)
+// --------------------------------------------------------------------------
+   protected void executeRequete(HttpServletRequest requete,
+                                 HttpServletResponse reponse)
+   throws ServletException, IOException
+   {
+
+// --------------------------------------------------------------------------
+// contexte   : ServletContext pour utiliser le dispatcher.
+// dispatcher : pour acceder aux jsp d'affichage.
+// --------------------------------------------------------------------------
+      ServletContext contexte;
+      RequestDispatcher dispatcher;
+
+// --------------------------------------------------------------------------
+// servlet : servlet d'affichage (retournee par les methodes de Traitement).
+// choixAction : action choisie sur l'ecran d'accueil.
+// --------------------------------------------------------------------------
+      String servlet;
+      String choixAction;
+
+// --------------------------------------------------------------------------
+// Indication du codage pour l'interpretation des caracteres recus par la
+// requete. Type et codage du texte envoye par la reponse.
+// --------------------------------------------------------------------------
+      requete.setCharacterEncoding("UTF-8");
+      reponse.setContentType("text/html;charset=UTF-8");
+
+      contexte = getServletContext();
+
+      choixAction = requete.getParameter("choixAction");
+
+      if (choixAction.compareTo("liste")==0)
+      {
+         servlet = traitementAccueil.traitementListe(requete);
+      }
+      else
+      {
+         if(choixAction.compareTo("modification")==0)
+         {
+            servlet = traitementAccueil.traitementModif(requete);
+         }
+         else
+         {
+            servlet = traitementAccueil.traitementNonRealise(requete);
+         }
+      }
+
+      dispatcher = contexte.getRequestDispatcher(servlet);
+      dispatcher.forward(requete, reponse);
+   }
+
+   @Override
+   protected void doGet(HttpServletRequest requete,
+                      HttpServletResponse reponse)
+   throws ServletException, IOException {
+     executeRequete(requete, reponse);
+   }
+
+   @Override
+   protected void doPost(HttpServletRequest requete,
+                       HttpServletResponse reponse)
+   throws ServletException, IOException {
+     executeRequete(requete, reponse);
+   } 
 }

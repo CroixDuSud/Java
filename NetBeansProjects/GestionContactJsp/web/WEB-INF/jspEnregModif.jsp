@@ -4,14 +4,37 @@
     Author     : afpa1800
 --%>
 
+<%@page import="java.util.Vector"%>
+<%@page import="metierMapping.*"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+
+<% Contact contact;
+Vector<Secteur> vSect;
+Vector<Integer> vCodeSecteur;
+String message;
+
+try
+{
+    contact = (Contact) session.getAttribute("contact");
+    vSect = (Vector<Secteur>) session.getAttribute("vSect");
+    message = (String) session.getAttribute("message");
+}
+
+%>
+
+
+
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
-    </head>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" lang="fr">
+<title>Gestion des Contacts</title>
+<link href="style.css" type="text/css" rel="stylesheet"> 
+</head>
     <body>
-        <h1>Hello World!</h1>
+        <h2>"Enregistrement du contact effectué</h2>
+        <p>
+            <a href="index.jsp">Retour au menu principal</a>
+        </p>
     </body>
 </html>

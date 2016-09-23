@@ -5,7 +5,7 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@page import="sourcesJspUtilisateur.Utilisateur" %>
+
 
 <!DOCTYPE html>
 <html>
@@ -16,7 +16,7 @@
 </head>
 <body>
 <div>
-<form action="#" method="post">
+<form action="ServletAccueil" method="post">
 <fieldset id="field">
     <legend>Gestion des contacts</legend>
     <div id="numC">

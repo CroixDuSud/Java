@@ -41,7 +41,7 @@ public class TraitementEnregModif
 
         contact = (Contact)session.getAttribute("contact");
 
-        jspRetour = "/ServletAffichageAccueil";
+        jspRetour = "/jspAccueil.jsp";
         session.setAttribute("message", "Modification annulée");
         session.setAttribute("numeroContact", contact.getNumero().toString());
         session.setAttribute("choixAction", "modification");
@@ -102,12 +102,12 @@ public class TraitementEnregModif
             int retour = contactDAO.modifier(contact);
             if (retour != 0)
             {
-               servlet = "/ServletAffichageEnregModif";
+               servlet = "/jspEnregModif.jsp";
                session.setAttribute("contact", contact);
             }
             else
             {
-               servlet = "/ServletAffichageModif";
+               servlet = "/jspModif.jsp";
                session.setAttribute("message", "Le contact " + 
                                                contact.getNumero() +
                                                " a été supprimé");
@@ -117,7 +117,7 @@ public class TraitementEnregModif
          }
          catch(SQLException e)
          {
-            servlet = "/ServletAffichageModif";
+            servlet = "/jspModif.jsp";
             session.setAttribute("message", e.getMessage());
             session.setAttribute("contact", contact);
             session.setAttribute("vSect", vSect);
@@ -129,7 +129,7 @@ public class TraitementEnregModif
       }
       catch(SQLException e)
       {
-         servlet = "/ServletAffichageModif";
+         servlet = "/jspModif.jsp";
          session.setAttribute("message", e.getMessage());
          session.setAttribute("contact", contact);
          session.setAttribute("vSect", vSect);
