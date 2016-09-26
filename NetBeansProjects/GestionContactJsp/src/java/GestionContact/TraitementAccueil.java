@@ -39,7 +39,7 @@ public class TraitementAccueil
 // --------------------------------------------------------------------------
    public String traitementListe(HttpServletRequest requete)
    {
-      String servlet;
+      String jspString;
       Vector<Contact> listeContacts;
       Vector<Colonne> listeColonnes;
       HttpSession session = requete.getSession();
@@ -66,13 +66,13 @@ public class TraitementAccueil
             listeContacts = contactDAO.lireListe();
             listeColonnes = contactDAO.getListeColonnes();
 
-            servlet = "/ServletAffichageListe";
+            jspString = "/jspListe.jsp";
             session.setAttribute("listeContacts", listeContacts);
             session.setAttribute("listeColonnes", listeColonnes);
          }
          catch (SQLException e)
          {
-            servlet = "/ServletAffichageAccueil";
+            jspString = "/jspAccueil.jsp";
             session.setAttribute("message", e.getMessage());
             session.setAttribute("numeroContact", "");
             session.setAttribute("choixAction", "liste");
@@ -84,12 +84,12 @@ public class TraitementAccueil
       }
       catch(SQLException e)
       {
-         servlet = "/ServletAffichageAccueil";
+         jspString = "/jspAccueil.jsp";
          session.setAttribute("message", e.getMessage());
          session.setAttribute("numeroContact", "");
          session.setAttribute("choixAction", "liste");
       }
-      return servlet;
+      return jspString;
    }
 
 // --------------------------------------------------------------------------
@@ -97,7 +97,7 @@ public class TraitementAccueil
 // --------------------------------------------------------------------------
    public String traitementModif(HttpServletRequest requete)
    {
-      String servlet;
+      String jspString;
 
       Contact contact;
       Integer numeroContact;
@@ -124,21 +124,21 @@ public class TraitementAccueil
 
             vSect = secteurDAO.lireListe();
             
-            servlet = "/ServletAffichageModif";
+            jspString = "/jspModif.jsp";
             session.setAttribute("message", "");
             session.setAttribute("contact", contact);
             session.setAttribute("vSect", vSect);
          }
          catch(SQLException e)
          {
-            servlet = "/ServletAffichageAccueil";
+            jspString = "/jspAccueil.jsp";
             session.setAttribute("message", e.getMessage());
             session.setAttribute("numeroContact", chaineNumeroContact);
             session.setAttribute("choixAction", "modification");
          }
          catch(NumberFormatException e)
          {
-            servlet = "/ServletAffichageAccueil";
+            jspString = "/jspAccueil.jsp";
             session.setAttribute("message", e.getMessage());
             session.setAttribute("numeroContact", chaineNumeroContact);
             session.setAttribute("choixAction", "modification");
@@ -150,13 +150,13 @@ public class TraitementAccueil
       }
       catch(SQLException e)
       {
-         servlet = "/ServletAffichageAccueil";
+         jspString = "/jspAccueil.jsp";
          session.setAttribute("message", e.getMessage());
          session.setAttribute("numeroContact", chaineNumeroContact);
          session.setAttribute("choixAction", "modification");
       }
 
-      return servlet;
+      return jspString;
    }
 
 // --------------------------------------------------------------------------
@@ -164,18 +164,18 @@ public class TraitementAccueil
 // --------------------------------------------------------------------------
    public String traitementNonRealise(HttpServletRequest requete)
    {
-      String servlet;
+      String jspString;
       HttpSession session = requete.getSession();
 
       String choixAction = requete.getParameter("choixAction");
       String chaineNumeroContact = requete.getParameter("numeroContact");
 
-      servlet = "/ServletAffichageAccueil";
+      jspString = "/jspAccueil.jsp";
       session.setAttribute("message", "Ecran de " + choixAction + " non réalisé");
       session.setAttribute("choixAction", choixAction);
       session.setAttribute("numeroContact", chaineNumeroContact);
 
-      return servlet;
+      return jspString;
    }
 }
 

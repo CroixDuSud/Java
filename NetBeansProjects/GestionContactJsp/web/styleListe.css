@@ -1,0 +1,46 @@
+table, th, td
+{
+   border: 1px solid black;
+}
+
+th
+{
+    background-color: #506295;
+    color: white;
+    font-size: 12px;
+}
+
+tr, td, th
+{
+    height: 20px;
+}
+
+table
+{
+    width: 70%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 50px;
+    background-color: #c2d1e0;
+    border-collapse: collapse;
+    border-color: #503d41;
+}
+
+#titre
+{
+    height: 25px;
+    font-size: 18px;
+}
+
+.nomColonne
+{
+    background-color: #5a656a;
+}
+
+#link
+{
+    margin-top: 20px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 170px;
+}

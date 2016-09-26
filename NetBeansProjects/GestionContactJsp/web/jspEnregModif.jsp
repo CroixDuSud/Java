@@ -8,22 +8,6 @@
 <%@page import="metierMapping.*"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
-<% Contact contact;
-Vector<Secteur> vSect;
-Vector<Integer> vCodeSecteur;
-String message;
-
-try
-{
-    contact = (Contact) session.getAttribute("contact");
-    vSect = (Vector<Secteur>) session.getAttribute("vSect");
-    message = (String) session.getAttribute("message");
-}
-
-%>
-
-
-
 <!DOCTYPE html>
 <html>
 <head>

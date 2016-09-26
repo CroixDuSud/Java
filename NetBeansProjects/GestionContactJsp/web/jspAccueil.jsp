@@ -25,12 +25,12 @@
     </div>
     <div id="radioG">
     <div id="radio">
-        <input type="radio" name="choix" value="Modification">Modification
-        <input type="radio" name="choix" value="Creation">Creation
-        <input type="radio" name="choix" value="Suppression">Suppression
+        <input type="radio" name="choixAction" value="modification">Modification
+        <input type="radio" name="choixAction" value="creation">Creation
+        <input type="radio" name="choixAction" value="suppression">Suppression
     </div>
     <div>
-        <input type="radio" name="choix" value="ListeDesContacts" id="liste">Liste des contacts
+        <input type="radio" name="choixAction" value="liste" id="liste">Liste des contacts
         </div>
     </div>
 </fieldset>

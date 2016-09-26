@@ -1,0 +1,57 @@
+body
+{
+    margin: auto;
+    background-color: #c2d1e0;
+}
+
+#field
+{
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 3em;
+    background-color: #a0a9c9;
+    width: 700px;
+    box-shadow: 5px 5px 5px 0px #366cac;
+    
+}
+
+#radio,#numC
+{
+    display: inline-block;
+}
+
+#send
+{
+    margin: auto;
+    display: block;
+}
+
+legend
+{
+    font-size: 20px;
+}
+
+#footer
+{
+    margin: auto;
+    height: 30px;
+    width: 700px;
+    background-color: #9ebcde;
+}
+
+#numC
+{
+    width: 350px;
+    flex: 2;
+}
+
+#radioG
+{
+    width: 300px;
+    float: right;
+}
+
+#liste
+{
+    margin-top: 2em;
+}
