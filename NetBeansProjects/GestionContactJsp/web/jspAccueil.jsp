@@ -20,8 +20,8 @@
 <fieldset id="field">
     <legend>Gestion des contacts</legend>
     <div id="numC">
-    <label for="numContact">Numero de contact :</label>
-    <input type="text" name="num" id="numContact">
+    <label for="numeroContact">Numero de contact :</label>
+    <input type="text" name="numeroContact" id="numContact">
     </div>
     <div id="radioG">
     <div id="radio">
