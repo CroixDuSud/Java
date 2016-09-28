@@ -2,7 +2,6 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group/>
         <group name="tpJee"/>
         <group name="cours">
             <file>file:/U:/Bip/Formateur/gnmi/java-netbeans-8/tpJee/Servlet-JSP/GestionContactMVC2/web/WEB-INF/web.xml</file>
@@ -13,6 +12,11 @@
             <file>file:/U:/Bip/Formateur/gnmi/java-netbeans-8/TPJEE/Servlet-JSP/GestionContactMVC2/web/index.jsp</file>
             <file>file:/U:/Bip/Formateur/gnmi/java-netbeans-8/TPJEE/Servlet-JSP/GestionContactMVC2/web/jspListe.jsp</file>
             <file>file:/U:/Bip/Formateur/gnmi/java-netbeans-8/TPJEE/Servlet-JSP/GestionContactMVC2/src/java/gestionContact/ServletControleur.java</file>
+        </group>
+        <group>
+            <file>file:/C:/Users/afpa1800/Documents/GitHub/Java/TP/Jee/Servlet%20-%20JSP/GestionContactMVC2/src/java/gestionContact/ServletControleur.java</file>
+            <file>file:/C:/Users/afpa1800/Documents/GitHub/Java/TP/Jee/Servlet%20-%20JSP/GestionContactMVC2/src/java/gestionContact/TraitementAccueil.java</file>
+            <file>file:/C:/Users/afpa1800/Documents/GitHub/Java/TP/Jee/Servlet%20-%20JSP/GestionContactMVC2/src/java/gestionContact/TraitementEnregModif.java</file>
         </group>
     </open-files>
 </project-private>
