@@ -17,7 +17,7 @@ public class ContactDistantClient
 {
     public static void main(String[] args)
     {
-        Contact contact = new Contact();
+        Contact contact;// = new Contact();
         
         /*-----------------------------------------------------------
         Acces au serveur d'adressage : il faut marquer son adresse IP
@@ -33,7 +33,7 @@ public class ContactDistantClient
             ContactDistant contactDistant = 
                     (ContactDistant) Naming.lookup(adresse + "/contactDistant");
             
-            contact = contactDistant.lireContact(101);
+            contact = contactDistant.lireContact(110);
             
             System.out.println(contact);
         }
