@@ -772,10 +772,12 @@ exists or setup the property manually. For example like this:
     <target depends="init" if="no.dist.ear.dir" name="-deps-module-jar" unless="no.deps">
         <ant antfile="${project.LibrairieContactDistantPool}/build.xml" inheritall="false" target="jar"/>
         <ant antfile="${project.utilitaires}/build.xml" inheritall="false" target="jar"/>
+        <ant antfile="${project.utilitaires-1}/build.xml" inheritall="false" target="jar"/>
     </target>
     <target depends="init" if="dist.ear.dir" name="-deps-ear-jar" unless="no.deps">
         <ant antfile="${project.LibrairieContactDistantPool}/build.xml" inheritall="false" target="jar"/>
         <ant antfile="${project.utilitaires}/build.xml" inheritall="false" target="jar"/>
+        <ant antfile="${project.utilitaires-1}/build.xml" inheritall="false" target="jar"/>
     </target>
     <target depends="init, -check-main-class, -deps-module-jar, -deps-ear-jar" name="deps-jar"/>
     <target depends="init,deps-jar" name="-pre-pre-compile">
@@ -788,17 +790,20 @@ exists or setup the property manually. For example like this:
     <target depends="compile" if="is.server.weblogic" name="library-inclusion-in-archive">
         <basename file="${reference.utilitaires.jar}" property="manifest.reference.utilitaires.jar"/>
         <basename file="${reference.LibrairieContactDistantPool.jar}" property="manifest.reference.LibrairieContactDistantPool.jar"/>
+        <basename file="${reference.utilitaires-1.jar}" property="manifest.reference.utilitaires-1.jar"/>
         <manifest file="${build.ear.classes.dir}/META-INF/MANIFEST.MF" mode="update">
-            <attribute name="Extension-List" value="jar-1 jar-2 "/>
+            <attribute name="Extension-List" value="jar-1 jar-2 jar-3 "/>
             <attribute name="jar-1-Extension-Name" value="${manifest.reference.utilitaires.jar}"/>
             <attribute name="jar-2-Extension-Name" value="${manifest.reference.LibrairieContactDistantPool.jar}"/>
+            <attribute name="jar-3-Extension-Name" value="${manifest.reference.utilitaires-1.jar}"/>
         </manifest>
     </target>
     <target depends="compile" if="dist.ear.dir" name="library-inclusion-in-manifest">
         <copyfiles files="${reference.utilitaires.jar}" manifestproperty="manifest.reference.utilitaires.jar" todir="${dist.ear.dir}/lib"/>
         <copyfiles files="${reference.LibrairieContactDistantPool.jar}" manifestproperty="manifest.reference.LibrairieContactDistantPool.jar" todir="${dist.ear.dir}/lib"/>
+        <copyfiles files="${reference.utilitaires-1.jar}" manifestproperty="manifest.reference.utilitaires-1.jar" todir="${dist.ear.dir}/lib"/>
         <manifest file="${build.ear.classes.dir}/META-INF/MANIFEST.MF" mode="update">
-            <attribute name="Class-Path" value="${manifest.reference.utilitaires.jar} lib/${manifest.reference.utilitaires.jar} ${manifest.reference.LibrairieContactDistantPool.jar} lib/${manifest.reference.LibrairieContactDistantPool.jar} "/>
+            <attribute name="Class-Path" value="${manifest.reference.utilitaires.jar} lib/${manifest.reference.utilitaires.jar} ${manifest.reference.LibrairieContactDistantPool.jar} lib/${manifest.reference.LibrairieContactDistantPool.jar} ${manifest.reference.utilitaires-1.jar} lib/${manifest.reference.utilitaires-1.jar} "/>
         </manifest>
     </target>
     <target name="-copy-meta-inf">
@@ -1304,6 +1309,7 @@ exists or setup the property manually. For example like this:
     <target depends="init" name="deps-clean" unless="no.deps">
         <ant antfile="${project.LibrairieContactDistantPool}/build.xml" inheritall="false" target="clean"/>
         <ant antfile="${project.utilitaires}/build.xml" inheritall="false" target="clean"/>
+        <ant antfile="${project.utilitaires-1}/build.xml" inheritall="false" target="clean"/>
     </target>
     <target depends="init" name="-do-clean">
         <delete dir="${build.dir}"/>

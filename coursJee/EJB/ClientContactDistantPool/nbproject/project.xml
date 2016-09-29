@@ -13,6 +13,7 @@
             </test-roots>
             <included-library dirs="200">reference.utilitaires.jar</included-library>
             <included-library dirs="200">reference.LibrairieContactDistantPool.jar</included-library>
+            <included-library dirs="200">reference.utilitaires-1.jar</included-library>
         </data>
         <references xmlns="http://www.netbeans.org/ns/ant-project-references/1">
             <reference>
@@ -25,6 +26,14 @@
             </reference>
             <reference>
                 <foreign-project>utilitaires</foreign-project>
+                <artifact-type>jar</artifact-type>
+                <script>build.xml</script>
+                <target>jar</target>
+                <clean-target>clean</clean-target>
+                <id>jar</id>
+            </reference>
+            <reference>
+                <foreign-project>utilitaires-1</foreign-project>
                 <artifact-type>jar</artifact-type>
                 <script>build.xml</script>
                 <target>jar</target>
