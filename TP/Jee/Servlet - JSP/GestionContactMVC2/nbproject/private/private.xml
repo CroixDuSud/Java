@@ -13,10 +13,6 @@
             <file>file:/U:/Bip/Formateur/gnmi/java-netbeans-8/TPJEE/Servlet-JSP/GestionContactMVC2/web/jspListe.jsp</file>
             <file>file:/U:/Bip/Formateur/gnmi/java-netbeans-8/TPJEE/Servlet-JSP/GestionContactMVC2/src/java/gestionContact/ServletControleur.java</file>
         </group>
-        <group>
-            <file>file:/C:/Users/afpa1800/Documents/GitHub/Java/TP/Jee/Servlet%20-%20JSP/GestionContactMVC2/src/java/gestionContact/ServletControleur.java</file>
-            <file>file:/C:/Users/afpa1800/Documents/GitHub/Java/TP/Jee/Servlet%20-%20JSP/GestionContactMVC2/src/java/gestionContact/TraitementAccueil.java</file>
-            <file>file:/C:/Users/afpa1800/Documents/GitHub/Java/TP/Jee/Servlet%20-%20JSP/GestionContactMVC2/src/java/gestionContact/TraitementEnregModif.java</file>
-        </group>
+        <group/>
     </open-files>
 </project-private>
