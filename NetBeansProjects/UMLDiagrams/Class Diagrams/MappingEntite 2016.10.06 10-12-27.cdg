@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<ClassDiagram name="MappingEntite">
+  <ClassDiagramComponents>
+    <Class name="MappingEntite" package="objetDistant" visibility="public" xPosition="20.0" yPosition="20.0">
+      <Fields>
+        <Field name="em" type="EntityManager" visibility="private"/>
+      </Fields>
+      <Constructors/>
+      <Methods>
+        <Method name="lireContact" returnType="Contact" visibility="public">
+          <Argument type="Integer" name="numero"/>
+        </Method>
+        <Method name="creerContact" returnType="int" visibility="public">
+          <Argument type="Contact" name="contact"/>
+        </Method>
+        <Method name="modifierContact" returnType="int" visibility="public">
+          <Argument type="Contact" name="contact"/>
+        </Method>
+        <Method name="detruireContact" returnType="int" visibility="public">
+          <Argument type="Contact" name="contact"/>
+        </Method>
+        <Method name="lireListeContacts" returnType="Vector&lt;Contact&gt;" visibility="public"/>
+        <Method name="lireListeContactsParNom" returnType="Vector&lt;Contact&gt;" visibility="public">
+          <Argument type="String" name="extraitNom"/>
+        </Method>
+        <Method name="lireListeVersementsContact" returnType="Vector&lt;Versement&gt;" visibility="public">
+          <Argument type="Contact" name="contact"/>
+        </Method>
+        <Method name="lireListeColonnes" returnType="Vector&lt;Colonne&gt;" visibility="public">
+          <Argument type="String" name="nomTable"/>
+        </Method>
+        <Method name="lireSecteur" returnType="Secteur" visibility="public">
+          <Argument type="Integer" name="numero"/>
+        </Method>
+        <Method name="lireListeSecteurs" returnType="Vector&lt;Secteur&gt;" visibility="public"/>
+      </Methods>
+    </Class>
+  </ClassDiagramComponents>
+  <ClassDiagramRelations/>
+</ClassDiagram>

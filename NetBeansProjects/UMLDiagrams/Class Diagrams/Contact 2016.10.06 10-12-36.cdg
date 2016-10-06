@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<ClassDiagram name="Contact">
+  <ClassDiagramComponents>
+    <Class name="Contact" package="tables" visibility="public" xPosition="20.0" yPosition="20.0">
+      <Fields>
+        <Field name="serialVersionUID" type="long" visibility="private" isStatic="true" isFinal="true"/>
+        <Field name="numero" type="Integer" visibility="private"/>
+        <Field name="nom" type="String" visibility="private"/>
+        <Field name="adresse" type="String" visibility="private"/>
+        <Field name="codePostal" type="String" visibility="private"/>
+        <Field name="ville" type="String" visibility="private"/>
+        <Field name="codeSecteur" type="Secteur" visibility="private"/>
+        <Field name="versementCollection" type="Collection&lt;Versement&gt;" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+        <Constructor visibility="public">
+          <Argument type="Integer" name="numero"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="getNumero" returnType="Integer" visibility="public"/>
+        <Method name="setNumero" returnType="void" visibility="public">
+          <Argument type="Integer" name="numero"/>
+        </Method>
+        <Method name="getNom" returnType="String" visibility="public"/>
+        <Method name="setNom" returnType="void" visibility="public">
+          <Argument type="String" name="nom"/>
+        </Method>
+        <Method name="getAdresse" returnType="String" visibility="public"/>
+        <Method name="setAdresse" returnType="void" visibility="public">
+          <Argument type="String" name="adresse"/>
+        </Method>
+        <Method name="getCodePostal" returnType="String" visibility="public"/>
+        <Method name="setCodePostal" returnType="void" visibility="public">
+          <Argument type="String" name="codePostal"/>
+        </Method>
+        <Method name="getVille" returnType="String" visibility="public"/>
+        <Method name="setVille" returnType="void" visibility="public">
+          <Argument type="String" name="ville"/>
+        </Method>
+        <Method name="getCodeSecteur" returnType="Secteur" visibility="public"/>
+        <Method name="setCodeSecteur" returnType="void" visibility="public">
+          <Argument type="Secteur" name="codeSecteur"/>
+        </Method>
+        <Method name="getVersementCollection" returnType="Collection&lt;Versement&gt;" visibility="public"/>
+        <Method name="setVersementCollection" returnType="void" visibility="public">
+          <Argument type="Collection&lt;Versement&gt;" name="versementCollection"/>
+        </Method>
+        <Method name="hashCode" returnType="int" visibility="public"/>
+        <Method name="equals" returnType="boolean" visibility="public">
+          <Argument type="Object" name="object"/>
+        </Method>
+        <Method name="toString" returnType="String" visibility="public"/>
+      </Methods>
+    </Class>
+  </ClassDiagramComponents>
+  <ClassDiagramRelations/>
+</ClassDiagram>
